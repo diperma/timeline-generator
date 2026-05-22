@@ -46,7 +46,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { fetchTimeline, syncTimeline } from "@/lib/bismaApi";
+import { fetchTimeline, isStaticTimelineMode, syncTimeline } from "@/lib/bismaApi";
 import type { TimelineAssignment, TimelinePayload } from "@/types/bisma";
 import { buildTimeline } from "@/features/timeline/timelineEngine";
 import { TimelineGrid } from "@/features/timeline/TimelineGrid";
@@ -144,8 +144,9 @@ export default function App() {
               Kalender Penugasan dan Beban Pegawai
             </h1>
             <p className="max-w-3xl text-sm text-muted-foreground">
-              Data bersumber dari backend BISMA adapter. Browser hanya membaca endpoint lokal
-              aplikasi ini, tanpa kredensial atau cookie BISMA.
+              {isStaticTimelineMode
+                ? "Data bersumber dari snapshot publik Supabase yang diterbitkan oleh sinkronisasi lokal."
+                : "Data bersumber dari backend BISMA adapter. Browser hanya membaca endpoint lokal aplikasi ini, tanpa kredensial atau cookie BISMA."}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -155,7 +156,7 @@ export default function App() {
             </Badge>
             <Button disabled={loadState === "loading" || loadState === "refreshing"} onClick={() => load(true)}>
               <RefreshCwIcon data-icon="inline-start" />
-              Sync
+              {isStaticTimelineMode ? "Reload" : "Sync"}
             </Button>
           </div>
         </header>

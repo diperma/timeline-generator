@@ -44,6 +44,8 @@ export type TimelinePayload = {
   source: "bisma";
   year: string;
   syncedAt: string;
+  publishedAt?: string;
+  publicSnapshot?: boolean;
   count: number;
   listCount?: number;
   detailParsed?: number;
