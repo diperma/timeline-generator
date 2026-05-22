@@ -151,6 +151,9 @@ export default function App() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="secondary">Tahun {payload?.year ?? "2026"}</Badge>
+            <Badge variant="secondary">
+              Data diperoleh {formatDateTime(payload?.obtainedAt || payload?.syncedAt)}
+            </Badge>
             <Badge variant={payload?.warnings.length ? "outline" : "secondary"}>
               {payload?.warnings.length ?? 0} warnings
             </Badge>
@@ -566,6 +569,19 @@ function formatRupiah(value: number) {
     currency: "IDR",
     maximumFractionDigits: 0,
   }).format(value);
+}
+
+function formatDateTime(value: string | undefined) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return new Intl.DateTimeFormat("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
 }
 
 function monthToDateWindow(value: string) {

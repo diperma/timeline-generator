@@ -33,12 +33,16 @@ function sanitizePublicTimelinePayload(payload, options = {}) {
         }))
       : [],
   }));
+  const dateRange = getTimelineDateRange(assignments);
 
   return stripUndefined({
     source: payload.source,
     year: payload.year,
     syncedAt: payload.syncedAt,
+    obtainedAt: payload.syncedAt,
     publishedAt,
+    dataStartDate: dateRange.startDate,
+    dataEndDate: dateRange.endDate,
     publicSnapshot: true,
     count: payload.count,
     listCount: payload.listCount,
@@ -56,6 +60,30 @@ function sanitizePublicTimelinePayload(payload, options = {}) {
         )
       : [],
   });
+}
+
+function getTimelineDateRange(assignments) {
+  const dates = [];
+  for (const assignment of assignments) {
+    pushIsoDate(dates, assignment.startDate);
+    pushIsoDate(dates, assignment.endDate);
+    for (const member of assignment.members || []) {
+      pushIsoDate(dates, member.startDate);
+      pushIsoDate(dates, member.endDate);
+    }
+  }
+
+  dates.sort();
+  return {
+    startDate: dates[0],
+    endDate: dates[dates.length - 1],
+  };
+}
+
+function pushIsoDate(dates, value) {
+  if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    dates.push(value);
+  }
 }
 
 function validateTimelinePayload(payload) {
@@ -95,6 +123,7 @@ function stripUndefined(value) {
 }
 
 module.exports = {
+  getTimelineDateRange,
   sanitizePublicTimelinePayload,
   validateTimelinePayload,
 };
