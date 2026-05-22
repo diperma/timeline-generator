@@ -5,7 +5,7 @@
   "functions": {
     "api/index.js": {
       "maxDuration": 300,
-      "regions": ["sin1"]
+      "regions": ["hnd1"]
     }
   },
   "rewrites": [
