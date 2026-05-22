@@ -23,16 +23,15 @@ function createBismaClient(config) {
 
   async function login() {
     cookieJar.clear();
-    const loginPage = await rawRequest(config.baseUrl + "/", {
-      method: "GET",
-      headers: baseHeaders(),
-    });
-    const html = await loginPage.text();
-    mergeCookies(loginPage);
+    const { response: loginPage, html } = await fetchLoginPage();
 
     const enckey = extractEnckey(html);
     if (!enckey) {
-      throw stageError("login", "Could not find BISMA enckey on login page", 502);
+      throw stageError(
+        "login",
+        `Could not find BISMA enckey on login page (${describeLoginResponse(loginPage, html)})`,
+        502,
+      );
     }
 
     const form = new URLSearchParams();
@@ -83,6 +82,31 @@ function createBismaClient(config) {
 
     lastLoginAt = new Date();
     console.log(`BISMA login success for year ${config.year}`);
+  }
+
+  async function fetchLoginPage() {
+    let url = config.baseUrl + "/";
+    let response;
+    let html = "";
+
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      response = await rawRequest(url, {
+        method: "GET",
+        headers: baseHeaders(),
+      });
+      mergeCookies(response);
+
+      const location = response.headers.get("location");
+      if ([301, 302, 303, 307, 308].includes(response.status) && location) {
+        url = absoluteUrl(location, config.baseUrl);
+        continue;
+      }
+
+      html = await response.text();
+      break;
+    }
+
+    return { response, html };
   }
 
   async function bismaGet(pathOrUrl, options = {}) {
@@ -171,6 +195,23 @@ function createBismaClient(config) {
     getSessionStatus,
     logout,
   };
+}
+
+function describeLoginResponse(response, html) {
+  const titleMatch = String(html || "").match(/<title[^>]*>([^<]*)<\/title>/i);
+  const title = titleMatch ? normalizeSpace(titleMatch[1]).slice(0, 80) : "none";
+  const contentType = response?.headers?.get("content-type") || "unknown";
+  return [
+    `status=${response?.status || "unknown"}`,
+    `url=${response?.url || "unknown"}`,
+    `contentType=${contentType}`,
+    `bytes=${Buffer.byteLength(String(html || ""), "utf8")}`,
+    `title=${title}`,
+  ].join(", ");
+}
+
+function normalizeSpace(value) {
+  return String(value || "").replace(/\s+/g, " ").trim();
 }
 
 async function rawRequest(url, options) {
