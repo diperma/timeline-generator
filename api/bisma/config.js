@@ -7,6 +7,7 @@ function getConfig() {
   const baseUrl = trimTrailingSlash(process.env.BISMA_BASE_URL || "https://bisma.bpkp.go.id");
   return {
     baseUrl,
+    connectHost: process.env.BISMA_CONNECT_HOST || "",
     username: process.env.BISMA_USERNAME || "",
     password: process.env.BISMA_PASSWORD || "",
     year: process.env.BISMA_YEAR || "2026",
@@ -21,6 +22,7 @@ function getConfig() {
 function getPublicConfig(config) {
   return {
     baseUrl: config.baseUrl,
+    hasConnectHost: Boolean(config.connectHost),
     year: config.year,
     hasUsername: Boolean(config.username),
     hasPassword: Boolean(config.password),

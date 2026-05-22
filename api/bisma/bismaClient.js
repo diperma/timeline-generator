@@ -1,6 +1,7 @@
 const { encryptField } = require("./encryption");
 const { createCookieJar } = require("./cookieJar");
 const { requireCredentials } = require("./config");
+const https = require("node:https");
 
 const DEFAULT_UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36";
@@ -40,7 +41,7 @@ function createBismaClient(config) {
     form.set("password", encryptField(config.password, enckey));
     form.set("thang", encryptField(config.year, enckey));
 
-    const response = await rawRequest(config.baseUrl + "/Auth/Auth/act_auth", {
+    const response = await rawRequest(config, config.baseUrl + "/Auth/Auth/act_auth", {
       method: "POST",
       headers: {
         ...baseHeaders(),
@@ -68,7 +69,7 @@ function createBismaClient(config) {
 
     if (result.redirect_url) {
       const redirectUrl = absoluteUrl(result.redirect_url, config.baseUrl);
-      const redirectResponse = await rawRequest(redirectUrl, {
+      const redirectResponse = await rawRequest(config, redirectUrl, {
         method: "GET",
         headers: {
           ...baseHeaders(),
@@ -90,7 +91,7 @@ function createBismaClient(config) {
     let html = "";
 
     for (let attempt = 0; attempt < 3; attempt += 1) {
-      response = await rawRequest(url, {
+      response = await rawRequest(config, url, {
         method: "GET",
         headers: baseHeaders(),
       });
@@ -138,7 +139,7 @@ function createBismaClient(config) {
       headers.Origin = config.baseUrl;
     }
 
-    const response = await rawRequest(url, { method, headers, body });
+    const response = await rawRequest(config, url, { method, headers, body });
     mergeCookies(response);
     const contentType = response.headers.get("content-type") || "";
     const text = await response.text();
@@ -214,11 +215,84 @@ function normalizeSpace(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
 }
 
-async function rawRequest(url, options) {
+async function rawRequest(config, url, options) {
+  if (config.connectHost) return rawRequestViaConnectHost(config, url, options);
   return fetch(url, {
     ...options,
     redirect: "manual",
   });
+}
+
+async function rawRequestViaConnectHost(config, url, options = {}) {
+  const target = new URL(url);
+  const base = new URL(config.baseUrl);
+  if (target.protocol !== "https:" || target.hostname !== base.hostname) {
+    return fetch(url, {
+      ...options,
+      redirect: "manual",
+    });
+  }
+
+  return new Promise((resolve, reject) => {
+    const request = https.request(
+      {
+        hostname: config.connectHost,
+        port: target.port || 443,
+        servername: target.hostname,
+        path: `${target.pathname}${target.search}`,
+        method: options.method || "GET",
+        headers: {
+          ...(options.headers || {}),
+          Host: target.host,
+        },
+        timeout: 30000,
+      },
+      (response) => {
+        const chunks = [];
+        response.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
+        response.on("end", () => {
+          const body = Buffer.concat(chunks);
+          resolve(createResponseLike({
+            body,
+            headers: response.headers,
+            setCookieHeaders: response.headers["set-cookie"] || [],
+            status: response.statusCode || 0,
+            url,
+          }));
+        });
+      },
+    );
+
+    request.on("timeout", () => request.destroy(new Error("BISMA request timed out")));
+    request.on("error", reject);
+    if (options.body) request.write(options.body);
+    request.end();
+  });
+}
+
+function createResponseLike({ body, headers, setCookieHeaders, status, url }) {
+  return {
+    ok: status >= 200 && status < 300,
+    status,
+    url,
+    headers: {
+      get(name) {
+        const key = String(name).toLowerCase();
+        const value = headers[key];
+        if (Array.isArray(value)) return value.join(", ");
+        return value || null;
+      },
+      getSetCookie() {
+        return setCookieHeaders;
+      },
+    },
+    async text() {
+      return body.toString("utf8");
+    },
+    async arrayBuffer() {
+      return body.buffer.slice(body.byteOffset, body.byteOffset + body.byteLength);
+    },
+  };
 }
 
 function extractEnckey(html) {
