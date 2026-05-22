@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+
+
+<html class="loading" lang="en" data-textdirection="ltr">
+  <!-- BEGIN: Head-->
+  <meta charset="UTF-8"> 
+  <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
+    <meta name="author" content="ThemeSelect">
+
+    <title>Manajemen Keuangan - 2026</title>
+    <link rel="apple-touch-icon" href="https://bisma.bpkp.go.id/assets/app-assets/images/logo/New/logo-bisma_142.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://bisma.bpkp.go.id/assets/app-assets/images/logo/New/logo-bisma_142.png">
+    <!-- <link href="https://bisma.bpkp.go.id/assets/icon.css?family=Material+Icons" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- BEGIN: VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/flag-icon/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.5/css/dataTables.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/2.0.5/css/select.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/materialize-stepper/materialize-stepper.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/themes/vertical-dark-menu-template/materialize.css">
+		<link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/themes/vertical-dark-menu-template/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/custom/custom.css">
+
+    <link rel="stylesheet" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/select2/select2.min.css" type="text/css">
+    <link rel="stylesheet" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/select2/select2-materialize.css" type="text/css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/quill/quill.snow.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/app-chat.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/app-sidebar.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/app-email.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/intro.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/page-faq.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/jkanban/jkanban.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/app-kanban.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/app-file-manager.min.css"> -->
+    <link href="https://cdn.datatables.net/fixedcolumns/5.0.1/css/fixedColumns.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <!-- <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/dashboard-modern.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/searchpanes/2.3.2/css/searchPanes.dataTables.min.css">
+    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"/> 
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <!-- END: Custom CSS-->
+  </head>
+
+  <style>
+
+body {
+    overflow: visible !important;
+}
+
+
+.charDonut {
+  height: 170px;
+  -webkit-filter: drop-shadow(0px 10px 4px rgba(133, 3, 168, 0.2));
+  filter: drop-shadow(0px 10px 4px rgba(133, 3, 168, 0.2));
+}
+
+.charDonut .ct-series-a .ct-slice-donut {
+  stroke: #ff6f00;
+}
+
+.charDonut .ct-series-b .ct-slice-donut {
+  stroke: #ffd740;
+}
+
+.user-statistics-card .collection .collection-item {
+  min-height: auto;
+}
+
+.user-statistics-container {
+  position: relative;
+  height: 150px;
+}
+
+.user-statistics-container > * {
+  position: absolute;
+  width: 100%;
+}
+
+#user-statistics-bar-chart {
+  height: 150px;
+  -webkit-filter: drop-shadow(4px 10px 4px rgba(133, 3, 168, 0.2));
+  filter: drop-shadow(4px 10px 4px rgba(133, 3, 168, 0.2));
+}
+
+#user-statistics-bar-chart .ct-series-a .ct-bar {
+  stroke: url(#barGradient1);
+}
+
+#user-statistics-bar-chart .ct-series-a .ct-slice-pie {
+  fill: #ff4bac;
+}
+
+#user-statistics-bar-chart .ct-series-b .ct-bar {
+  stroke: url(#barGradient2);
+}
+
+#user-statistics-bar-chart .ct-series-b .ct-slice-pie {
+  fill: #8133ff;
+}
+
+.containerload {
+  position: relative;
+}
+
+.progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 50px;
+  border-color :#C4F0F0;
+  width: 100%;
+  height: 10px;
+}
+
+.shadowcustom{
+  box-shadow: -1px 6px 37px -5px rgba(11,28,82,0.58);
+-webkit-box-shadow: -1px 6px 37px -5px rgba(11,28,82,0.58);
+-moz-box-shadow: -1px 6px 37px -5px rgba(11,28,82,0.58);
+}
+
+    
+
+.select{
+  display: none;
+}
+
+#page-length-option tr td {
+    height: 5px !important;
+}
+
+.text-right{
+  text-align: right;
+}
+
+.text-left{
+  text-align: left;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.pagination {
+  padding: 0;
+  text-align: right;
+  font-size: 15px;
+}
+
+.pagination li {
+  display: inline;
+  padding-left : 10px;
+  font-size: 15px;
+}
+
+.pagination li a {
+  display: inline-block;
+  text-decoration: none;
+  /* padding: 5px 10px; */
+  color: #616161;
+  font-size: 15px;
+}
+
+.pagination a.active {
+  color: #fff !important;
+border: 1px solid #2196f3;
+border-radius: 6px;
+background: #2196f3;
+box-shadow: 0 0 8px 0 #2196f3;
+font-size: 15px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #03a9f4;
+  font-size: 15px;
+  color: #FFF;
+  box-shadow: 0 0 8px 0 #2196f3;
+}
+
+.pagination li a {
+  border-radius: 5px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  font-size: 15px;
+ 
+    
+}
+
+.d-none{
+  display: none
+}
+
+table.dataTable tbody td {
+    word-break: break-word;
+    vertical-align: top;
+}
+
+
+
+label{
+  vertical-align: text-bottom !important;
+}
+
+table.fixed { 
+  table-layout:fixed; 
+  display: block;
+  overflow: auto;
+  padding-top: 5%;
+  white-space: nowrap;
+  min-width:200px}
+table.fixed td { overflow: hidden; }
+
+  .HeaderBisma {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  #loader{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('https://bisma.bpkp.go.id/assets/app-assets/images/icon/Loader.gif') 
+              50% 50% no-repeat ;
+}
+
+.scrollable{
+  overflow-y: auto;
+  max-height: 300px;
+}
+ 
+ 
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+ /* Atur font size default untuk isi pengumuman */
+  .pengumuman-content {
+    font-size: 14px; 
+    line-height: 1.6;
+    text-align: justify;
+  }
+
+  /* Atur judul */
+  .pengumuman-content h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  /* Responsive (untuk layar kecil, misalnya HP) */
+  @media screen and (max-width: 600px) {
+    .pengumuman-content {
+      font-size: 12px;
+    }
+    .pengumuman-content h3 {
+      font-size: 16px;
+    }
+  }
+
+  </style>
+
+  
+  <!-- END: Head-->
+  <body class="vertical-layout page-header-light vertical-menu-collapsible vertical-dark-menu preload-transitions 2-columns" 
+  data-open="click" data-menu="vertical-dark-menu" data-col="2-columns">
+  <div id='loader' style='display: none;'> </div>
+    <!-- BEGIN: Header-->
+    <header class="page-topbar" id="header">
+      <div class="navbar navbar-fixed"> 
+        <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-light">
+          <div class="nav-wrapper">
+            <div class="row">
+              <div class="col l12">
+
+                  <div class="col l9">
+                    <div class="header-search-wrapper hide-on-med-and-down" style="width: auto !important">
+                                              <h6>KANTOR PUSAT BADAN PENGAWASAN KEUANGAN DAN PEMBANGUNAN<li style='background-color: #FFF; padding-top: 10px'>
+                        <span class='blue-bisma-text' style='font-size: 0.95rem'>202000040 - Fauzan Rafif - Direktorat Pengawasan Bidang Pemberdayaan Ekonomi Masyarakat - D302</span></li> </h6>
+                      
+                      
+                    </div>
+                  </div>
+
+                  <div class="col l3">
+                      <ul class="right hide-on-med-and-down">
+                      <li class="hide-on-med-and-down"><a class="waves-effect waves-block waves-light toggle-fullscreen" href="javascript:void(0);"><i class="material-icons">settings_overscan</i></a></li>
+                      <li><a class="notification-button" href="javascript:void(0);" data-target="tutorial-dropdown"><i class="material-icons">computer</i></a></li>
+                      <li><a class="waves-effect waves-block waves-light notification-button" href="javascript:void(0);" data-target="notifications-dropdown"><i class="material-icons">notifications_none<small class="notification-badge" id="countnotif_"></small></i></a></li>
+                      <li><a class=""><span class="new badge bisma-blue" style="border-radius: 10px" data-badge-caption="2026">Tahun : </span></a></li>
+                      <li><a class="profile-button" href="javascript:void(0);" data-target="profile-dropdown"><span class="avatar-status avatar-online"><img src="https://bisma.bpkp.go.id/assets/app-assets/images/avatar/user.png" alt="avatar"><i></i></span></a></li>
+                    </ul>
+                    <!-- notifications-dropdown-->
+                    <ul class="dropdown-content" id="notifications-dropdown" style="border-radius: 10px; height : 407px !important">
+                      <li>
+                        <h6>Mapping Anggaran Belum Sesuai</h6>
+                      </li>
+                      <li class="divider"></li>
+                      <div id="notif_"></div>
+                    </ul>
+                    
+                    <!-- Tutorial-dropdown-->
+                    <ul class="dropdown-content" id="tutorial-dropdown" style="border-radius: 10px;width:221px !important;height:26px !important">
+                      <li>
+                        <a href="https://www.youtube.com/@bijakspendingmanagement">
+                            <div class="col l12">
+                              <div class="row">
+                                <div class="col l3">
+                                  <i class="fa-brands fa-youtube"></i> 
+                                </div>
+                                <div class="col l9">
+                                  <h6 class="blue-text" style="padding-top: 15px;">Youtube BISMA</h6>
+                                </div>
+                              </div>
+                            </div></a>
+                      </li>
+                    </ul>
+                    <!-- profile-dropdown-->
+                    <ul class="dropdown-content" id="profile-dropdown" style="border-radius: 10px">
+                      <li style="background-color: #2c323f"><span class="white-text text-darken-1">Fauzan Rafif</span></li>
+                      <li class="divider"></li>
+                                              <li><a class="grey-text text-darken-1" href="https://bisma.bpkp.go.id/User/User/UserSso"><i class="material-icons">person_outline</i> Profile</a></li>
+                                                                  
+                      <li><a class="grey-text text-darken-1" href="https://bisma.bpkp.go.id/Auth/Auth/logout"><i class="material-icons">keyboard_tab</i> Logout</a></li>
+                    </ul>
+                  </div>
+              </div>
+            </div>
+      </div>
+    </header>
+    <!-- END: Header-->
+    
+
+
+
+<style>
+	.table-nav, td{
+  	margin-top: -15px;
+		padding-left: 8px;
+		height: 40px !important;
+		vertical-align: center !important;
+}
+</style>
+
+    <!-- BEGIN: SideNav-->
+    <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-dark sidenav-active-rounded">
+      <div class="brand-sidebar" style="background: #fff !important;">
+				<!-- <table class="table-nav" class="logo-wrapper">
+					<tr>
+						<td style="width: 100%;" class="text-center">
+                <a class="brand-logo darken-1" href="#">
+                  <img class="hide-on-med-and-down " src="https://bisma.bpkp.go.id/assets/app-assets/images/logo/LOGO-BISMA.png" alt="BISMA logo">
+								  <img class="show-on-medium-and-down hide-on-med-and-up" src="https://bisma.bpkp.go.id/assets/app-assets/images/logo/New/Bisma_logo.png" alt="BISMA logo" height="60">
+                </a>
+                <a class="navbar-toggler" href="#">
+                  <i class="material-icons">radio_button_checked</i>
+                </a>
+						</td>
+					</tr>
+				</table> -->
+
+        <h1 class="logo-wrapper">
+            <a class="brand-logo darken-1" href="index.html">
+                <img class="hide-on-med-and-down " src="https://bisma.bpkp.go.id/assets/app-assets/images/logo/LOGO-BISMA-NEW.png">
+                  <!-- <img class="logo-text hide-on-med-and-down" src="https://bisma.bpkp.go.id/assets/app-assets/images/logo/New/Bisma_logo.png" alt="materialize logo"> -->
+                    <span class="logo-text hide-on-med-and-down" style="padding-left:0px !important"><img class="logo-text hide-on-med-and-down" src="https://bisma.bpkp.go.id/assets/app-assets/images/logo/New/Bisma_logo_text_new.png" alt="materialize logo"></span>
+            </a>
+            <a class="navbar-toggler" href="#">
+              <i class="material-icons bisma-blue-text">radio_button_checked</i>
+            </a>
+        </h1>
+        
+				
+      </div>
+
+      <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="accordion">
+      
+          <select class=" browser-default" style="background-color: white; border: solid 1px #000; display:none;" id="role_id">              
+                          <option value="26792" selected>Pegawai PERWAKILAN BPKP PROVINSI BENGKULU</option>
+                      </select>
+
+          <!-- 
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Notice</p>
+<p>Message:  Array to string conversion</p>
+<p>Filename: Header/Aside.php</p>
+<p>Line Number: 150</p>
+
+
+	<p>Backtrace:</p>
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: /var/www/html/application/views/Header/Aside.php<br />
+			Line: 150<br />
+			Function: _error_handler			</p>
+
+		
+	
+		
+			<p style="margin-left:10px">
+			File: /var/www/html/application/views/Transaksi/Costsheet/All/manage.php<br />
+			Line: 1<br />
+			Function: include			</p>
+
+		
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: /var/www/html/application/controllers/Transaksi/Apisima.php<br />
+			Line: 527<br />
+			Function: view			</p>
+
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: /var/www/html/index.php<br />
+			Line: 315<br />
+			Function: require_once			</p>
+
+		
+	
+
+</div>Array -->
+
+              <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Main/Home">
+            <i class="material-icons">home</i>
+            <span class="menu-title" data-i18n="Mail">Dashboard</span>
+                    </a>
+    </li>
+        <li class="navigation-header">
+        <a class="navigation-header-text">Anggaran</a>
+        <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Anggaran/mappingkap/Page">
+            <i class="material-icons">view_comfy</i>
+            <span class="menu-title" data-i18n="Mail">Mapping KAP</span>
+            <span class="badge badge pill cyan float-right mr-1 pulse countnotif_"></span>        </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Anggaran/Lembur/index">
+            <i class="material-icons">home</i>
+            <span class="menu-title" data-i18n="Mail">Mapping Lembur</span>
+                    </a>
+    </li>
+        <li class="navigation-header">
+        <a class="navigation-header-text">Rencana Kegiatan</a>
+        <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+            <li class="active bold"><a class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">email</i><span class="menu-title" data-i18n="Perjadin">Perjadin Pegawai</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                                        <li><a class="collapsible-header waves-cyan" href="JavaScript:void(0)"><i
+                                class="material-icons">radio_button_unchecked</i><span data-i18n="Pilih ST SIMA">Pilih ST SIMA</span></a>
+                        <div class="collapsible-body">
+                            <ul class="collapsible" data-collapsible="accordion">
+                                <li><a href="https://bisma.bpkp.go.id/Transaksi/Apisima/Data_multibeban/pkau"><i
+                                            class="material-icons">keyboard_tab</i><span data-i18n="PKAU level">PKAU</span></a>
+                                </li>
+                                <li><a href="https://bisma.bpkp.go.id/Transaksi/Apisima/Data/pkpt"><i
+                                            class="material-icons">keyboard_tab</i><span data-i18n="PKPT level">PKPT</span></a>
+                                </li>
+                                <li hidden><a href="https://bisma.bpkp.go.id/Transaksi/Apisima/Data_multibeban/multi"><i
+                                            class="material-icons">keyboard_tab</i><span data-i18n="PKPT level">MULTI BEBAN</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <li><a class="collapsible-header waves-cyan" href="JavaScript:void(0)"><i
+                                class="material-icons">radio_button_unchecked</i><span data-i18n="Pilih Costsheet ST SIMA">Pilih
+                                Costsheet ST SIMA</span></a>
+                        <div class="collapsible-body">
+                            <ul class="collapsible" data-collapsible="accordion">
+                                <li><a href="https://bisma.bpkp.go.id/Transaksi/Apisima/Getcostsheet/All"><i
+                                            class="material-icons">keyboard_tab</i><span data-i18n="Unit Sendiri level">Costsheet</span></a>
+                                </li>
+                                <li><a href="https://bisma.bpkp.go.id/Transaksi/Apisima/Getcostsheet/All_unitlain"><i
+                                            class="material-icons">keyboard_tab</i><span data-i18n="Unit Lain level">Costsheet Unit Lain</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        
+                    
+            
+                <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Lembur/Lembur/page">
+            <i class="material-icons">business_center</i>
+            <span class="menu-title" data-i18n="Mail">Lembur</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/PBJ/Pbj/Page">
+            <i class="material-icons">call_to_action</i>
+            <span class="menu-title" data-i18n="Mail">PBJ</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Gaji/Gaji/Page">
+            <i class="material-icons">call_to_action</i>
+            <span class="menu-title" data-i18n="Mail">Belanja Gaji ASN</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Diklat/Diklat/peserta">
+            <i class="material-icons">speaker_notes</i>
+            <span class="menu-title" data-i18n="Mail">Perjadin Diklat</span>
+                    </a>
+    </li>
+    
+            <!-- tlms proyeksi -->
+                        <li class="bold">
+                <a class="collapsible-header waves-cyan " href="JavaScript:void(0)">
+                    <i class="material-icons">show_chart</i>
+                    <span class="menu-title" data-i18n="Perjadin">Proyeksi</span>
+                </a>
+                <div class="collapsible-body">
+                    <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                            <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Proyeksi/Proyeksi">
+            <i class="material-icons">show_chart</i>
+            <span class="menu-title" data-i18n="Mail">Proyeksi CS</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Proyeksi/MonProyeksi">
+            <i class="material-icons">insert_chart</i>
+            <span class="menu-title" data-i18n="Mail">Monitoring ES3</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Proyeksi/Monitoring">
+            <i class="material-icons">insert_chart</i>
+            <span class="menu-title" data-i18n="Mail">Monitoring Perjadin per Bulan</span>
+                    </a>
+    </li>
+                        </ul>
+                </div>
+            </li>
+                        <!-- tlms proyeksi -->
+
+            <!-- DI GRUP REALISASI -->
+                <li class="navigation-header">
+        <a class="navigation-header-text">Realisasi</a>
+        <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Pengeluaranrill/Pengeluaranrill">
+            <i class="material-icons">note_add</i>
+            <span class="menu-title" data-i18n="Mail">Pengeluaran Rill</span>
+                    </a>
+    </li>
+    
+        <li class="bold"><a class="collapsible-header waves-cyan" href="JavaScript:void(0)"><i class="material-icons">fingerprint</i><span class="menu-title" data-i18n="Verifikasi Digital">Verifikasi Digital</span></a>
+              <div class="collapsible-body">
+                <ul class="collapsible" data-collapsible="accordion"> <li><a href="https://bisma.bpkp.go.id/Verifdigital/Persetujuanpengajuan"><i class="material-icons">keyboard_tab</i><span data-i18n="Persetujuan Pengajuan level">Persetujuan Pengajuan</span></a></li><li><a href="https://bisma.bpkp.go.id/Verifdigital/Persetujuanbbk"><i class="material-icons">keyboard_tab</i><span data-i18n="Persetujuan BBK level">Persetujuan BBK</span></a></li>
+                    <li><a href="https://bisma.bpkp.go.id/Verifdigital/Verifikasimateril"><i class="material-icons">keyboard_tab</i><span data-i18n="Verifikasi Materil level">Verifikasi Materil</span></a>
+                    </li>
+                    <li><a href="https://bisma.bpkp.go.id/Verifdigital/Persetujuanmateril"><i class="material-icons">keyboard_tab</i><span data-i18n="Persetujuan Materil">Persetujuan Materil</span></a>
+                    </li>
+                      <li><a hidden href="https://bisma.bpkp.go.id/Verifdigital/Verifikasiformil"><i class="material-icons">keyboard_tab</i><span data-i18n="Verifikasi Formil level">Verifikasi Formil</span></a>
+                      </li>
+                    <li><a href="https://bisma.bpkp.go.id/Verifdigital/Persetujuanformil"><i class="material-icons">keyboard_tab</i><span data-i18n="Persetujuan Formil">Persetujuan Formil</span></a>
+                    </li></ul>
+                </div>
+              </li>
+        
+        <!-- DI GRUP REPORTING -->
+            <li class="navigation-header">
+        <a class="navigation-header-text">Reporting</a>
+        <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+    
+        
+            <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Penugasan/Penugasan/Perorang">
+            <i class="material-icons">people</i>
+            <span class="menu-title" data-i18n="Mail">Riwayat Penugasan</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Kkp/Kkp">
+            <i class="material-icons">credit_card</i>
+            <span class="menu-title" data-i18n="Mail">KKP</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Anggaran/Realisasi/detail">
+            <i class="material-icons">shopping_basket</i>
+            <span class="menu-title" data-i18n="Mail">Realisasi RKA</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Monitoring/Monitoring/lapKap">
+            <i class="material-icons">monitoring</i>
+            <span class="menu-title" data-i18n="Mail">RO-KAP</span>
+                    </a>
+    </li>
+    
+                    <li><a href="https://bisma.bpkp.go.id/Anggaran/Realisasi/detailPerBidang">
+                    <i class="material-icons">apps</i><span data-i18n="Per Mitra">Per Bidang</span></a>
+            </li>
+            <li><a href="https://bisma.bpkp.go.id/Anggaran/Realisasi/PageMitra">
+                    <i class="material-icons">grain</i><span data-i18n="Per Mitra">Per Mitra</span></a>
+            </li>
+        
+            <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Transaksi/Perjadin/Perjadin">
+            <i class="material-icons">event_note</i>
+            <span class="menu-title" data-i18n="Mail">Perjadin Jatuh Tempo</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Anggaran/Realisasi/PagePerKAP_csv">
+            <i class="material-icons">event_note</i>
+            <span class="menu-title" data-i18n="Mail">Per KAP (CSV)</span>
+                    </a>
+    </li>
+    
+        
+        
+        <li class="bold"><a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Monitoring/Monitoring_costsheet">
+                <i class="material-icons">
+                    add_shopping_cart
+                </i><span class="menu-title" data-i18n="Mail">Monitoring Costsheet</span></a>
+        </li>
+
+        <li class="bold"><a class="collapsible-header waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">trending_up</i><span class="menu-title" data-i18n="Perjadin">Transaksi SAKTI</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li><a href="https://bisma.bpkp.go.id/Monitoring/Monsakti/index">
+                            <i class="material-icons">radio_button_unchecked</i><span data-i18n="Per Mitra">List Transaksi</span></a>
+                    </li>
+                    <li><a href="https://bisma.bpkp.go.id/Monitoring/Monsakti/spp">
+                            <i class="material-icons">radio_button_unchecked</i><span data-i18n="Per Mitra">List SPP SAKTI</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- DI GRUP PENGATURAN -->
+            <li class="navigation-header">
+        <a class="navigation-header-text">Pengaturan</a>
+        <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+    
+        
+            <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Master/KAP/Page">
+            <i class="material-icons">monetization_on</i>
+            <span class="menu-title" data-i18n="Mail">APP-KAP</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Master/Klpbu/Page">
+            <i class="material-icons">account_balance</i>
+            <span class="menu-title" data-i18n="Mail">KLPBU</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Auth/Faq/Page">
+            <i class="material-icons">question_answer</i>
+            <span class="menu-title" data-i18n="Mail">Q&A</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Auth/Auth/logout">
+            <i class="material-icons">keyboard_tab</i>
+            <span class="menu-title" data-i18n="Mail">Logout</span>
+                    </a>
+    </li>
+                  </ul>
+      <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
+    </aside>
+    <!-- END: SideNav-->
+
+<!-- BEGIN: Page Main-->
+<div id="main">
+	<div class="row">
+		<div class="col s12">
+			<div class="container">
+				<div class="section">
+          
+       
+
+        
+<style>
+  table.dataTable td {
+  font-size: 0.9em;
+}
+</style>
+
+
+
+ <div class="row">
+
+  <div class="col l12">
+        <div class="card" id="head">
+            <div class="card-content" >
+                <div class="row">
+                    <div class="col l1">
+                        <button type="button" class="btn-floating" style=""><i class="material-icons">
+                        email</i></button>
+                    </div>
+                    <div class="col l6">
+                        <h6> Daftar Costsheet ST SIMA <p hidden>
+                      -</p></h6>
+                    </div> 
+                    <div class="left col l3">
+                      <a class="right btn modal-trigger" onclick="OpenCamera()">Scan QRCode !</a>
+                    </div>
+                    <div class="right col l2">
+                      <a class="left btn green" href="https://bisma.bpkp.go.id/Transaksi/Apisima/Getcostsheet_Export/All">CSV</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+		<div class="row">
+    <div class="col l12">
+      <div class="card">
+        <div class="card-content row">
+            <div class="card-alert card red col l12">
+              <div class="card-content white-text">
+                  <p id="note"><i class="material-icons">warning</i> Note: untuk mencetak costsheet, harap dipastikan status cs tersebut sudah 1</p>
+              </div>
+            </div>
+
+                <!-- <video id="previewKamera" style="width: 300px;height: 300px;"></video> -->
+            
+                
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal modal-fixed-footer" style="height: 50% !important; width: 25% !important">
+                  <div class="modal-content">
+                    <h4>Scan QRCode !</h4>
+                    <video id="previewKamera" style="width: 300px;height: 300px;"></video>
+                    <br>
+                        <select class="browser-default" id="pilihKamera" style="max-width:400px" hidden></select>
+                    <br>
+                    <input type="text" id="hasilscan" hidden>
+
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close btn-flat ">Batal</a>
+                  </div>
+                </div>
+            
+          <div class="row">
+            <div class="col l12">
+            <table id="tb-datatable" class="display" style="width:100%">
+                  <thead>
+                    <tr>
+                        <!-- <th hidden>STATUS</th> -->
+                        <th style="width:1%">NO</th>
+                        <th >STATUS</th>
+                        <th style="width:30%">NO ST-COSTSHEET-URAIAN</th>
+                        <th style="width:15%">BEBAN</th>
+                        <th style="width:20%">BIAYA</th>
+                        <th >CREATED/UPDATED BY</th>
+                        <th >APPROVE PPK/APPROVE ES 2</th>
+                        <th style="width:10%" class="text-center">AKSI</th>
+                        
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+								
+								<div style="padding-top : 40px"></div>
+								<ul class="collapsible collapsible-accordion">
+									<li>
+										<div class="collapsible-header light-blue white-text text-lighten-3"><i class="material-icons">timeline</i> Uraian Status</div>
+										<div class="collapsible-body">
+											<!-- <div id="striped-table" class="card card card-default scrollspy"> -->
+												<table class="striped">
+												<thead>
+												</thead>
+												<tbody>
+                          <tr>
+                                    <td width='10px'><span class='users-view-status chip deep-orange accent-4 white-text'>0</span></td>
+                                    <td>Draft</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip gradient-45deg-light-blue-cyan white-text'>0.5</span></td>
+                                    <td>Penyusunan Rencana oleh Es3/Es2</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip grey lighten-2 black-text'>1</span></td>
+                                    <td>Pengajuan Rencana oleh Es3/Es2</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip yellow lighten-2 black-text'>2</span></td>
+                                    <td>Persetujuan PPK</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip teal lighten-2 black-text'>3</span></td>
+                                    <td>Persetujuan Eselon 2/KPA</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip bisma-blue white-text'>3.5</span></td>
+                                    <td>Update Realisasi SPJ</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip light-blue darken-4 white-text'>3.6</span></td>
+                                    <td>Persetujuan Pengajuan SPJ</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip red lighten-2 black-text'>4</span></td>
+                                    <td>Verifikasi Materil</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip brown lighten-2 black-text'>5</span></td>
+                                    <td>Persetujuan Materil oleh PPK</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip brown white-text'>5.1</span></td>
+                                    <td>Sinkronisasi SAKTI</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip brown darken-4 white-text'>5.2</span></td>
+                                    <td>Verifikasi Formil</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip cyan darken-4 white-text'>5.3</span></td>
+                                    <td>Persetujuan Formil</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip deep-purple lighten-2 white-text'>6</span></td>
+                                    <td>Proses UP oleh Bendahara</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip pink lighten-2 white-text'>7</span></td>
+                                    <td>Proses SPM oleh PPSPM</td>
+                                  </tr><tr>
+                                    <td width='10px'><span class='users-view-status chip light-blue lighten-2 black-text'>8</span></td>
+                                    <td>SP2D</td>
+                                  </tr>												</tbody>
+												</table>
+											</div>
+										</div>
+									</li>
+								</ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div id="modalSPD" class="modal" style="width: 30%; top:0%">
+        <div class="modal-content">
+            <h4>CETAK SPD</h4>
+            <div class="row">
+                <div style="padding-top: 10px"></div>
+                    <div class="row">
+                      <div class="col l3"> 
+                        <label>Tanggal : </label>
+                      </div>
+
+                      <div class="col l9"> 
+                        <input type="date" name="tanggal" id="tanggal">  
+                      </div>
+
+                      <div class="col l3"> 
+                        <label>Penandatangan : </label>
+                      </div>
+
+                      <div class="col l9"> 
+                        <select class="browser-default" name="ttd" id="ttd"></select>
+                      </div>
+
+                    </div>
+                    
+                    <div style="padding-top: 10px"></div>
+                    <input type="text" name="printUrl" id="printUrl" hidden>  
+                    <button id = "cetakSPD" class="btn btn-cyan col l12" >Cetak SPD</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="theme-cutomizer-out" class="theme-cutomizer sidenav row">
+   <div class="col l12">
+      <a class="sidenav-close" href="#!"><i class="material-icons">close</i></a>
+      <h5 class="theme-cutomizer-title">Cetak Kwitansi</h5>
+        <input type="text" id="id_cs" name="id_cs" hidden>
+        <input type="text" id="id_st" name="id_st" hidden>
+        <input type="text" id="from_data" name="from_data" hidden>
+        <input type="text" id="sumber_data" name="sumber_data" hidden>
+        <input type="text" id="metode_pembayaran" name="metode_pembayaran" hidden>
+        <input type="text" id="sts" name="sts" hidden>
+
+          <div class="menu-options">
+            <hr class="customize-devider">
+            <div class="menu-options-form row">
+                <div class="input-field col l12 menu-bg-color mb-0">
+
+                <div id="divVisible" class="d-none">
+          
+                  <a onclick="kwitansiRampung('Export/kwitansi/L/','kwitansi')" href="javascript:;" ><div class="card-panel green darken-1 btn col l12">
+                      <span class="white-text">Kwitansi</span>
+                    </div></a>
+
+                    <a onclick="kwitansiRampung('Export/rincian_biaya/P/','rincian_biaya')" href="javascript:;"><div class="card-panel orange darken-1 btn col l12">
+                      <span class="white-text">Rincian Biaya</span>
+                    </div></a>
+
+                    <a  onclick="kwitansiRampung('Export/pengeluaran_rill/P/','pengeluaran_rill')" href="javascript:;"><div class="card-panel red darken-1 btn col l12">
+                      <span class="white-text">Daftar Pengeluaran Rill</span>
+                    </div></a>
+
+                    <a  hidden onclick="kwitansiRampung('Export/perhitungan_rampung/P/','perhitungan_rampung')" href="javascript:;"><div class="card-panel red darken-1 btn col l12">
+                      <span class="white-text">perhitungan_rampung</span>
+                    </div></a>
+                </div>
+                    
+
+                </div>
+            </div>
+          </div>
+   </div>
+</div>
+
+  <!-- Add new todo popup -->
+<div style="bottom: 54px; right: 19px;" class="fixed-action-btn direction-top">
+  <a class="btn-floating btn-large bisma-blue gradient-shadow todo-sidebar-trigger" href="javascript:window.history.go(-1);">
+    <i class="material-icons">reply</i>
+  </a>
+</div>
+<!-- Add new todo popup Ends-->
+
+</div>
+</div>
+<div class="content-overlay"></div>
+</div>
+</div>
+</div>
+<!-- END: Page Main-->
+<!-- Theme Customizer -->
+<!-- BEGIN: Footer-->
+<footer class="page-footer footer footer-static footer-light navbar-border navbar-shadow">
+	<div class="footer-copyright">
+		<div class="container"><span>&copy; 2021 <a href="http://www.bpkp.go.id/" target="_blank">BIRO KEUANGAN</a> All rights reserved.</span>
+		</div>
+	</div>
+</footer>
+
+<script src="https://bisma.bpkp.go.id/assets/app-assets/js/vendors.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+
+    <!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.jqueryui.min.js"></script>
+    <script src="https://cdn.datatables.net/select/2.0.5/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/select/2.0.5/js/select.jqueryui.min.js"></script>
+
+    <!-- <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script> -->
+    
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/plugins.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/search.min.js"></script>
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/customizer.min.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/advance-ui-modals.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/sweetalert/sweetalert.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/extra-components-sweetalert.min.js"></script>
+
+    <script src="https://cdn.datatables.net/rowgroup/1.5.0/js/dataTables.rowGroup.min.js"></script>
+
+    <script type="text/javascript" src="https://bisma.bpkp.go.id/assets/app-assets/js/jquery.idle.js"></script>
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/formatter/jquery.formatter.min.js"></script>
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/jszip.js"></script>
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/FileSaver.js"></script>
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/sortable/jquery-sortable-min.js"></script>
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/quill/quill.min.js"></script> -->
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/materialize-stepper/materialize-stepper.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/select2/select2.full.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/app-chat.min.js"></script>
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/app-email.min.js"></script> -->
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/jkanban/jkanban.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/datetime-moment.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartjs/chart.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist-plugin-tooltip.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist-plugin-fill-donut.min.js"></script>
+    <!-- tmls --><!-- 
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/jquery-validation/jquery.validate.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <!-- tmls -->
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/5.0.1/js/dataTables.fixedColumns.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/43.1.0/ckeditor.min.js"></script>  
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/dashboard-modern.js"></script> -->
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> -->
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/searchpanes/2.3.2/js/dataTables.searchPanes.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/advance-ui-scrollspy.min.js"></script>
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartjs/chart.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist-plugin-tooltip.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist-plugin-fill-donut.min.js"></script> -->
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"> </script> 
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/jstree/jstree.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+   <script src="https://kit.fontawesome.com/0329d9ddcb.js" crossorigin="anonymous"></script>
+   <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/4.8.1/autoNumeric.min.js"></script>
+      <script>
+
+        var mainurl = "https://bisma.bpkp.go.id/Main/"
+        var baseurl_menu 	= "https://bisma.bpkp.go.id/Setting/Menu/";
+        var url = "https://bisma.bpkp.go.id/";
+        var notifcs = "https://bisma.bpkp.go.id/Transaksi/Apisima/GetDetailCostsheet/"
+        var detail_notif = "https://bisma.bpkp.go.id/Anggaran/Mappingkap/Tambah/"
+        var segment = 'Apisima'
+        /* FILTER SU03 */
+        var filter = true;
+        /* FILTER SU03 */
+        
+        function validateNumber(e) {
+            const pattern = /^[0-9]$/;
+
+            return pattern.test(e.key )
+        }
+
+        
+
+      function cek_tgl_($tanggal){
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+
+      
+
+    $(document).ready(function() { 
+      
+    //const idleDurationSecs = 600; 60000
+    const redirectUrl = 'https://bisma.bpkp.go.id/Auth/Auth/logout';
+    let idleTimeout;
+
+    const resetIdleTimeout = function() {
+        if(idleTimeout) clearTimeout(idleTimeout);
+        idleTimeout = setTimeout(() => location.href = redirectUrl, 3600000);
+    };
+	
+	// Key events for reset time
+    resetIdleTimeout();
+    window.onmousemove = resetIdleTimeout;
+    window.onkeypress = resetIdleTimeout;
+    window.click = resetIdleTimeout;
+    window.onclick = resetIdleTimeout;
+    window.touchstart = resetIdleTimeout;
+    window.onfocus = resetIdleTimeout;
+    window.onchange = resetIdleTimeout;
+    window.onmouseover = resetIdleTimeout;
+    window.onmouseout = resetIdleTimeout;
+    window.onmousemove = resetIdleTimeout;
+    window.onmousedown = resetIdleTimeout;
+    window.onmouseup = resetIdleTimeout;
+    window.onkeypress = resetIdleTimeout;
+    window.onkeydown = resetIdleTimeout;
+    window.onkeyup = resetIdleTimeout;
+    window.onsubmit = resetIdleTimeout;
+    window.onreset = resetIdleTimeout;
+    window.onselect = resetIdleTimeout;
+    window.onscroll = resetIdleTimeout;
+
+    function formatMoney(n) {
+        return (Math.round(n * 100) / 100).toLocaleString();
+    }
+
+    $.ajax({
+            url : mainurl + 'notification',
+            type: "post",
+            dataType: "JSON",
+            success: function(data)
+                { 
+                  $('#mytask-count-6').html("")
+                  $('#countnotif_').append(data.length);
+                  $('.countnotif_').append(data.length);
+                  $('#countnotifmenu_').append(data.length);
+                  var no = 1;
+                    for(m=0 ; m < data.length ; m++){
+                        // if(data[m]['rupiah'] != data[m]['alokasi']){
+                          sisa = Number(data[m]['rupiah_unit']) - Number(data[m]['alokasi'])
+
+                            if(data[m]['rupiah_unit'] < data[m]['alokasi']){
+                              ket = '<p class="red-text right-align"><b>Melebihi Pagu Sebesar Rp '+formatMoney(Math.abs(sisa))+'</b></p>';
+                            }else{
+                              ket = '<p class="green-text right-align"><b> Terdapat Sisa Pagu Sebesar Rp '+formatMoney(Math.abs(sisa))+'</b></p>';
+                            }
+
+                            $('#notif_').append('<li><a href="'+detail_notif+''+data[m]['bagipagu_id']+'" target="_blank">\
+                            '+no+' - '+data[m]['kode']+''+ket+'</a>\
+                            </li>');
+
+                            if(segment == 'Home'){
+                              $('#notifbody_').append('<li class="collection-item dismissable"><a href="'+detail_notif+''+data[m]['bagipagu_id']+'" target="_blank">\
+                            '+no+' - '+data[m]['kode']+''+ket+'</a>\
+                            </li>');
+
+                            }
+
+                           
+
+                            no++
+                        }
+                    // }
+                }
+        });
+    
+      var rld = [{"id":"26792","nama_role":"Pegawai PERWAKILAN BPKP PROVINSI BENGKULU"}];
+      if(rld !== null){
+        $("#role_id").show();       
+        
+      }
+
+      if($("#role_id").length){
+        $("#role_id").change(function(){
+          var x = $(this).find(":selected").val();
+          var url = 'https://bisma.bpkp.go.id/Auth/Auth/ubahRole/'+x;
+          //console.log(url);
+          window.location.href = url;
+        });
+      }
+
+     /* tlms */
+      // NOTIFIKASI SPD BELUM TTE
+      const roleId = 2;
+      const kdUnit = 'D302';
+      if (roleId==3 && filter == true) {
+        $.ajax({
+          type: "POST",
+          url: "https://bisma.bpkp.go.id/Esign/Esign/" + "spdBelumTte",
+          processData: false,
+          contentType: false,
+          success: function (data, textStatus, jqXHR) {
+              var spd = JSON.parse(data);
+              // console.log("spd.length");
+              document.getElementById("notif_spd_tte").innerHTML = spd.length;
+              document.getElementById("notif_total_tte").innerHTML = spd.length;
+              },
+          error: function (jqXHR, textStatus, errorThrown) { 
+              // console.log(jqXHR.responseText);
+              },
+        });
+
+        /* NOTIFIKASI SPB BELUM TTE */
+        /* FILTER SU03 */
+        $.ajax({
+          type: "POST",
+          url: "https://bisma.bpkp.go.id/Esign/Spby/" + "spbyBelumTte",
+          processData: false,
+          contentType: false,
+          success: function (data, textStatus, jqXHR) {
+              const d = JSON.parse(data);
+              // console.log(d.length);
+              document.getElementById("notif_tte_spby").innerHTML = d.length;
+              },
+          error: function (jqXHR, textStatus, errorThrown) { 
+              // console.log(jqXHR.responseText);
+              },
+        });
+
+        /* NOTIFIKASI KUITANSI LS AWAL BELUM TTE */
+        /* FILTER SU03 */
+        // $.ajax({
+        //   type: "POST",
+        //   url: "https://bisma.bpkp.go.id/Esign/KuitansiLs/" + "lsAwalBelumTte",
+        //   processData: false,
+        //   contentType: false,
+        //   success: function (data, textStatus, jqXHR) {
+        //       var kuitansi = JSON.parse(data);
+        //       document.getElementById("notif_ls_awal_tte").innerHTML = kuitansi.kuitansi.length;
+        //       document.getElementById("notif_total_tte").innerHTML = kuitansi.total;
+        //       },
+        //   error: function (jqXHR, textStatus, errorThrown) { 
+        //       // console.log(jqXHR.responseText);
+        //       },
+        // });
+
+      }
+      if (roleId==8 && filter == true){
+        /* NOTIFIKASI KUITANSI LS AWAL BELUM TTE */
+        /* FILTER SU03 */
+        $.ajax({
+          type: "POST",
+          url: "https://bisma.bpkp.go.id/Esign/KuitansiLs/" + "lsAwalBelumTte",
+          processData: false,
+          contentType: false,
+          success: function (data, textStatus, jqXHR) {
+              var kuitansi = JSON.parse(data);
+              document.getElementById("notif_ls_awal_tte").innerHTML = kuitansi.kuitansi.length;
+              },
+          error: function (jqXHR, textStatus, errorThrown) { 
+              // console.log(jqXHR.responseText);
+              },
+        });
+        
+      }
+      
+      /* tlms */
+});
+
+var $API = 'https://apip.bpkp.go.id/apisimabisma/public/';
+$('.scrollspy').scrollSpy();
+
+      </script>
+
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-6GWSFMV1ZZ"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-6GWSFMV1ZZ');
+      </script>
+</html>
+
+  <script type="text/javascript">
+
+
+var baseurl 	= "https://bisma.bpkp.go.id/Transaksi/Apisima/";
+var baseurl_export 	= "https://bisma.bpkp.go.id/Transaksi/Apisima/";
+var dropdown_baseurl 	= "https://bisma.bpkp.go.id/Master/Dropdown/";
+var master_baseurl 	= "https://bisma.bpkp.go.id/Master/Master/";
+var satker_session = "450491"
+var user_session = "202000040"
+var role_session = "2"
+var unit_session = "615"
+if(role_session == 1){
+  unit_session = 0;
+}
+var $API = 'https://apip.bpkp.go.id/apisimabisma/public/';
+let selectedDeviceId = null;
+const codeReader = new ZXing.BrowserMultiFormatReader();
+const sourceSelect = $("#pilihKamera");
+ 
+
+
+
+
+$(document).ready(function(){
+  $('.tooltipped').tooltip();
+
+
+// $.post('https://bisma.bpkp.go.id/Transaksi/Apisima/Getcostsheet_baru', {
+// }, function(html) {
+//     $('#tb-datatable tbody').html(html);
+// });
+
+ var tablel = $('#tb-datatable').DataTable({
+    processing: true,
+    serverSide: false, // set to true if your controller supports server-side
+    ajax: {
+        url: 'https://bisma.bpkp.go.id/Transaksi/Apisima/Getcostsheet_ajax',
+        type: 'POST',
+        dataSrc: 'data',
+         data: function(d) {
+            d.trigger = 'All'; // or any value you want to send
+        }
+    },
+    lengthMenu: [
+        [10, 25, 50, -1],
+        [10, 25, 50, "All"],
+    ],
+    responsive: true,
+    scrollX: true,
+    info: false,
+    stateSave: true,
+    autoWidth: false,
+    dom: 'Plfrtip',
+    order: [[0, 'asc']],
+    columns: [
+        // { data: 0, visible: false }, // STATUS (hidden)
+        { data: 1 }, // NO
+        { data: 2 }, // STATUS
+        { data: 3 }, // NO ST-COSTSHEET-URAIAN
+        { data: 4 }, // BEBAN
+        { data: 5 }, // BIAYA
+        { data: 6 }, // CREATED/UPDATED BY
+        { data: 7 }, // APPROVE PPK/APPROVE ES 2
+        { data: 8, className: "text-center" } // AKSI
+    ]
+,
+columnDefs: [
+    {
+                searchPanes: {
+                    show: true,
+                    
+                },
+                targets: [1,2],
+                
+            },
+
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [0,3,4,5,6,7]
+            }
+          ]
+});
+
+$('#tb-datatable').on('draw.dt', function() {
+  $('.dropdown-trigger').dropdown();
+});
+
+
+	});
+
+
+
+
+
+$('ul.tabs').tabs({
+        onShow: function(tab) {
+            // Adjust the columns to fit the content
+            table.columns.adjust().draw();
+            table.searchPanes.rebuildPane();
+            // belumTte.columns.adjust().draw();
+        }
+    });
+
+
+
+
+
+
+function OpenCamera(){
+
+  $('#modal1').modal('open');
+  var table = $('#tb-cs').DataTable();
+
+  $(document).on('change','#pilihKamera',function(){
+    selectedDeviceId = $(this).val();
+    if(codeReader){
+        codeReader.reset()
+        initScanner()
+    }
+})
+ 
+function initScanner() {
+    codeReader
+    .listVideoInputDevices()
+    .then(videoInputDevices => {
+        videoInputDevices.forEach(device =>
+            console.log(`${device.label}, ${device.deviceId}`)
+        );
+ 
+        if(videoInputDevices.length > 0){
+             
+            if(selectedDeviceId == null){
+                if(videoInputDevices.length > 1){
+                    selectedDeviceId = videoInputDevices[1].deviceId
+                } else {
+                    selectedDeviceId = videoInputDevices[0].deviceId
+                }
+            }
+             
+             
+            if (videoInputDevices.length >= 1) {
+                sourceSelect.html('');
+                videoInputDevices.forEach((element) => {
+                    const sourceOption = document.createElement('option')
+                    sourceOption.text = element.label
+                    sourceOption.value = element.deviceId
+                    if(element.deviceId == selectedDeviceId){
+                        sourceOption.selected = 'selected';
+                    }
+                    sourceSelect.append(sourceOption)
+                })
+         
+            }
+ 
+            codeReader
+                .decodeOnceFromVideoDevice(selectedDeviceId, 'previewKamera')
+                .then(result => {
+ 
+                        //hasil scan
+                        console.log(result.text)
+                        $("#hasilscan").val(result.text);
+                        $(".dataTables_filter input").val(result.text)
+                        table.search(result.text).draw();
+                        
+                     
+                        if(codeReader){
+                            codeReader.reset()
+                            $('#modal1').modal('close');
+                        }
+                        codeReader.reset()
+                })
+                .catch(err => console.error(err));
+                // table.api().search($(this).val()).draw();
+             
+        } else {
+            alert("Camera not found!")
+        }
+    })
+    .catch(err => console.error(err));
+}
+ 
+ 
+if (navigator.mediaDevices) {
+     
+ 
+    initScanner()
+     
+ 
+} else {
+    alert('Cannot access camera.');
+}
+
+}
+
+
+Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+
+
+
+function SPDDate(trigger,id_cs,id_st,cskdindex,from_data,sumber_data,tglst,tglselesaist,idppk,nipppk,namappk,jabatanppk){
+
+  if(trigger == "SPD"){
+    var urlHref= "Export/spd/P/"+id_cs+"/"+id_st+"/"+cskdindex+"/"+from_data+"/"+sumber_data+"";
+  }else{
+    var urlHref= "Export/spd_back/P/"+id_cs+"/"+id_st+"/"+cskdindex+"/"+from_data+"/"+sumber_data+"";
+  }
+  
+
+
+          document.getElementById('tanggal').setAttribute("min", tglst)
+          document.getElementById('tanggal').setAttribute("max", tglselesaist)
+          var $ttd = $("<option selected='selected'></option>").val(idppk).text(jabatanppk+' : '+nipppk+' - '+namappk)
+          $("#ttd").append($ttd).trigger('change');
+
+          $("#ttd").select2({
+            width: '100%',
+            placeholder: "Pilih Penandatangan",
+              ajax: { 
+                url: dropdown_baseurl + 'ttd_spd',
+                type: "post",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                      Trigger: "Penandatangan_SPD",
+                      kdsatker: satker_session,
+                      nip :"",
+                      searchTerm: params.term // search term
+                    };
+                },
+                processResults: function (response) {
+                  response.push({ "id": idppk, "text": jabatanppk+' : '+nipppk+' - '+namappk });
+                  var coba = 0;
+                    return {
+                     
+                      results: response
+                    };
+                },
+                cache: true
+              }
+          });
+
+
+    $('#tanggal').val(tglst);
+    $("#printUrl").val(urlHref);
+    $('#modalSPD').modal('open');
+}
+
+function show(Id, ST,from_data,sumber_data,MP,STS,metode_pembayaran){
+  $('#id_cs').val(Id);
+  $('#id_st').val(ST);
+  $('#from_data').val(from_data);
+  $('#sumber_data').val(sumber_data);
+  $('#metode_pembayaran').val(MP);
+
+  if(MP == "LS AWAL" && STS != 10 && STS != 11 && STS >= 4){
+    $("#divVisible").removeClass("d-none");
+  }else if(MP == "UP"){
+    $("#divVisible").removeClass("d-none");
+  }else{
+    $("#divVisible").addClass("d-none");
+  }
+}
+
+function CekDPR(url,trigger) {
+    swal({
+    title: "Pastikan Sudah Input Daftar Pengeluaran Rill",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Confirm",
+    cancelButtonText: "Batal",
+  }).then(function (result) {
+    if (result) {
+      kwitansiRampung(url,trigger);
+    }
+  });
+}
+
+function kwitansiRampung(url,trigger){
+
+
+  if(trigger == "pengeluaran_rill"){
+    CekDPR(url,'confirm')
+  }else{
+    var id = $('#id_cs').val()
+    var id_st = $('#id_st').val()
+    var from_data = $('#from_data').val()
+    var sumber_data = $('#sumber_data').val()
+    var metode_pembayaran = $('#metode_pembayaran').val()
+
+    if(trigger == "kwitansi"){
+        if(metode_pembayaran == "UP"){
+          url = "Export/kwitansi/L/"
+        }else if(metode_pembayaran == "LS AWAL"){
+          url = "Export/kwitansiRealisasiLS/L/"
+        }
+    }
+    window.open(baseurl_export + url + id +'/'+id_st+'/'+from_data+'/'+sumber_data, '_blank')
+  }
+}
+
+
+function SyncSIMA(Id_Cs,Id_st,sumber_data) {
+  var formData = new FormData();
+  formData.append("id_st", Id_st);
+  formData.append("id_cs", Id_Cs);
+  formData.append("sumber_data", sumber_data);
+
+  swal({
+          title:"Data Yang Berubah",
+          text: "Data yang berubah hanya RO, Uraian ST, Tgl ST, Tgl Mulai dan Selesai ST, Kode dan Uraian PKAU/PKPT, Penandatangan, Kota Tujuan, Jumlah dan Data Tim.", 
+          icon: "warning",
+          timer: 200
+  });
+
+  $.ajax({
+    type: "POST",
+    data: formData,
+    url: baseurl + "SinkronSIMA",
+    processData: false,
+    contentType: false,
+    beforeSend: function(){
+    // Show image container
+      $("#loader").show();
+    },
+    success: function (data, textStatus, jqXHR) {
+      res = JSON.parse(data)
+      // console.log(res);
+          swal({
+            title:res.msg, 
+            icon:res.status,
+            timer: 2000
+            })
+        // window.location.reload();
+    },
+    complete:function(data){
+      // Hide image container
+      $("#loader").hide();
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      // console.log(jqXHR+'/'+textStatus+'/'+errorThrown);
+    },
+  });
+}
+
+$("#cetakSPD").click(function (e) {
+  var printUrl  = $("#printUrl").val()
+  var tanggal   = $("#tanggal").val()
+  var ttd       = $("#ttd").val()
+  window.open(baseurl + printUrl + "/" + tanggal + "/" + ttd, '_blank')
+});
+
+
+
+$("#filter").select2({
+          dropdownAutoWidth: false,
+          width: '100%',
+          placeholder: "Pilih ID CS - No ST",
+         ajax: { 
+           url: dropdown_baseurl + 'cs_st_filter',
+           type: "post",
+           dataType: 'json',
+           delay: 250,
+           data: function (params) {
+              return {
+                searchTerm: params.term // search term
+              };
+           },
+           processResults: function (response) {
+              return {
+                 results: response
+              };
+           },
+           cache: true
+         }
+     });
+
+     $("#status_cs").select2({
+          dropdownAutoWidth: true,
+          width: '100%',
+          placeholder: "Filter Status Costsheet",
+         ajax: { 
+           url: dropdown_baseurl + 'status_cs',
+           type: "post",
+           dataType: 'json',
+           delay: 250,
+           data: function (params) {
+              return {
+                searchTerm: params.term // search term
+              };
+           },
+           processResults: function (response) {
+              return {
+                 results: response
+              };
+           },
+           cache: true
+         }
+     });
+
+     $( "#filter" ).change(function() {
+       var id_filter = $('#filter').val();
+       window.location.replace(baseurl + "Getcostsheet_filter/"+id_filter+"/cs/0")
+
+     });
+
+     $( "#status_cs" ).change(function() {
+      var id_status = $('#status_cs').val();
+      window.location.replace(baseurl + "Getcostsheet_filter/"+id_status+"/sts/0")
+
+     });
+
+    $("#ttd").select2({
+          dropdownAutoWidth: true,
+          width: '100%',
+          placeholder: "Pilih Penandatangan",
+         ajax: { 
+           url: dropdown_baseurl + 'ttd',
+           type: "post",
+           dataType: 'json',
+           delay: 250,
+           data: function (params) {
+              return {
+								Trigger: "ttd_forST",
+								kdsatker: satker_session,
+                status_ttd : $('#status_penandatangan').val(),
+                searchTerm: params.term // search term
+              };
+           },
+           processResults: function (response) {
+              return {
+                 results: response
+              };
+           },
+           cache: true
+         }
+     });
+
+$("#TambahST").click(function (e) {
+  e.preventDefault();
+
+  var btn = $(this);
+  var form = $(this).closest("form");
+  var formData = new FormData($("#FormST")[0]);
+  var IdForm =  "FormST";
+  // var countingDiv = document.getElementById('counting');
+  // var countTim = countingDiv.getElementsByClassName('namaTim').length;
+ttdVal = $('#ttd').val()
+  if(ttdVal == null || ttdVal == ""){
+    swal({
+          title:"Penandatangan Masih Kosong",
+          text: "Pastikan Field Terisi Semua", 
+          icon: "warning",
+          timer: 2000
+          })
+          return false;
+  }
+
+  btn
+    .addClass("kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light")
+    .attr("disabled", false);
+
+  formData.append('Trigger', 'C')
+  formData.append('user_id', user_session)
+  // formData.append('countTim', countTim)
+
+  $.ajax({
+    type: "POST",
+    data: formData,
+    url: baseurl + "Action",
+    processData: false,
+    contentType: false,
+    success: function (data, textStatus, jqXHR) {
+              show_msg(textStatus);
+              Reset(IdForm);
+              window.history.back();
+              
+              
+          },
+          error: function (jqXHR, textStatus, errorThrown) { },
+      });
+});
+
+function Delete(Id,Id_Cs,sumber_data) {
+    swal({
+    title: "Apakah Yakin Ingin Dihapus?",
+    text: "Anda tidak bisa mengembalikan data yang telah dihapus!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Ya, Hapus!",
+    cancelButtonText: "Batal",
+  }).then(function (result) {
+    if (result) {
+      Execute(Id,Id_Cs,sumber_data);
+    }
+  });
+}
+
+function Execute(Id,Id_Cs,sumber_data) {
+  var formData = new FormData();
+  formData.append("Trigger", "D");
+  formData.append("id", Id);
+  formData.append("id_cs", Id_Cs);
+  formData.append("sumber_data", sumber_data);
+
+  $.ajax({
+    type: "POST",
+    data: formData,
+    url: baseurl + "ActionAPI",
+    processData: false,
+    contentType: false,
+    success: function (data, textStatus, jqXHR) {
+
+        show_msg(textStatus)
+        window.location.reload();
+    },
+    error: function (jqXHR, textStatus, errorThrown) { },
+  });
+}
+
+
+
+function show_msg(textStatus){
+        swal({
+            title:textStatus, 
+            icon:textStatus,
+            timer: 2000
+            })
+    }
+
+
+
+</script>
+

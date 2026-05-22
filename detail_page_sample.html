@@ -1,0 +1,2523 @@
+
+
+
+<!DOCTYPE html>
+
+
+<html class="loading" lang="en" data-textdirection="ltr">
+  <!-- BEGIN: Head-->
+  <meta charset="UTF-8"> 
+  <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google.">
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template, eCommerce dashboard, analytic dashboard">
+    <meta name="author" content="ThemeSelect">
+
+    <title>Manajemen Keuangan - 2026</title>
+    <link rel="apple-touch-icon" href="https://bisma.bpkp.go.id/assets/app-assets/images/logo/New/logo-bisma_142.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://bisma.bpkp.go.id/assets/app-assets/images/logo/New/logo-bisma_142.png">
+    <!-- <link href="https://bisma.bpkp.go.id/assets/icon.css?family=Material+Icons" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- BEGIN: VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/flag-icon/css/flag-icon.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.5/css/dataTables.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/2.0.5/css/select.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/materialize-stepper/materialize-stepper.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/themes/vertical-dark-menu-template/materialize.css">
+		<link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/themes/vertical-dark-menu-template/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.1.5/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/custom/custom.css">
+
+    <link rel="stylesheet" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/select2/select2.min.css" type="text/css">
+    <link rel="stylesheet" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/select2/select2-materialize.css" type="text/css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/quill/quill.snow.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/app-chat.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/app-sidebar.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/app-email.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/intro.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/page-faq.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/jkanban/jkanban.min.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/app-kanban.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/app-file-manager.min.css"> -->
+    <link href="https://cdn.datatables.net/fixedcolumns/5.0.1/css/fixedColumns.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <!-- <link rel="stylesheet" type="text/css" href="https://bisma.bpkp.go.id/assets/app-assets/css/pages/dashboard-modern.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/searchpanes/2.3.2/css/searchPanes.dataTables.min.css">
+    <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"/> 
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-treeview/1.2.0/bootstrap-treeview.min.css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <!-- END: Custom CSS-->
+  </head>
+
+  <style>
+
+body {
+    overflow: visible !important;
+}
+
+
+.charDonut {
+  height: 170px;
+  -webkit-filter: drop-shadow(0px 10px 4px rgba(133, 3, 168, 0.2));
+  filter: drop-shadow(0px 10px 4px rgba(133, 3, 168, 0.2));
+}
+
+.charDonut .ct-series-a .ct-slice-donut {
+  stroke: #ff6f00;
+}
+
+.charDonut .ct-series-b .ct-slice-donut {
+  stroke: #ffd740;
+}
+
+.user-statistics-card .collection .collection-item {
+  min-height: auto;
+}
+
+.user-statistics-container {
+  position: relative;
+  height: 150px;
+}
+
+.user-statistics-container > * {
+  position: absolute;
+  width: 100%;
+}
+
+#user-statistics-bar-chart {
+  height: 150px;
+  -webkit-filter: drop-shadow(4px 10px 4px rgba(133, 3, 168, 0.2));
+  filter: drop-shadow(4px 10px 4px rgba(133, 3, 168, 0.2));
+}
+
+#user-statistics-bar-chart .ct-series-a .ct-bar {
+  stroke: url(#barGradient1);
+}
+
+#user-statistics-bar-chart .ct-series-a .ct-slice-pie {
+  fill: #ff4bac;
+}
+
+#user-statistics-bar-chart .ct-series-b .ct-bar {
+  stroke: url(#barGradient2);
+}
+
+#user-statistics-bar-chart .ct-series-b .ct-slice-pie {
+  fill: #8133ff;
+}
+
+.containerload {
+  position: relative;
+}
+
+.progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 50px;
+  border-color :#C4F0F0;
+  width: 100%;
+  height: 10px;
+}
+
+.shadowcustom{
+  box-shadow: -1px 6px 37px -5px rgba(11,28,82,0.58);
+-webkit-box-shadow: -1px 6px 37px -5px rgba(11,28,82,0.58);
+-moz-box-shadow: -1px 6px 37px -5px rgba(11,28,82,0.58);
+}
+
+    
+
+.select{
+  display: none;
+}
+
+#page-length-option tr td {
+    height: 5px !important;
+}
+
+.text-right{
+  text-align: right;
+}
+
+.text-left{
+  text-align: left;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.pagination {
+  padding: 0;
+  text-align: right;
+  font-size: 15px;
+}
+
+.pagination li {
+  display: inline;
+  padding-left : 10px;
+  font-size: 15px;
+}
+
+.pagination li a {
+  display: inline-block;
+  text-decoration: none;
+  /* padding: 5px 10px; */
+  color: #616161;
+  font-size: 15px;
+}
+
+.pagination a.active {
+  color: #fff !important;
+border: 1px solid #2196f3;
+border-radius: 6px;
+background: #2196f3;
+box-shadow: 0 0 8px 0 #2196f3;
+font-size: 15px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #03a9f4;
+  font-size: 15px;
+  color: #FFF;
+  box-shadow: 0 0 8px 0 #2196f3;
+}
+
+.pagination li a {
+  border-radius: 5px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  font-size: 15px;
+ 
+    
+}
+
+.d-none{
+  display: none
+}
+
+table.dataTable tbody td {
+    word-break: break-word;
+    vertical-align: top;
+}
+
+
+
+label{
+  vertical-align: text-bottom !important;
+}
+
+table.fixed { 
+  table-layout:fixed; 
+  display: block;
+  overflow: auto;
+  padding-top: 5%;
+  white-space: nowrap;
+  min-width:200px}
+table.fixed td { overflow: hidden; }
+
+  .HeaderBisma {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  #loader{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('https://bisma.bpkp.go.id/assets/app-assets/images/icon/Loader.gif') 
+              50% 50% no-repeat ;
+}
+
+.scrollable{
+  overflow-y: auto;
+  max-height: 300px;
+}
+ 
+ 
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+ /* Atur font size default untuk isi pengumuman */
+  .pengumuman-content {
+    font-size: 14px; 
+    line-height: 1.6;
+    text-align: justify;
+  }
+
+  /* Atur judul */
+  .pengumuman-content h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  /* Responsive (untuk layar kecil, misalnya HP) */
+  @media screen and (max-width: 600px) {
+    .pengumuman-content {
+      font-size: 12px;
+    }
+    .pengumuman-content h3 {
+      font-size: 16px;
+    }
+  }
+
+  </style>
+
+  
+  <!-- END: Head-->
+  <body class="vertical-layout page-header-light vertical-menu-collapsible vertical-dark-menu preload-transitions 2-columns" 
+  data-open="click" data-menu="vertical-dark-menu" data-col="2-columns">
+  <div id='loader' style='display: none;'> </div>
+    <!-- BEGIN: Header-->
+    <header class="page-topbar" id="header">
+      <div class="navbar navbar-fixed"> 
+        <nav class="navbar-main navbar-color nav-collapsible sideNav-lock navbar-light">
+          <div class="nav-wrapper">
+            <div class="row">
+              <div class="col l12">
+
+                  <div class="col l9">
+                    <div class="header-search-wrapper hide-on-med-and-down" style="width: auto !important">
+                                              <h6>KANTOR PUSAT BADAN PENGAWASAN KEUANGAN DAN PEMBANGUNAN<li style='background-color: #FFF; padding-top: 10px'>
+                        <span class='blue-bisma-text' style='font-size: 0.95rem'>202000040 - Fauzan Rafif - Direktorat Pengawasan Bidang Pemberdayaan Ekonomi Masyarakat - D302</span></li> </h6>
+                      
+                      
+                    </div>
+                  </div>
+
+                  <div class="col l3">
+                      <ul class="right hide-on-med-and-down">
+                      <li class="hide-on-med-and-down"><a class="waves-effect waves-block waves-light toggle-fullscreen" href="javascript:void(0);"><i class="material-icons">settings_overscan</i></a></li>
+                      <li><a class="notification-button" href="javascript:void(0);" data-target="tutorial-dropdown"><i class="material-icons">computer</i></a></li>
+                      <li><a class="waves-effect waves-block waves-light notification-button" href="javascript:void(0);" data-target="notifications-dropdown"><i class="material-icons">notifications_none<small class="notification-badge" id="countnotif_"></small></i></a></li>
+                      <li><a class=""><span class="new badge bisma-blue" style="border-radius: 10px" data-badge-caption="2026">Tahun : </span></a></li>
+                      <li><a class="profile-button" href="javascript:void(0);" data-target="profile-dropdown"><span class="avatar-status avatar-online"><img src="https://bisma.bpkp.go.id/assets/app-assets/images/avatar/user.png" alt="avatar"><i></i></span></a></li>
+                    </ul>
+                    <!-- notifications-dropdown-->
+                    <ul class="dropdown-content" id="notifications-dropdown" style="border-radius: 10px; height : 407px !important">
+                      <li>
+                        <h6>Mapping Anggaran Belum Sesuai</h6>
+                      </li>
+                      <li class="divider"></li>
+                      <div id="notif_"></div>
+                    </ul>
+                    
+                    <!-- Tutorial-dropdown-->
+                    <ul class="dropdown-content" id="tutorial-dropdown" style="border-radius: 10px;width:221px !important;height:26px !important">
+                      <li>
+                        <a href="https://www.youtube.com/@bijakspendingmanagement">
+                            <div class="col l12">
+                              <div class="row">
+                                <div class="col l3">
+                                  <i class="fa-brands fa-youtube"></i> 
+                                </div>
+                                <div class="col l9">
+                                  <h6 class="blue-text" style="padding-top: 15px;">Youtube BISMA</h6>
+                                </div>
+                              </div>
+                            </div></a>
+                      </li>
+                    </ul>
+                    <!-- profile-dropdown-->
+                    <ul class="dropdown-content" id="profile-dropdown" style="border-radius: 10px">
+                      <li style="background-color: #2c323f"><span class="white-text text-darken-1">Fauzan Rafif</span></li>
+                      <li class="divider"></li>
+                                              <li><a class="grey-text text-darken-1" href="https://bisma.bpkp.go.id/User/User/UserSso"><i class="material-icons">person_outline</i> Profile</a></li>
+                                                                  
+                      <li><a class="grey-text text-darken-1" href="https://bisma.bpkp.go.id/Auth/Auth/logout"><i class="material-icons">keyboard_tab</i> Logout</a></li>
+                    </ul>
+                  </div>
+              </div>
+            </div>
+      </div>
+    </header>
+    <!-- END: Header-->
+    
+
+
+
+<style>
+	.table-nav, td{
+  	margin-top: -15px;
+		padding-left: 8px;
+		height: 40px !important;
+		vertical-align: center !important;
+}
+</style>
+
+    <!-- BEGIN: SideNav-->
+    <aside class="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-dark sidenav-active-rounded">
+      <div class="brand-sidebar" style="background: #fff !important;">
+				<!-- <table class="table-nav" class="logo-wrapper">
+					<tr>
+						<td style="width: 100%;" class="text-center">
+                <a class="brand-logo darken-1" href="#">
+                  <img class="hide-on-med-and-down " src="https://bisma.bpkp.go.id/assets/app-assets/images/logo/LOGO-BISMA.png" alt="BISMA logo">
+								  <img class="show-on-medium-and-down hide-on-med-and-up" src="https://bisma.bpkp.go.id/assets/app-assets/images/logo/New/Bisma_logo.png" alt="BISMA logo" height="60">
+                </a>
+                <a class="navbar-toggler" href="#">
+                  <i class="material-icons">radio_button_checked</i>
+                </a>
+						</td>
+					</tr>
+				</table> -->
+
+        <h1 class="logo-wrapper">
+            <a class="brand-logo darken-1" href="index.html">
+                <img class="hide-on-med-and-down " src="https://bisma.bpkp.go.id/assets/app-assets/images/logo/LOGO-BISMA-NEW.png">
+                  <!-- <img class="logo-text hide-on-med-and-down" src="https://bisma.bpkp.go.id/assets/app-assets/images/logo/New/Bisma_logo.png" alt="materialize logo"> -->
+                    <span class="logo-text hide-on-med-and-down" style="padding-left:0px !important"><img class="logo-text hide-on-med-and-down" src="https://bisma.bpkp.go.id/assets/app-assets/images/logo/New/Bisma_logo_text_new.png" alt="materialize logo"></span>
+            </a>
+            <a class="navbar-toggler" href="#">
+              <i class="material-icons bisma-blue-text">radio_button_checked</i>
+            </a>
+        </h1>
+        
+				
+      </div>
+
+      <ul class="sidenav sidenav-collapsible leftside-navigation collapsible sidenav-fixed menu-shadow" id="slide-out" data-menu="menu-navigation" data-collapsible="accordion">
+      
+          <select class=" browser-default" style="background-color: white; border: solid 1px #000; display:none;" id="role_id">              
+                          <option value="26792" selected>Pegawai PERWAKILAN BPKP PROVINSI BENGKULU</option>
+                      </select>
+
+          <!-- 
+<div style="border:1px solid #990000;padding-left:20px;margin:0 0 10px 0;">
+
+<h4>A PHP Error was encountered</h4>
+
+<p>Severity: Notice</p>
+<p>Message:  Array to string conversion</p>
+<p>Filename: Header/Aside.php</p>
+<p>Line Number: 150</p>
+
+
+	<p>Backtrace:</p>
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: /var/www/html/application/views/Header/Aside.php<br />
+			Line: 150<br />
+			Function: _error_handler			</p>
+
+		
+	
+		
+			<p style="margin-left:10px">
+			File: /var/www/html/application/views/Transaksi/Costsheet/Detail/manage.php<br />
+			Line: 4<br />
+			Function: include			</p>
+
+		
+	
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: /var/www/html/application/controllers/Transaksi/Apisima.php<br />
+			Line: 638<br />
+			Function: view			</p>
+
+		
+	
+		
+	
+		
+			<p style="margin-left:10px">
+			File: /var/www/html/index.php<br />
+			Line: 315<br />
+			Function: require_once			</p>
+
+		
+	
+
+</div>Array -->
+
+              <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Main/Home">
+            <i class="material-icons">home</i>
+            <span class="menu-title" data-i18n="Mail">Dashboard</span>
+                    </a>
+    </li>
+        <li class="navigation-header">
+        <a class="navigation-header-text">Anggaran</a>
+        <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Anggaran/mappingkap/Page">
+            <i class="material-icons">view_comfy</i>
+            <span class="menu-title" data-i18n="Mail">Mapping KAP</span>
+            <span class="badge badge pill cyan float-right mr-1 pulse countnotif_"></span>        </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Anggaran/Lembur/index">
+            <i class="material-icons">home</i>
+            <span class="menu-title" data-i18n="Mail">Mapping Lembur</span>
+                    </a>
+    </li>
+        <li class="navigation-header">
+        <a class="navigation-header-text">Rencana Kegiatan</a>
+        <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+            <li class="active bold"><a class="collapsible-header waves-effect waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">email</i><span class="menu-title" data-i18n="Perjadin">Perjadin Pegawai</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                                        <li><a class="collapsible-header waves-cyan" href="JavaScript:void(0)"><i
+                                class="material-icons">radio_button_unchecked</i><span data-i18n="Pilih ST SIMA">Pilih ST SIMA</span></a>
+                        <div class="collapsible-body">
+                            <ul class="collapsible" data-collapsible="accordion">
+                                <li><a href="https://bisma.bpkp.go.id/Transaksi/Apisima/Data_multibeban/pkau"><i
+                                            class="material-icons">keyboard_tab</i><span data-i18n="PKAU level">PKAU</span></a>
+                                </li>
+                                <li><a href="https://bisma.bpkp.go.id/Transaksi/Apisima/Data/pkpt"><i
+                                            class="material-icons">keyboard_tab</i><span data-i18n="PKPT level">PKPT</span></a>
+                                </li>
+                                <li hidden><a href="https://bisma.bpkp.go.id/Transaksi/Apisima/Data_multibeban/multi"><i
+                                            class="material-icons">keyboard_tab</i><span data-i18n="PKPT level">MULTI BEBAN</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <li><a class="collapsible-header waves-cyan" href="JavaScript:void(0)"><i
+                                class="material-icons">radio_button_unchecked</i><span data-i18n="Pilih Costsheet ST SIMA">Pilih
+                                Costsheet ST SIMA</span></a>
+                        <div class="collapsible-body">
+                            <ul class="collapsible" data-collapsible="accordion">
+                                <li><a href="https://bisma.bpkp.go.id/Transaksi/Apisima/Getcostsheet/All"><i
+                                            class="material-icons">keyboard_tab</i><span data-i18n="Unit Sendiri level">Costsheet</span></a>
+                                </li>
+                                <li><a href="https://bisma.bpkp.go.id/Transaksi/Apisima/Getcostsheet/All_unitlain"><i
+                                            class="material-icons">keyboard_tab</i><span data-i18n="Unit Lain level">Costsheet Unit Lain</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        
+                    
+            
+                <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Lembur/Lembur/page">
+            <i class="material-icons">business_center</i>
+            <span class="menu-title" data-i18n="Mail">Lembur</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/PBJ/Pbj/Page">
+            <i class="material-icons">call_to_action</i>
+            <span class="menu-title" data-i18n="Mail">PBJ</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Gaji/Gaji/Page">
+            <i class="material-icons">call_to_action</i>
+            <span class="menu-title" data-i18n="Mail">Belanja Gaji ASN</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Diklat/Diklat/peserta">
+            <i class="material-icons">speaker_notes</i>
+            <span class="menu-title" data-i18n="Mail">Perjadin Diklat</span>
+                    </a>
+    </li>
+    
+            <!-- tlms proyeksi -->
+                        <li class="bold">
+                <a class="collapsible-header waves-cyan " href="JavaScript:void(0)">
+                    <i class="material-icons">show_chart</i>
+                    <span class="menu-title" data-i18n="Perjadin">Proyeksi</span>
+                </a>
+                <div class="collapsible-body">
+                    <ul class="collapsible collapsible-sub" data-collapsible="accordion">
+                            <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Proyeksi/Proyeksi">
+            <i class="material-icons">show_chart</i>
+            <span class="menu-title" data-i18n="Mail">Proyeksi CS</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Proyeksi/MonProyeksi">
+            <i class="material-icons">insert_chart</i>
+            <span class="menu-title" data-i18n="Mail">Monitoring ES3</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Proyeksi/Monitoring">
+            <i class="material-icons">insert_chart</i>
+            <span class="menu-title" data-i18n="Mail">Monitoring Perjadin per Bulan</span>
+                    </a>
+    </li>
+                        </ul>
+                </div>
+            </li>
+                        <!-- tlms proyeksi -->
+
+            <!-- DI GRUP REALISASI -->
+                <li class="navigation-header">
+        <a class="navigation-header-text">Realisasi</a>
+        <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Pengeluaranrill/Pengeluaranrill">
+            <i class="material-icons">note_add</i>
+            <span class="menu-title" data-i18n="Mail">Pengeluaran Rill</span>
+                    </a>
+    </li>
+    
+        <li class="bold"><a class="collapsible-header waves-cyan" href="JavaScript:void(0)"><i class="material-icons">fingerprint</i><span class="menu-title" data-i18n="Verifikasi Digital">Verifikasi Digital</span></a>
+              <div class="collapsible-body">
+                <ul class="collapsible" data-collapsible="accordion"> <li><a href="https://bisma.bpkp.go.id/Verifdigital/Persetujuanpengajuan"><i class="material-icons">keyboard_tab</i><span data-i18n="Persetujuan Pengajuan level">Persetujuan Pengajuan</span></a></li><li><a href="https://bisma.bpkp.go.id/Verifdigital/Persetujuanbbk"><i class="material-icons">keyboard_tab</i><span data-i18n="Persetujuan BBK level">Persetujuan BBK</span></a></li>
+                    <li><a href="https://bisma.bpkp.go.id/Verifdigital/Verifikasimateril"><i class="material-icons">keyboard_tab</i><span data-i18n="Verifikasi Materil level">Verifikasi Materil</span></a>
+                    </li>
+                    <li><a href="https://bisma.bpkp.go.id/Verifdigital/Persetujuanmateril"><i class="material-icons">keyboard_tab</i><span data-i18n="Persetujuan Materil">Persetujuan Materil</span></a>
+                    </li>
+                      <li><a hidden href="https://bisma.bpkp.go.id/Verifdigital/Verifikasiformil"><i class="material-icons">keyboard_tab</i><span data-i18n="Verifikasi Formil level">Verifikasi Formil</span></a>
+                      </li>
+                    <li><a href="https://bisma.bpkp.go.id/Verifdigital/Persetujuanformil"><i class="material-icons">keyboard_tab</i><span data-i18n="Persetujuan Formil">Persetujuan Formil</span></a>
+                    </li></ul>
+                </div>
+              </li>
+        
+        <!-- DI GRUP REPORTING -->
+            <li class="navigation-header">
+        <a class="navigation-header-text">Reporting</a>
+        <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+    
+        
+            <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Penugasan/Penugasan/Perorang">
+            <i class="material-icons">people</i>
+            <span class="menu-title" data-i18n="Mail">Riwayat Penugasan</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Kkp/Kkp">
+            <i class="material-icons">credit_card</i>
+            <span class="menu-title" data-i18n="Mail">KKP</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Anggaran/Realisasi/detail">
+            <i class="material-icons">shopping_basket</i>
+            <span class="menu-title" data-i18n="Mail">Realisasi RKA</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Monitoring/Monitoring/lapKap">
+            <i class="material-icons">monitoring</i>
+            <span class="menu-title" data-i18n="Mail">RO-KAP</span>
+                    </a>
+    </li>
+    
+                    <li><a href="https://bisma.bpkp.go.id/Anggaran/Realisasi/detailPerBidang">
+                    <i class="material-icons">apps</i><span data-i18n="Per Mitra">Per Bidang</span></a>
+            </li>
+            <li><a href="https://bisma.bpkp.go.id/Anggaran/Realisasi/PageMitra">
+                    <i class="material-icons">grain</i><span data-i18n="Per Mitra">Per Mitra</span></a>
+            </li>
+        
+            <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Transaksi/Perjadin/Perjadin">
+            <i class="material-icons">event_note</i>
+            <span class="menu-title" data-i18n="Mail">Perjadin Jatuh Tempo</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Anggaran/Realisasi/PagePerKAP_csv">
+            <i class="material-icons">event_note</i>
+            <span class="menu-title" data-i18n="Mail">Per KAP (CSV)</span>
+                    </a>
+    </li>
+    
+        
+        
+        <li class="bold"><a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Monitoring/Monitoring_costsheet">
+                <i class="material-icons">
+                    add_shopping_cart
+                </i><span class="menu-title" data-i18n="Mail">Monitoring Costsheet</span></a>
+        </li>
+
+        <li class="bold"><a class="collapsible-header waves-cyan " href="JavaScript:void(0)"><i
+                    class="material-icons">trending_up</i><span class="menu-title" data-i18n="Perjadin">Transaksi SAKTI</span></a>
+            <div class="collapsible-body">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li><a href="https://bisma.bpkp.go.id/Monitoring/Monsakti/index">
+                            <i class="material-icons">radio_button_unchecked</i><span data-i18n="Per Mitra">List Transaksi</span></a>
+                    </li>
+                    <li><a href="https://bisma.bpkp.go.id/Monitoring/Monsakti/spp">
+                            <i class="material-icons">radio_button_unchecked</i><span data-i18n="Per Mitra">List SPP SAKTI</span></a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- DI GRUP PENGATURAN -->
+            <li class="navigation-header">
+        <a class="navigation-header-text">Pengaturan</a>
+        <i class="navigation-header-icon material-icons">more_horiz</i>
+    </li>
+    
+        
+            <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Master/KAP/Page">
+            <i class="material-icons">monetization_on</i>
+            <span class="menu-title" data-i18n="Mail">APP-KAP</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Master/Klpbu/Page">
+            <i class="material-icons">account_balance</i>
+            <span class="menu-title" data-i18n="Mail">KLPBU</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Auth/Faq/Page">
+            <i class="material-icons">question_answer</i>
+            <span class="menu-title" data-i18n="Mail">Q&A</span>
+                    </a>
+    </li>
+        <li class="bold">
+        <a class="waves-effect waves-cyan" href="https://bisma.bpkp.go.id/Auth/Auth/logout">
+            <i class="material-icons">keyboard_tab</i>
+            <span class="menu-title" data-i18n="Mail">Logout</span>
+                    </a>
+    </li>
+                  </ul>
+      <div class="navigation-background"></div><a class="sidenav-trigger btn-sidenav-toggle btn-floating btn-medium waves-effect waves-light hide-on-large-only" href="#" data-target="slide-out"><i class="material-icons">menu</i></a>
+    </aside>
+    <!-- END: SideNav-->
+
+<!-- BEGIN: Page Main-->
+<div id="main">
+	<div class="row">
+		<div class="col s12">
+			<div class="container">
+				<div class="section">
+          
+       
+
+        
+<style>
+    input:not([type]):disabled, input:not([type])[readonly=readonly], input[type=date]:not(.browser-default):disabled, input[type=date]:not(.browser-default)[readonly=readonly], input[type=datetime-local]:not(.browser-default):disabled, input[type=datetime-local]:not(.browser-default)[readonly=readonly], input[type=datetime]:not(.browser-default):disabled, input[type=datetime]:not(.browser-default)[readonly=readonly], input[type=email]:not(.browser-default):disabled, input[type=email]:not(.browser-default)[readonly=readonly], input[type=number]:not(.browser-default):disabled, input[type=number]:not(.browser-default)[readonly=readonly], input[type=password]:not(.browser-default):disabled, input[type=password]:not(.browser-default)[readonly=readonly], input[type=search]:not(.browser-default):disabled, input[type=search]:not(.browser-default)[readonly=readonly], input[type=tel]:not(.browser-default):disabled, input[type=tel]:not(.browser-default)[readonly=readonly], input[type=text]:not(.browser-default):disabled, input[type=text]:not(.browser-default)[readonly=readonly], input[type=time]:not(.browser-default):disabled, input[type=time]:not(.browser-default)[readonly=readonly], input[type=url]:not(.browser-default):disabled, input[type=url]:not(.browser-default)[readonly=readonly], textarea.materialize-textarea:disabled, textarea.materialize-textarea[readonly=readonly] {
+    color: rgba(0, 0, 0);
+    border-bottom: 1px dotted rgba(0, 0, 0, .42);
+}
+
+input, select, textarea 
+{
+    font-size:0.8em !important;
+}
+
+.ukuranfont{
+    font-size:0.8em !important;
+}
+
+
+td{
+    height: 0% !important;
+}
+
+thead tr th{
+    text-transform: uppercase;
+    font-weight: 900;
+    height: 5% !important;
+    position: sticky;
+    top: 0;
+    background-color: #2c323f;
+    color: #FFF;
+}
+</style>
+
+<div class="row">
+
+<div class="col s12">
+        <div class="card" id="head">
+            <div class="card-content" >
+                <div class="row">
+                    <div class="col s1">
+                        <button type="button" class="btn-floating" style=""><i class="material-icons">
+                        done</i></button>
+                    </div>
+                    <div class="col s4">
+                        <h6> Form Detail Costheet</h6>
+                    </div>
+
+                    <div class="col s7 text-right">
+                        <h6>
+                            <p clas="purple-text">1 - Pengajuan Rencana oleh Es3/Es2</p>
+                        </h6>
+                    </div>
+                  
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s12">
+        <div class="card">
+            <div class="card-content">
+
+                <form id="FormST" name="FormST">
+                <input type="hidden" name="ci_csrf_token" value="" />
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <div class="input-field col s2"><label>Nomor ST</label></div>
+
+                            <div class="input-field col s10 " >
+                            <input  type="text" id="nost" name="nost" value="">
+                            
+                            </div>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <div class="input-field col s2"><label>Tanggal ST</label></div>
+
+                            <div class="input-field col s10 " >
+                            <input  type="date" id="tglst" name="tglst" value="2026-05-22">
+                            </div>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <div class="input-field col s2"><label>Uraian ST</label></div>
+
+                            <div class="input-field col s10 " >
+                            <textarea  class="materialize-textarea" id="uraianst" name="uraianst" >melaksanakan Uji Petik atas Evaluasi PHTC Koperasi Desa/Kelurahan Merah Putih Triwulan II Tahun 2026 di Kota Balikpapan</textarea>
+                            </div>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <div class="input-field col s2"><label>Tanggal Mulai</label></div>
+
+                            <div class="input-field col s10 " >
+                            <input  type="date" id="tglst_mulai" name="tglst_mulai" onclick="Min_datemulai()" value="2026-06-07">
+                            </div>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <div class="input-field col s2"><label>Tanggal Selesai</label></div>
+
+                            <div class="input-field col s10 " >
+                            <input  type="date" id="tglst_selesai" name="tglst_selesai" onclick="Min_dateselesai()" value="2026-06-11">
+                            </div>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <div class="input-field col s2"><label>MAK</label></div>
+
+                            <div class="input-field col s10 " >
+                                <input  type="text"  id="idxskmpnenlabel" name="idxskmpnenlabel" value="7989.FAG.[IB.9A].003.401. B.524111" >
+                                <input  type="text"  id="idxskmpnen" name="idxskmpnen" value="48801" hidden>
+                                
+                                <div hidden>
+                                    <input  type="text"  id="kdindex" name="kdindex" value="48801" >
+                                    <input  type="text"  id="thang" name="thang" value="2026" >
+                                    <input  type="text"  id="kdgiat" name="kdgiat" value="7989" >
+                                    <input  type="text"  id="kdoutput" name="kdoutput" value="FAG" >
+                                    <input  type="text"  id="kdsoutput" name="kdsoutput" value="003">
+                                    <input  type="text"  id="kdkmpnen" name="kdkmpnen" value="401" >
+                                    <input  type="text"  id="kdskmpnen" name="kdskmpnen" value=" B" >
+                                    <input  type="text"  id="kdakun" name="kdakun" value="524111" >
+                                    <input  type="text"  id="kdbeban" name="kdbeban" value="A">
+                                    <input  type="text"  id="kdapp" name="kdapp" value="30906" >
+                                    <input  type="text"  id="kdtahapan" name="kdtahapan" value="11" >
+                                    <input  type="text"  id="id_unit" name="id_unit" value="615" >
+                                    <input  type="text"  id="kdsatker" name="kdsatker" value="450491">
+                                </div>
+                            </div>
+                        </div>
+
+                                                       <div class="input-field col s12">
+                                            <div class="input-field col s2"><label>Alokasi</label></div>
+                
+                                            <div class="input-field col s10 " >
+                                    <input readonly id="alokasilabel" name="alokasilabel" value="Rp 156.000.000">
+                                    <input readonly id="alokasi" name="alokasi" hidden value="156000000">
+                                </div>
+                                        </div>
+
+                                        <div class="input-field col s12">
+                                            <div class="input-field col s2"><label>Beban Anggaran</label></div>
+
+                                            <div class="input-field col s10 " >
+                                            <input readonly id="bebananggaranlabel" name="bebananggaranlabel" value="Direktorat Pengawasan Bidang Pemberdayaan Ekonomi Masyarakat">
+                                            <input id="bebananggaran" name="bebananggaran"  value="615" hidden>
+                                            </div>
+                                        </div>
+                                       
+                          
+                        <div class="input-field col s12">
+                            <div class="input-field col s2"><label>Sumber Dana</label></div>
+
+                            <div class="input-field col s10 " >
+                                <input readonly id="val_sumber_dana" name="val_sumber_dana" value="APBN">
+                                <input readonly id="id_val_sumber_dana" name="id_val_sumber_danaß" value="52" hidden>
+                            </div>
+                        </div>
+
+                          <!-- BEBAN UNIT LAIN -->
+                        <div class="input-field col s12">
+                            <div class="input-field col s2"><label>Beban Anggaran Unit</label></div>
+                            <div class="input-field col s10 " >
+                                                                    <input id="nama_unit_beban_0" name="nama_unit_beban_0" value="450491 - Direktorat Pengawasan Bidang Pemberdayaan Ekonomi Masyarakat" readonly>
+                                    <input id="id_unit_beban_0" name="id_unit_beban_0" value="615"  hidden>
+                                    <input id="dana_unit_lain" name="dana_unit_lain" value="0" hidden>
+                                    <input id="id_unit_beban_0" name="id_unit_beban_0" value="615"  hidden>
+
+                                                            </div>
+                        </div>
+                        <!-- BEBAN UNIT LAIN -->
+                        <div class="input-field col s12">
+                            <div class="input-field col s2"><label>Penandatangan</label></div>
+
+                            <div class="input-field col s10 " >
+                            <!-- <select  class="browser-default" id="ttd" name="ttd"></select> -->
+                            
+                                <div class="card-alert card gradient-45deg-purple-deep-orange">
+                                    <div class="card-content white-text">
+                                    <p>Penandatangan masih kosong ! mohon sinkron data st !</b></p>
+                                    </div>
+                                </div>
+
+                                                        </div>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <div class="input-field col s2"><label>Yang Menyetujui</label></div>
+
+                            <div class="input-field col s10 " >
+                            <input  id="menyetujui" name="menyetujui">
+                            </div>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <div class="input-field col s2"><label>Yang Mengusulkan</label></div>
+
+                            <div class="input-field col s10 " >
+                            <input  id="mengajukan" name="mengajukan">
+                            </div>
+                        </div>
+
+                                                <div class="input-field col s12 d-none">
+
+                            <div class="card yellow lighten-4" id="head">
+                                <div class="card-content" >
+                                    <div class="row">
+                                    <div class="input-field col s2"><label>Metode Pembayaran<span class="red-text">*</span></label></div>
+
+                                        <div class="input-field col s10" >
+                                            <div class="row">
+                                                <p>
+                                                    <label>
+                                                        <input class="with-gap" name="metode_pembayaran" value="UP" type="radio" checked/>
+                                                        <span>UP / LS Akhir</span>
+                                                    </label>
+                                                    </p>
+                                                    <p>
+                                                    <label>
+                                                        <input class="with-gap" name="metode_pembayaran" value="LS AWAL" type="radio"  />
+                                                        <span>LS Awal</span>
+                                                    </label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+<div id = "counting">
+    <div class="multi-field-wrapper">
+
+
+         <div class="multi-field-wrapper">
+         <table class="display nowrap bordered fixed multi-fields striped" id="tbUser" 
+                                style="padding-top:0%;height: 500px;       
+                                overflow-y: scroll;
+                                overflow-x: scroll;
+                                border: 1px solid black;">
+
+                        <thead style="position: sticky;z-index: 2;">
+                            <tr>
+                                <th  class="text-center ukuranfont" style="min-width: 50px;">NO</th>
+                                <th  class="text-center ukuranfont" style="min-width: 150px;">No SPD</th>
+                                <th  class="text-center ukuranfont" style="min-width: 150px;">NAMA</th>
+                                <th  class="text-center ukuranfont" style="min-width: 150px;">NIP</th>
+                                <th  class="text-center ukuranfont" style="min-width: 150px;">PERAN/JABATAN</th>
+                                <th  class="text-center ukuranfont" style="min-width: 60px;">GOL</th>
+                                <th  class="text-center ukuranfont" >TGL BERANGKAT</th>
+                                <th  class="text-center ukuranfont" >TGL KEMBALI</th>
+                                <th  class="text-center ukuranfont" >JML HARI</th>
+                                <th  class="text-center ukuranfont" >KOTA ASAL</th>
+                                <th  class="text-center ukuranfont" >KOTA TUJUAN</th>
+                                <th  class="text-center ukuranfont" style="min-width: 200px" colspan ="2">UANG HARIAN</th>
+                                <th  class="text-center ukuranfont" style="min-width: 200px" colspan ="2">PENGINAPAN</th>
+                                <th  class="text-center ukuranfont" style="min-width: 100px">Taxi Bandara</th>
+                                <th  class="text-center ukuranfont" style="min-width: 100px">Angkutan Laut</th>
+                                <th  class="text-center ukuranfont" style="min-width: 100px">Transportasi Udara</th>
+                                <th  class="text-center ukuranfont" style="min-width: 100px">Transportasi Darat</th>
+                                <th  class="text-center ukuranfont" style="min-width: 100px">DLL</th>
+                                <th  class="text-center ukuranfont" style="min-width: 100px">REPRESENTASI</th>
+                                <th  class="text-center ukuranfont" style="min-width: 100px">JUMLAH</th>
+                                <th  class="text-center ukuranfont" style="min-width: 200px" >PENANDATANGAN SPD</th>
+                                <th  class="text-center ukuranfont" >Aksi</th>
+                            </tr>
+                        </thead>
+                            
+                            <tr class="tb-tim" id="tb-tim1" style="border-top: 2px dotted #c5c5c4;background-color : #FFCAB3">
+                                <td class="text-center" >
+                                    <input name="is_aktif1" id="is_aktif1" value="0" hidden>
+                                    <input  class="nourut text-center" type="number" id="urut1" name="urut1" min="1" max="20" value="1" readonly>
+                                </td>
+                                <td>
+                                    <input name="is_aktif1" id="is_aktif1" value="1" hidden>
+                                    <input type="text"  id="nospd1" name="nospd1" value="SPD - 00000/D3/2026" >
+                                </td>
+                                <td id="Tim1" class="cekNama">
+                                    <input class="nama namaTim tooltiped" name="nama1" id="nama1" value="Stefanus Hananto Radityo" readonly><br>
+                                    <div class="card-alert card red d-none" id="cardBentrok1">
+                                        <div class="card-content white-text">
+                                            <p id="textBentrok1"></p>
+                                            <input id="inputBentrok1" hidden>
+                                        </div>
+                                    </div>
+                                    <input name="idtim1" id="idtim1" value="1674020"hidden>
+                                    <input name="idincrement1" id="idincrement1" value="1674020" hidden>
+                                </td>
+                                <td>
+                                    <input placeholder="NIP" class="nip" id="nip1" name="nip1"  value="197208031993021001" readonly>
+                                </td>
+                                <td>
+                                    <textarea placeholder="Peran/Jabatan" class="perjab" id="perjab1" name="perjab1" >Auditor Ahli Madya selaku Koordinator Pengawasan Bidang Koperasi dan UMKM</textarea>
+                                </td>
+                                <td>
+                                    <input class="text-center" type="text" id="gol1" name="gol1" value="IV/b" readonly>
+                                    <input  type="text" id="keljab1" name="keljab1" value="" readonly hidden>
+                                </td>
+                                <td>
+                                    <input type="date" min="2026-06-07" max="2026-06-11" onchange="dayCount('1','ubah')" id="tglberangkat1" name="tglberangkat1" value="2026-06-07"readonly>
+                                </td>
+                                <td>
+                                    <input type="date" max="2026-06-11" min="2026-06-07" onchange="dayCount('1','ubah')" id="tglkembali1" name="tglkembali1" value="2026-06-11" readonly>
+                                </td>
+                                <td>
+                                    <input class="text-center" type="text" id="jmlhari1" name="jmlhari1" onkeyup="dayCount('1','hari')">
+                                    <input hidden class="text-center" type="text" id="jmlharidum1" name="jmlharidum1"  value="0;0">
+                                </td>
+                                <td>
+                                    <select readonly class="browser-default kota kotaasal kotaselect"  name="kotaasal1" id="kotaasal1" onchange="cityCount('1','default')" >
+                                            <option selected value="70-515-KOTA JAKARTA"> KOTA JAKARTA </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select readonly class="browser-default kota kotatujuan kotaselect"  name="kotatujuan1" id="kotatujuan1" onchange="cityCount('1','default')" >
+                                            <option selected value="71-363-KOTA BALIKPAPAN"> KOTA BALIKPAPAN </option>
+                                    </select>
+                                </td>  
+                                <td>
+                                    <div id="div_akun1191" class="d-none">
+                                        <input style="width:8em" type="text" id="satuan_uangharian_1191" name="satuan_uangharian_1191" onkeyup="AllCount('1','satuan')" value="Rp 0">
+                                        X
+                                        <input class="text-center"  style="width:2em" type="text" id="harian_uangharian_1191" name="harian_uangharian_1191" onkeyup="Harian('1','satuan')">
+                                        <br>
+                                    </div>
+                                        <input style="width:8em" type="text" id="satuan_uangharian1" name="satuan_uangharian1" onkeyup="AllCount('1','satuan')" value="Rp 0">
+                                        X
+                                        <input class="text-center" style="width:2em" type="text" id="harian_uangharian1" name="harian_uangharian1" onkeyup="Harian('1','satuan')" value="0;0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangharian1" name="uangharian1" onkeyup="AllCount('1','total')" value="Rp 0">
+                                    <input type="hidden" id="tarifuangpenginapan1" name="tarifuangpenginapan1">
+                                    <input type="hidden" id="tarifuangharian1" name="tarifuangharian1" >
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="satuan_uangpenginapan1" name="satuan_uangpenginapan1" onkeyup="AllCount('1','satuan')" readonly value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangpenginapan1" name="uangpenginapan1" onkeyup="AllCount('1','total')"  value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangtaxi1" name="uangtaxi1" onkeyup="AllCount('1','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uanglaut1" name="uanglaut1" onkeyup="AllCount('1','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangudara1" name="uangudara1" onkeyup="AllCount('1','all')" value="Rp 0"></td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangdarat1" name="uangdarat1" onkeyup="AllCount('1','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangdll1" name="uangdll1" onkeyup="AllCount('1','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangrep1" name="uangrep1" onkeyup="AllCount('1','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" readonly id="total1"  name="total1" value="Rp 0">
+                                </td>
+                                <td><div class="col s12">
+                                        <div class="input-field col s3">
+                                            <label style="padding-top: 0px !important" class="tooltipped" data-position="top" data-tooltip="Plh">
+                                                                                            <input type="checkbox"  class="indeterminate-checkbox" id="plh_ttdspd1" onchange="plh_spd('1')">
+                                                <span style="padding-right:10px;color: rgb(255,255,255,0.1);">Plh</span>
+                                            </label>
+                                        </div>
+                                        <div class="input-field col s9">
+                                        <select placeholder="Pilih Penandatangan SPD"  class="ttd_spd browser-default" id="ttd_spd1" name="ttd_spd1" onclick="ubahTtdSpd('1')" >
+                                            <option selected value="1269-197306301994022001-Titik Dwi Wahyuni"> Titik Dwi Wahyuni </option>
+                                        </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 d-none" id="div_jab1" >
+                                        <input  type="text" id="jab_penandatangan_spd1" name="jab_penandatangan_spd1" value="     0"/>
+                                        <label for="input_text" style="padding-top: 0px !important">Plt. Jabatan</label>
+                                    </div>
+                                        
+                                </td>
+                                <td>
+                                                                            <div class="col s12">
+
+                                                                                                <a type="button" onclick="hideRow('1', '1674020')" id="hideRow1" class="d-none"><span class="col s4 table-remove" style="padding: 0px !important" id="hide1" ><i class="material-icons green-red">delete</i></span></a>
+                                                    <a type="button" onclick="showRow('1')" id="showRow1" class=""><span class="col s4 table-remove" style="padding: 0px !important" id="show1" ><i class="material-icons green-text">check_circle</i></span></a>
+                                                                                        
+                                            
+                                        </div>
+                                </td>
+
+                            </tr>
+                            
+                            
+                            <tr class="tb-tim" id="tb-tim2" style="border-top: 2px dotted #c5c5c4;background-color : rgba(242,242,242,.5)">
+                                <td class="text-center" >
+                                    <input name="is_aktif2" id="is_aktif2" value="1" hidden>
+                                    <input  class="nourut text-center" type="number" id="urut2" name="urut2" min="1" max="20" value="2" readonly>
+                                </td>
+                                <td>
+                                    <input name="is_aktif2" id="is_aktif2" value="1" hidden>
+                                    <input type="text"  id="nospd2" name="nospd2" value="SPD - 01316/D3/2026" >
+                                </td>
+                                <td id="Tim2" class="cekNama">
+                                    <input class="nama namaTim tooltiped" name="nama2" id="nama2" value="Luky Nurvita Santi" readonly><br>
+                                    <div class="card-alert card red d-none" id="cardBentrok2">
+                                        <div class="card-content white-text">
+                                            <p id="textBentrok2"></p>
+                                            <input id="inputBentrok2" hidden>
+                                        </div>
+                                    </div>
+                                    <input name="idtim2" id="idtim2" value="1674021"hidden>
+                                    <input name="idincrement2" id="idincrement2" value="1674021" hidden>
+                                </td>
+                                <td>
+                                    <input placeholder="NIP" class="nip" id="nip2" name="nip2"  value="197503151998032001" readonly>
+                                </td>
+                                <td>
+                                    <textarea placeholder="Peran/Jabatan" class="perjab" id="perjab2" name="perjab2" >Auditor Ahli Madya</textarea>
+                                </td>
+                                <td>
+                                    <input class="text-center" type="text" id="gol2" name="gol2" value="IV/a" readonly>
+                                    <input  type="text" id="keljab2" name="keljab2" value="" readonly hidden>
+                                </td>
+                                <td>
+                                    <input type="date" min="2026-06-07" max="2026-06-11" onchange="dayCount('2','ubah')" id="tglberangkat2" name="tglberangkat2" value="2026-06-07"readonly>
+                                </td>
+                                <td>
+                                    <input type="date" max="2026-06-11" min="2026-06-07" onchange="dayCount('2','ubah')" id="tglkembali2" name="tglkembali2" value="2026-06-11" readonly>
+                                </td>
+                                <td>
+                                    <input class="text-center" type="text" id="jmlhari2" name="jmlhari2" onkeyup="dayCount('2','hari')">
+                                    <input hidden class="text-center" type="text" id="jmlharidum2" name="jmlharidum2"  value="0;5">
+                                </td>
+                                <td>
+                                    <select readonly class="browser-default kota kotaasal kotaselect"  name="kotaasal2" id="kotaasal2" onchange="cityCount('2','default')" >
+                                            <option selected value="70-515-KOTA JAKARTA"> KOTA JAKARTA </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select readonly class="browser-default kota kotatujuan kotaselect"  name="kotatujuan2" id="kotatujuan2" onchange="cityCount('2','default')" >
+                                            <option selected value="71-363-KOTA BALIKPAPAN"> KOTA BALIKPAPAN </option>
+                                    </select>
+                                </td>  
+                                <td>
+                                    <div id="div_akun1192" class="d-none">
+                                        <input style="width:8em" type="text" id="satuan_uangharian_1192" name="satuan_uangharian_1192" onkeyup="AllCount('2','satuan')" value="Rp 430.000">
+                                        X
+                                        <input class="text-center"  style="width:2em" type="text" id="harian_uangharian_1192" name="harian_uangharian_1192" onkeyup="Harian('2','satuan')">
+                                        <br>
+                                    </div>
+                                        <input style="width:8em" type="text" id="satuan_uangharian2" name="satuan_uangharian2" onkeyup="AllCount('2','satuan')" value="Rp 430.000">
+                                        X
+                                        <input class="text-center" style="width:2em" type="text" id="harian_uangharian2" name="harian_uangharian2" onkeyup="Harian('2','satuan')" value="0;5">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangharian2" name="uangharian2" onkeyup="AllCount('2','total')" value="Rp 2.150.000">
+                                    <input type="hidden" id="tarifuangpenginapan2" name="tarifuangpenginapan2">
+                                    <input type="hidden" id="tarifuangharian2" name="tarifuangharian2" >
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="satuan_uangpenginapan2" name="satuan_uangpenginapan2" onkeyup="AllCount('2','satuan')" readonly value="Rp 1.507.000">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangpenginapan2" name="uangpenginapan2" onkeyup="AllCount('2','total')"  value="Rp 6.028.000">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangtaxi2" name="uangtaxi2" onkeyup="AllCount('2','all')" value="Rp 1.100.000">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uanglaut2" name="uanglaut2" onkeyup="AllCount('2','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangudara2" name="uangudara2" onkeyup="AllCount('2','all')" value="Rp 4.600.000"></td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangdarat2" name="uangdarat2" onkeyup="AllCount('2','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangdll2" name="uangdll2" onkeyup="AllCount('2','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangrep2" name="uangrep2" onkeyup="AllCount('2','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" readonly id="total2"  name="total2" value="Rp 13.878.000">
+                                </td>
+                                <td><div class="col s12">
+                                        <div class="input-field col s3">
+                                            <label style="padding-top: 0px !important" class="tooltipped" data-position="top" data-tooltip="Plh">
+                                                                                            <input type="checkbox"  class="indeterminate-checkbox" id="plh_ttdspd2" onchange="plh_spd('2')">
+                                                <span style="padding-right:10px;color: rgb(255,255,255,0.1);">Plh</span>
+                                            </label>
+                                        </div>
+                                        <div class="input-field col s9">
+                                        <select placeholder="Pilih Penandatangan SPD"  class="ttd_spd browser-default" id="ttd_spd2" name="ttd_spd2" onclick="ubahTtdSpd('2')" >
+                                            <option selected value="455-197208031993021001-Stefanus Hananto Radityo"> Stefanus Hananto Radityo </option>
+                                        </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 d-none" id="div_jab2" >
+                                        <input  type="text" id="jab_penandatangan_spd2" name="jab_penandatangan_spd2" value="     0"/>
+                                        <label for="input_text" style="padding-top: 0px !important">Plt. Jabatan</label>
+                                    </div>
+                                        
+                                </td>
+                                <td>
+                                                                            <div class="col s12">
+
+                                             
+                                                    <a type="button" onclick="hideRow('2', '1674021')" id="hideRow2" class=""><span class="col s4 table-remove" style="padding: 0px !important" id="hide2" ><i class="material-icons green-red">delete</i></span></a>
+                                                    <a type="button" onclick="showRow('2')" id="showRow2" class="d-none"><span class="col s4 table-remove" style="padding: 0px !important" id="show2" ><i class="material-icons green-text">check_circle</i></span></a>
+                                                                                            
+                                            
+                                        </div>
+                                </td>
+
+                            </tr>
+                            
+                            
+                            <tr class="tb-tim" id="tb-tim3" style="border-top: 2px dotted #c5c5c4;background-color : rgba(242,242,242,.5)">
+                                <td class="text-center" >
+                                    <input name="is_aktif3" id="is_aktif3" value="1" hidden>
+                                    <input  class="nourut text-center" type="number" id="urut3" name="urut3" min="1" max="20" value="3" readonly>
+                                </td>
+                                <td>
+                                    <input name="is_aktif3" id="is_aktif3" value="1" hidden>
+                                    <input type="text"  id="nospd3" name="nospd3" value="SPD - 01317/D3/2026" >
+                                </td>
+                                <td id="Tim3" class="cekNama">
+                                    <input class="nama namaTim tooltiped" name="nama3" id="nama3" value="Darindra Wisye Ardhita" readonly><br>
+                                    <div class="card-alert card red d-none" id="cardBentrok3">
+                                        <div class="card-content white-text">
+                                            <p id="textBentrok3"></p>
+                                            <input id="inputBentrok3" hidden>
+                                        </div>
+                                    </div>
+                                    <input name="idtim3" id="idtim3" value="1674022"hidden>
+                                    <input name="idincrement3" id="idincrement3" value="1674022" hidden>
+                                </td>
+                                <td>
+                                    <input placeholder="NIP" class="nip" id="nip3" name="nip3"  value="199005222014022008" readonly>
+                                </td>
+                                <td>
+                                    <textarea placeholder="Peran/Jabatan" class="perjab" id="perjab3" name="perjab3" >Auditor Ahli Muda</textarea>
+                                </td>
+                                <td>
+                                    <input class="text-center" type="text" id="gol3" name="gol3" value="III/d" readonly>
+                                    <input  type="text" id="keljab3" name="keljab3" value="" readonly hidden>
+                                </td>
+                                <td>
+                                    <input type="date" min="2026-06-07" max="2026-06-11" onchange="dayCount('3','ubah')" id="tglberangkat3" name="tglberangkat3" value="2026-06-07"readonly>
+                                </td>
+                                <td>
+                                    <input type="date" max="2026-06-11" min="2026-06-07" onchange="dayCount('3','ubah')" id="tglkembali3" name="tglkembali3" value="2026-06-11" readonly>
+                                </td>
+                                <td>
+                                    <input class="text-center" type="text" id="jmlhari3" name="jmlhari3" onkeyup="dayCount('3','hari')">
+                                    <input hidden class="text-center" type="text" id="jmlharidum3" name="jmlharidum3"  value="0;5">
+                                </td>
+                                <td>
+                                    <select readonly class="browser-default kota kotaasal kotaselect"  name="kotaasal3" id="kotaasal3" onchange="cityCount('3','default')" >
+                                            <option selected value="70-515-KOTA JAKARTA"> KOTA JAKARTA </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select readonly class="browser-default kota kotatujuan kotaselect"  name="kotatujuan3" id="kotatujuan3" onchange="cityCount('3','default')" >
+                                            <option selected value="71-363-KOTA BALIKPAPAN"> KOTA BALIKPAPAN </option>
+                                    </select>
+                                </td>  
+                                <td>
+                                    <div id="div_akun1193" class="d-none">
+                                        <input style="width:8em" type="text" id="satuan_uangharian_1193" name="satuan_uangharian_1193" onkeyup="AllCount('3','satuan')" value="Rp 430.000">
+                                        X
+                                        <input class="text-center"  style="width:2em" type="text" id="harian_uangharian_1193" name="harian_uangharian_1193" onkeyup="Harian('3','satuan')">
+                                        <br>
+                                    </div>
+                                        <input style="width:8em" type="text" id="satuan_uangharian3" name="satuan_uangharian3" onkeyup="AllCount('3','satuan')" value="Rp 430.000">
+                                        X
+                                        <input class="text-center" style="width:2em" type="text" id="harian_uangharian3" name="harian_uangharian3" onkeyup="Harian('3','satuan')" value="0;5">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangharian3" name="uangharian3" onkeyup="AllCount('3','total')" value="Rp 2.150.000">
+                                    <input type="hidden" id="tarifuangpenginapan3" name="tarifuangpenginapan3">
+                                    <input type="hidden" id="tarifuangharian3" name="tarifuangharian3" >
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="satuan_uangpenginapan3" name="satuan_uangpenginapan3" onkeyup="AllCount('3','satuan')" readonly value="Rp 804.000">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangpenginapan3" name="uangpenginapan3" onkeyup="AllCount('3','total')"  value="Rp 3.216.000">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangtaxi3" name="uangtaxi3" onkeyup="AllCount('3','all')" value="Rp 1.100.000">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uanglaut3" name="uanglaut3" onkeyup="AllCount('3','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangudara3" name="uangudara3" onkeyup="AllCount('3','all')" value="Rp 4.600.000"></td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangdarat3" name="uangdarat3" onkeyup="AllCount('3','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangdll3" name="uangdll3" onkeyup="AllCount('3','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangrep3" name="uangrep3" onkeyup="AllCount('3','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" readonly id="total3"  name="total3" value="Rp 11.066.000">
+                                </td>
+                                <td><div class="col s12">
+                                        <div class="input-field col s3">
+                                            <label style="padding-top: 0px !important" class="tooltipped" data-position="top" data-tooltip="Plh">
+                                                                                            <input type="checkbox"  class="indeterminate-checkbox" id="plh_ttdspd3" onchange="plh_spd('3')">
+                                                <span style="padding-right:10px;color: rgb(255,255,255,0.1);">Plh</span>
+                                            </label>
+                                        </div>
+                                        <div class="input-field col s9">
+                                        <select placeholder="Pilih Penandatangan SPD"  class="ttd_spd browser-default" id="ttd_spd3" name="ttd_spd3" onclick="ubahTtdSpd('3')" >
+                                            <option selected value="455-197208031993021001-Stefanus Hananto Radityo"> Stefanus Hananto Radityo </option>
+                                        </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 d-none" id="div_jab3" >
+                                        <input  type="text" id="jab_penandatangan_spd3" name="jab_penandatangan_spd3" value="     0"/>
+                                        <label for="input_text" style="padding-top: 0px !important">Plt. Jabatan</label>
+                                    </div>
+                                        
+                                </td>
+                                <td>
+                                                                            <div class="col s12">
+
+                                             
+                                                    <a type="button" onclick="hideRow('3', '1674022')" id="hideRow3" class=""><span class="col s4 table-remove" style="padding: 0px !important" id="hide3" ><i class="material-icons green-red">delete</i></span></a>
+                                                    <a type="button" onclick="showRow('3')" id="showRow3" class="d-none"><span class="col s4 table-remove" style="padding: 0px !important" id="show3" ><i class="material-icons green-text">check_circle</i></span></a>
+                                                                                            
+                                            
+                                        </div>
+                                </td>
+
+                            </tr>
+                            
+                            
+                            <tr class="tb-tim" id="tb-tim4" style="border-top: 2px dotted #c5c5c4;background-color : rgba(242,242,242,.5)">
+                                <td class="text-center" >
+                                    <input name="is_aktif4" id="is_aktif4" value="1" hidden>
+                                    <input  class="nourut text-center" type="number" id="urut4" name="urut4" min="1" max="20" value="4" readonly>
+                                </td>
+                                <td>
+                                    <input name="is_aktif4" id="is_aktif4" value="1" hidden>
+                                    <input type="text"  id="nospd4" name="nospd4" value="SPD - 01318/D3/2026" >
+                                </td>
+                                <td id="Tim4" class="cekNama">
+                                    <input class="nama namaTim tooltiped" name="nama4" id="nama4" value="Dea Pramesti" readonly><br>
+                                    <div class="card-alert card red d-none" id="cardBentrok4">
+                                        <div class="card-content white-text">
+                                            <p id="textBentrok4"></p>
+                                            <input id="inputBentrok4" hidden>
+                                        </div>
+                                    </div>
+                                    <input name="idtim4" id="idtim4" value="1674023"hidden>
+                                    <input name="idincrement4" id="idincrement4" value="1674023" hidden>
+                                </td>
+                                <td>
+                                    <input placeholder="NIP" class="nip" id="nip4" name="nip4"  value="199110302014022004" readonly>
+                                </td>
+                                <td>
+                                    <textarea placeholder="Peran/Jabatan" class="perjab" id="perjab4" name="perjab4" >Auditor Ahli Muda</textarea>
+                                </td>
+                                <td>
+                                    <input class="text-center" type="text" id="gol4" name="gol4" value="III/c" readonly>
+                                    <input  type="text" id="keljab4" name="keljab4" value="" readonly hidden>
+                                </td>
+                                <td>
+                                    <input type="date" min="2026-06-07" max="2026-06-11" onchange="dayCount('4','ubah')" id="tglberangkat4" name="tglberangkat4" value="2026-06-07"readonly>
+                                </td>
+                                <td>
+                                    <input type="date" max="2026-06-11" min="2026-06-07" onchange="dayCount('4','ubah')" id="tglkembali4" name="tglkembali4" value="2026-06-11" readonly>
+                                </td>
+                                <td>
+                                    <input class="text-center" type="text" id="jmlhari4" name="jmlhari4" onkeyup="dayCount('4','hari')">
+                                    <input hidden class="text-center" type="text" id="jmlharidum4" name="jmlharidum4"  value="0;5">
+                                </td>
+                                <td>
+                                    <select readonly class="browser-default kota kotaasal kotaselect"  name="kotaasal4" id="kotaasal4" onchange="cityCount('4','default')" >
+                                            <option selected value="70-515-KOTA JAKARTA"> KOTA JAKARTA </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select readonly class="browser-default kota kotatujuan kotaselect"  name="kotatujuan4" id="kotatujuan4" onchange="cityCount('4','default')" >
+                                            <option selected value="71-363-KOTA BALIKPAPAN"> KOTA BALIKPAPAN </option>
+                                    </select>
+                                </td>  
+                                <td>
+                                    <div id="div_akun1194" class="d-none">
+                                        <input style="width:8em" type="text" id="satuan_uangharian_1194" name="satuan_uangharian_1194" onkeyup="AllCount('4','satuan')" value="Rp 430.000">
+                                        X
+                                        <input class="text-center"  style="width:2em" type="text" id="harian_uangharian_1194" name="harian_uangharian_1194" onkeyup="Harian('4','satuan')">
+                                        <br>
+                                    </div>
+                                        <input style="width:8em" type="text" id="satuan_uangharian4" name="satuan_uangharian4" onkeyup="AllCount('4','satuan')" value="Rp 430.000">
+                                        X
+                                        <input class="text-center" style="width:2em" type="text" id="harian_uangharian4" name="harian_uangharian4" onkeyup="Harian('4','satuan')" value="0;5">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangharian4" name="uangharian4" onkeyup="AllCount('4','total')" value="Rp 2.150.000">
+                                    <input type="hidden" id="tarifuangpenginapan4" name="tarifuangpenginapan4">
+                                    <input type="hidden" id="tarifuangharian4" name="tarifuangharian4" >
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="satuan_uangpenginapan4" name="satuan_uangpenginapan4" onkeyup="AllCount('4','satuan')" readonly value="Rp 804.000">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangpenginapan4" name="uangpenginapan4" onkeyup="AllCount('4','total')"  value="Rp 3.216.000">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangtaxi4" name="uangtaxi4" onkeyup="AllCount('4','all')" value="Rp 1.100.000">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uanglaut4" name="uanglaut4" onkeyup="AllCount('4','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangudara4" name="uangudara4" onkeyup="AllCount('4','all')" value="Rp 4.600.000"></td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangdarat4" name="uangdarat4" onkeyup="AllCount('4','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangdll4" name="uangdll4" onkeyup="AllCount('4','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" id="uangrep4" name="uangrep4" onkeyup="AllCount('4','all')" value="Rp 0">
+                                </td>
+                                <td>
+                                    <input style="min-width: 80px" type="text" readonly id="total4"  name="total4" value="Rp 11.066.000">
+                                </td>
+                                <td><div class="col s12">
+                                        <div class="input-field col s3">
+                                            <label style="padding-top: 0px !important" class="tooltipped" data-position="top" data-tooltip="Plh">
+                                                                                            <input type="checkbox"  class="indeterminate-checkbox" id="plh_ttdspd4" onchange="plh_spd('4')">
+                                                <span style="padding-right:10px;color: rgb(255,255,255,0.1);">Plh</span>
+                                            </label>
+                                        </div>
+                                        <div class="input-field col s9">
+                                        <select placeholder="Pilih Penandatangan SPD"  class="ttd_spd browser-default" id="ttd_spd4" name="ttd_spd4" onclick="ubahTtdSpd('4')" >
+                                            <option selected value="455-197208031993021001-Stefanus Hananto Radityo"> Stefanus Hananto Radityo </option>
+                                        </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 d-none" id="div_jab4" >
+                                        <input  type="text" id="jab_penandatangan_spd4" name="jab_penandatangan_spd4" value="     0"/>
+                                        <label for="input_text" style="padding-top: 0px !important">Plt. Jabatan</label>
+                                    </div>
+                                        
+                                </td>
+                                <td>
+                                                                            <div class="col s12">
+
+                                             
+                                                    <a type="button" onclick="hideRow('4', '1674023')" id="hideRow4" class=""><span class="col s4 table-remove" style="padding: 0px !important" id="hide4" ><i class="material-icons green-red">delete</i></span></a>
+                                                    <a type="button" onclick="showRow('4')" id="showRow4" class="d-none"><span class="col s4 table-remove" style="padding: 0px !important" id="show4" ><i class="material-icons green-text">check_circle</i></span></a>
+                                                                                            
+                                            
+                                        </div>
+                                </td>
+
+                            </tr>
+                            
+                                                    </tbody>
+                    </table>
+            <input  id="ArrX" name="ArrX" hidden>
+
+            <div class="Sumtotal" style="padding-top: 10px">
+                <div class="input-field col s12">
+                    <div class="col s8"></div>
+                        <div class="input-field col s2"><label style="padding-top: 0px !important">Total Pengajuan</label></div>
+                            <div class="input-field col s2 " >
+                                <input class="text-right" 
+                                style="border-bottom:none; background-color: #bbdefb;padding-right: 10px;" 
+                                 id="realisasilabel" name="realisasilabel" value="Rp 36.010.000">
+                                <input class="text-right"  id="realisasi" name="realisasi" hidden value="36010000">
+                            </div>
+                        
+                        <div class="col s8"></div>
+                        <div class="input-field col s2" hidden><label style="padding-top: 0px !important">Saldo Pagu</label></div>
+                            <div class="input-field col 2 " hidden>
+                                <input class="text-right"  id="sudahrealisasi" name="sudahrealisasi" >
+                            </div>
+
+                        <div class="col s8"></div>
+                        <div class="input-field col s2"><label style="padding-top: 0px !important">Saldo Pagu</label></div>
+                            <div class="input-field col s2 " >
+                                <input class="text-right" 
+                                style="border-bottom:none;  background-color: #c8e6c9;padding-right: 10px;"
+                                  id="saldolabel" name="saldolabel" >
+                                <input class="text-right"  id="saldo" name="saldo" hidden >
+                            </div>
+
+                        <div class="col s8"></div>
+                        <div class="input-field col s2"><label style="padding-top: 0px !important"></label></div>
+                            <div class="input-field col s2 " >
+                                <input class="text-right" 
+                                style="border-bottom:none;  background-color: #ffff8d;padding-right: 10px;" 
+                                 id="sisalabel" name="sisalabel" >
+                                <input class="text-right"  id="sisa" name="sisa" hidden>
+                            </div>
+                </div>
+            </div>
+
+            
+            <input  id="id_st" name="id_st" value="209490" hidden>
+            <input  id="id_cs" name="id_cs" value="209490-1" hidden>
+            <input  id="sumber_dana" name="sumber_dana" value="52" hidden>
+            <input id="countBentrok" value="0" hidden>
+        </div>
+    </div>
+
+    <input id="cobacoba" hidden>
+
+            <div class="col s12">
+                <ul class="collapsible popout">
+                <li>
+                    <div class="collapsible-header yellow lighten-4 orange-text"><b><i class="material-icons">face</i>Catatan dari PPK</b></div>
+                        <div class="collapsible-body">
+                            <textarea  class="materialize-textarea" id="catatan_ppk" name="catatan_ppk" ></textarea><br>
+                            <a style="pointer-events: none;" onclick="send_catatan('209490-1')" class="btn yellow lighten-3 black-text">Kirim</a>
+                        </div>
+                </li>
+                <li>
+                    <div class="collapsible-header teal lighten-4 teal-text"><b><i class="material-icons">feedback</i>Catatan dari KPA / Es2</b></div>
+                        <div class="collapsible-body">
+                            <textarea  class="materialize-textarea" id="catatan_es2" name="catatan_es2" ></textarea><br>
+                            <a style="pointer-events: none;" onclick="send_catatan('209490-1')" class="btn teal lighten-3 black-text">Kirim</a>
+                        </div>
+                </li>
+                </ul>
+            </div>
+            
+            
+
+                </form>
+
+               
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add new todo popup -->
+<div style="bottom: 54px; right: 19px;" class="fixed-action-btn direction-top">
+  <a class="btn-floating btn-large bisma-blue gradient-shadow todo-sidebar-trigger" href="javascript:window.history.go(-1);">
+    <i class="material-icons">reply</i>
+  </a>
+</div>
+<!-- Add new todo popup Ends-->
+
+</div>
+</div>
+<div class="content-overlay"></div>
+</div>
+</div>
+</div>
+<!-- END: Page Main-->
+<!-- Theme Customizer -->
+<!-- BEGIN: Footer-->
+<footer class="page-footer footer footer-static footer-light navbar-border navbar-shadow">
+	<div class="footer-copyright">
+		<div class="container"><span>&copy; 2021 <a href="http://www.bpkp.go.id/" target="_blank">BIRO KEUANGAN</a> All rights reserved.</span>
+		</div>
+	</div>
+</footer>
+
+<script src="https://bisma.bpkp.go.id/assets/app-assets/js/vendors.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+
+    <!-- <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.jqueryui.min.js"></script>
+    <script src="https://cdn.datatables.net/select/2.0.5/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/select/2.0.5/js/select.jqueryui.min.js"></script>
+
+    <!-- <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script> -->
+    
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/plugins.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/search.min.js"></script>
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/customizer.min.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/advance-ui-modals.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/sweetalert/sweetalert.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/extra-components-sweetalert.min.js"></script>
+
+    <script src="https://cdn.datatables.net/rowgroup/1.5.0/js/dataTables.rowGroup.min.js"></script>
+
+    <script type="text/javascript" src="https://bisma.bpkp.go.id/assets/app-assets/js/jquery.idle.js"></script>
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/formatter/jquery.formatter.min.js"></script>
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/jszip.js"></script>
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/FileSaver.js"></script>
+
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/sortable/jquery-sortable-min.js"></script>
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/quill/quill.min.js"></script> -->
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/materialize-stepper/materialize-stepper.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/select2/select2.full.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/app-chat.min.js"></script>
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/app-email.min.js"></script> -->
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/jkanban/jkanban.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/datetime-moment.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.21/dataRender/datetime.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartjs/chart.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist-plugin-tooltip.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist-plugin-fill-donut.min.js"></script>
+    <!-- tmls --><!-- 
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/jquery-validation/jquery.validate.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <!-- tmls -->
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/5.0.1/js/dataTables.fixedColumns.min.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor5/43.1.0/ckeditor.min.js"></script>  
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/dashboard-modern.js"></script> -->
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> -->
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/searchpanes/2.3.2/js/dataTables.searchPanes.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/js/scripts/advance-ui-scrollspy.min.js"></script>
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartjs/chart.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist.min.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist-plugin-tooltip.js"></script>
+    <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/chartist-js/chartist-plugin-fill-donut.min.js"></script> -->
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"> </script> 
+    <!-- <script src="https://bisma.bpkp.go.id/assets/app-assets/vendors/jstree/jstree.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+   <script src="https://kit.fontawesome.com/0329d9ddcb.js" crossorigin="anonymous"></script>
+   <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/4.8.1/autoNumeric.min.js"></script>
+      <script>
+
+        var mainurl = "https://bisma.bpkp.go.id/Main/"
+        var baseurl_menu 	= "https://bisma.bpkp.go.id/Setting/Menu/";
+        var url = "https://bisma.bpkp.go.id/";
+        var notifcs = "https://bisma.bpkp.go.id/Transaksi/Apisima/GetDetailCostsheet/"
+        var detail_notif = "https://bisma.bpkp.go.id/Anggaran/Mappingkap/Tambah/"
+        var segment = 'Apisima'
+        /* FILTER SU03 */
+        var filter = true;
+        /* FILTER SU03 */
+        
+        function validateNumber(e) {
+            const pattern = /^[0-9]$/;
+
+            return pattern.test(e.key )
+        }
+
+        
+
+      function cek_tgl_($tanggal){
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+
+      
+
+    $(document).ready(function() { 
+      
+    //const idleDurationSecs = 600; 60000
+    const redirectUrl = 'https://bisma.bpkp.go.id/Auth/Auth/logout';
+    let idleTimeout;
+
+    const resetIdleTimeout = function() {
+        if(idleTimeout) clearTimeout(idleTimeout);
+        idleTimeout = setTimeout(() => location.href = redirectUrl, 3600000);
+    };
+	
+	// Key events for reset time
+    resetIdleTimeout();
+    window.onmousemove = resetIdleTimeout;
+    window.onkeypress = resetIdleTimeout;
+    window.click = resetIdleTimeout;
+    window.onclick = resetIdleTimeout;
+    window.touchstart = resetIdleTimeout;
+    window.onfocus = resetIdleTimeout;
+    window.onchange = resetIdleTimeout;
+    window.onmouseover = resetIdleTimeout;
+    window.onmouseout = resetIdleTimeout;
+    window.onmousemove = resetIdleTimeout;
+    window.onmousedown = resetIdleTimeout;
+    window.onmouseup = resetIdleTimeout;
+    window.onkeypress = resetIdleTimeout;
+    window.onkeydown = resetIdleTimeout;
+    window.onkeyup = resetIdleTimeout;
+    window.onsubmit = resetIdleTimeout;
+    window.onreset = resetIdleTimeout;
+    window.onselect = resetIdleTimeout;
+    window.onscroll = resetIdleTimeout;
+
+    function formatMoney(n) {
+        return (Math.round(n * 100) / 100).toLocaleString();
+    }
+
+    $.ajax({
+            url : mainurl + 'notification',
+            type: "post",
+            dataType: "JSON",
+            success: function(data)
+                { 
+                  $('#mytask-count-6').html("")
+                  $('#countnotif_').append(data.length);
+                  $('.countnotif_').append(data.length);
+                  $('#countnotifmenu_').append(data.length);
+                  var no = 1;
+                    for(m=0 ; m < data.length ; m++){
+                        // if(data[m]['rupiah'] != data[m]['alokasi']){
+                          sisa = Number(data[m]['rupiah_unit']) - Number(data[m]['alokasi'])
+
+                            if(data[m]['rupiah_unit'] < data[m]['alokasi']){
+                              ket = '<p class="red-text right-align"><b>Melebihi Pagu Sebesar Rp '+formatMoney(Math.abs(sisa))+'</b></p>';
+                            }else{
+                              ket = '<p class="green-text right-align"><b> Terdapat Sisa Pagu Sebesar Rp '+formatMoney(Math.abs(sisa))+'</b></p>';
+                            }
+
+                            $('#notif_').append('<li><a href="'+detail_notif+''+data[m]['bagipagu_id']+'" target="_blank">\
+                            '+no+' - '+data[m]['kode']+''+ket+'</a>\
+                            </li>');
+
+                            if(segment == 'Home'){
+                              $('#notifbody_').append('<li class="collection-item dismissable"><a href="'+detail_notif+''+data[m]['bagipagu_id']+'" target="_blank">\
+                            '+no+' - '+data[m]['kode']+''+ket+'</a>\
+                            </li>');
+
+                            }
+
+                           
+
+                            no++
+                        }
+                    // }
+                }
+        });
+    
+      var rld = [{"id":"26792","nama_role":"Pegawai PERWAKILAN BPKP PROVINSI BENGKULU"}];
+      if(rld !== null){
+        $("#role_id").show();       
+        
+      }
+
+      if($("#role_id").length){
+        $("#role_id").change(function(){
+          var x = $(this).find(":selected").val();
+          var url = 'https://bisma.bpkp.go.id/Auth/Auth/ubahRole/'+x;
+          //console.log(url);
+          window.location.href = url;
+        });
+      }
+
+     /* tlms */
+      // NOTIFIKASI SPD BELUM TTE
+      const roleId = 2;
+      const kdUnit = 'D302';
+      if (roleId==3 && filter == true) {
+        $.ajax({
+          type: "POST",
+          url: "https://bisma.bpkp.go.id/Esign/Esign/" + "spdBelumTte",
+          processData: false,
+          contentType: false,
+          success: function (data, textStatus, jqXHR) {
+              var spd = JSON.parse(data);
+              // console.log("spd.length");
+              document.getElementById("notif_spd_tte").innerHTML = spd.length;
+              document.getElementById("notif_total_tte").innerHTML = spd.length;
+              },
+          error: function (jqXHR, textStatus, errorThrown) { 
+              // console.log(jqXHR.responseText);
+              },
+        });
+
+        /* NOTIFIKASI SPB BELUM TTE */
+        /* FILTER SU03 */
+        $.ajax({
+          type: "POST",
+          url: "https://bisma.bpkp.go.id/Esign/Spby/" + "spbyBelumTte",
+          processData: false,
+          contentType: false,
+          success: function (data, textStatus, jqXHR) {
+              const d = JSON.parse(data);
+              // console.log(d.length);
+              document.getElementById("notif_tte_spby").innerHTML = d.length;
+              },
+          error: function (jqXHR, textStatus, errorThrown) { 
+              // console.log(jqXHR.responseText);
+              },
+        });
+
+        /* NOTIFIKASI KUITANSI LS AWAL BELUM TTE */
+        /* FILTER SU03 */
+        // $.ajax({
+        //   type: "POST",
+        //   url: "https://bisma.bpkp.go.id/Esign/KuitansiLs/" + "lsAwalBelumTte",
+        //   processData: false,
+        //   contentType: false,
+        //   success: function (data, textStatus, jqXHR) {
+        //       var kuitansi = JSON.parse(data);
+        //       document.getElementById("notif_ls_awal_tte").innerHTML = kuitansi.kuitansi.length;
+        //       document.getElementById("notif_total_tte").innerHTML = kuitansi.total;
+        //       },
+        //   error: function (jqXHR, textStatus, errorThrown) { 
+        //       // console.log(jqXHR.responseText);
+        //       },
+        // });
+
+      }
+      if (roleId==8 && filter == true){
+        /* NOTIFIKASI KUITANSI LS AWAL BELUM TTE */
+        /* FILTER SU03 */
+        $.ajax({
+          type: "POST",
+          url: "https://bisma.bpkp.go.id/Esign/KuitansiLs/" + "lsAwalBelumTte",
+          processData: false,
+          contentType: false,
+          success: function (data, textStatus, jqXHR) {
+              var kuitansi = JSON.parse(data);
+              document.getElementById("notif_ls_awal_tte").innerHTML = kuitansi.kuitansi.length;
+              },
+          error: function (jqXHR, textStatus, errorThrown) { 
+              // console.log(jqXHR.responseText);
+              },
+        });
+        
+      }
+      
+      /* tlms */
+});
+
+var $API = 'https://apip.bpkp.go.id/apisimabisma/public/';
+$('.scrollspy').scrollSpy();
+
+      </script>
+
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-6GWSFMV1ZZ"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-6GWSFMV1ZZ');
+      </script>
+</html>
+
+  <script>
+
+var baseurl 	= "https://bisma.bpkp.go.id/Transaksi/SuratTugas/";
+var dropdown_baseurl 	= "https://bisma.bpkp.go.id/Master/Dropdown/";
+var master_baseurl 	= "https://bisma.bpkp.go.id/Master/Master/";
+var satker_session = "450491"
+var user_session = "202000040"
+var role_session = "2"
+var unit_session = "615"
+var id_st_session = "209490-1";
+var id_status = "11";
+var id_status_cs = "1";
+var id_cs = "209490-1";
+var sumber_dana = "52"
+var sumber_data = "PKPT"
+var countJSON = "4"
+var sumber_dana = $('#sumber_dana').val();
+if(role_session == 1){
+  unit_session = 0;
+}
+
+
+var TTDvalue = ""
+var TTDtext = ""
+
+var TTDmenyetujuivalue = "181-197207131993021001-Susilo Widhyantoro"
+var textmenyetujui = "181-197207131993021001-Susilo Widhyantoro"
+
+var TTDmenyetujuitext = textmenyetujui.split("-")
+
+var TTDmengajukanvalue = "1269-197306301994022001-Titik Dwi Wahyuni"
+var textmengajukan = "1269-197306301994022001-Titik Dwi Wahyuni"
+
+var TTDmengajukantext = textmengajukan.split("-")
+
+
+var textkdakun = '524111'
+var kdappvalue = "30906"
+var textkdapp = '(ABT) Penyelamatan Industri Padat Karya'
+
+var textppk = "Muh. Zulkifli"
+var ppkvalue = "1163"
+
+var mtvalue = "UP"
+
+var $menyetujui = $("<option selected='selected'></option>").val(TTDmenyetujuivalue).text(TTDmenyetujuitext[2])
+$("#cs_menyetujui").append($menyetujui).trigger('change');
+
+var $mengajukan = $("<option selected='selected'></option>").val(TTDmengajukanvalue).text(TTDmengajukantext[2])
+$("#cs_mengajukan").append($mengajukan).trigger('change');
+
+var $selectkdakun = $("<option selected='selected'></option>").val(textkdakun).text(textkdakun)
+$("#selectkdakun").append($selectkdakun).trigger('change');
+
+var $selectkdapp = $("<option selected='selected'></option>").val(kdappvalue).text(textkdapp)
+$("#selectkdapp").append($selectkdapp).trigger('change');
+
+var $selectppk = $("<option selected='selected'></option>").val(ppkvalue).text(textppk)
+$("#selectppk").append($selectppk).trigger('change');
+
+var $mp = $("<option selected='selected'></option>").val(mtvalue).text(mtvalue)
+$("#metode_pembayaran").append($mp).trigger('change');
+
+
+$(".browser-default").select2({disabled:'readonly'});
+$('#FormST :input').attr('readonly','readonly');
+
+
+
+  var relasii   = $('#realisasi').val()
+  var tahapan   = $('#kdtahapan').val()
+  var app       = $('#kdapp').val()
+  var kdindex   = $('#kdindex').val()
+
+
+$(document).ready(function(){
+
+  $('#containerload').removeClass('d-none');
+
+  var kd_akun = $('#kdakun').val()
+  b=1;
+  var var_alokasii = $('#alokasi').val()
+  getRealisasi(var_alokasii)
+  arr_cek=[]
+  for(a=0; a < countJSON; a++){
+    
+      if(kd_akun == "524119"){
+        var jmlhari = $("#jmlharidum"+b+"").val()
+        var ex_jmlhari = jmlhari.split(";")
+        jumhari = Number(ex_jmlhari[0]) + Number(ex_jmlhari[1])
+
+        $("#harian_uangharian"+b+"").val(ex_jmlhari[1])
+        $("#harian_uangharian_119"+b+"").val(ex_jmlhari[0])
+        var element = document.getElementById("div_akun119"+b+"");
+                      element.classList.remove("d-none");
+
+      }else{
+        var jmlhari = $("#jmlharidum"+b+"").val()
+        var ex_jmlhari = jmlhari.split(";")
+        jumhari = Number(ex_jmlhari[0]) + Number(ex_jmlhari[1])
+
+        $("#harian_uangharian"+b+"").val(ex_jmlhari[1])
+        $("#harian_uangharian_119"+b+"").val(0)
+        var element = document.getElementById("div_akun119"+b+"");
+                      element.classList.add("d-none");
+      }
+      $("#jmlhari"+b+"").val(jumhari)
+      if($("#is_aktif"+b+"").val() == 1){
+          // dayCount(b,'ubah')
+          // Eselon(b)
+      }
+
+      if(id_status_cs == 11){
+        cekBentrok(b)
+      }
+      b++; 
+  }
+
+ 
+  
+});
+
+$('#menyetujui').val(TTDmenyetujuitext[2]);
+$('#mengajukan').val(TTDmengajukantext[2]);
+
+$("#cs_mengajukan").select2({
+                    width: '100%',
+                    placeholder: "Pilih Penandatangan",
+                  ajax: { 
+                    url: dropdown_baseurl + 'cs_ttd',
+                    type: "post",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                          Trigger: "mengusulkan",
+                          kdsatker: satker_session,
+                          nip :"",
+                          // searchTerm: params.term // search term
+                        };
+                    },
+                    processResults: function (response) {
+                        return {
+                          results: response
+                        };
+                    },
+                    cache: true
+                  }
+              });
+
+$("#cs_menyetujui").select2({
+      width: '100%',
+      placeholder: "Pilih Penandatangan",
+    ajax: { 
+      url: dropdown_baseurl + 'cs_ttd',
+      type: "post",
+      dataType: 'json',
+      delay: 250,
+      data: function (params) {
+          return {
+            Trigger: "menyetujui",
+            nip :$("#cs_mengajukan").val(),
+            kdsatker: satker_session,
+            // searchTerm: params.term // search term
+          };
+      },
+      processResults: function (response) {
+          return {
+            results: response
+          };
+      },
+      cache: true
+    }
+});
+
+
+$("#ttd").select2({
+          dropdownAutoWidth: true,
+          width: '100%',
+          placeholder: "Pilih Penandatangan",
+         ajax: { 
+           url: dropdown_baseurl + 'ttd',
+           type: "post",
+           dataType: 'json',
+           delay: 250,
+           data: function (params) {
+              return {
+								Trigger: "ttd_forST",
+								kdsatker: satker_session,
+                // searchTerm: params.term // search term
+              };
+           },
+           processResults: function (response) {
+              return {
+                 results: response
+              };
+           },
+           cache: true
+         }
+     });
+
+ var data_metode_pembayaran = [
+    { id: "UP", text: 'UP' },
+    { id: "LS", text: 'LS' },
+];
+
+$("#metode_pembayaran").select2({
+    dropdownAutoWidth: true,
+    width: '100%',
+    data: data_metode_pembayaran
+});
+
+function Eselon(row){
+
+var nip = $('#nip'+row+'').val()
+var nama = $('#nama'+row+'').val()
+
+  $.ajax({
+    url : master_baseurl + "getData_eselon",
+    data: {nip: nip, nama : nama},
+    type: "post",
+    dataType: "JSON",
+    success: function(data)
+        { 
+         $('#keljab'+row+'').val(data[0]['level_eselon'])
+        } 
+      });  
+
+
+}
+
+function hideProggress(id,isaktif){
+
+      if((id+1) == countJSON && isaktif == 1){
+        $('#cekcek').addClass('d-none');
+        document.getElementById("ApproveST").disabled  = false;
+      }
+  
+}
+
+function getRep(keljab, valTrigger){
+if(valTrigger == "L"){
+      if(keljab == "1"){
+          res ="200000"
+          }else if(keljab == "2"){
+            res = "150000"
+          }else{
+            res = "0"
+      }
+    }else{
+      if(keljab == "1"){
+          res ="100000"
+          }else if(keljab == "2"){
+            res = "75000"
+          }else{
+            res = "0"
+      }
+
+    }
+  return res;
+
+}
+
+function getInap(gol,keljab,kdakun){
+  if(kdakun == "524111" || kdakun == "524115"){
+      if(keljab == "1"){
+            res ="inap_es1"
+            }else if(keljab == "2"){
+              res = "inap_es2"
+            }else if(keljab == "3"){
+              res = "inap_es3_gol4"
+            }else{
+              res = "inap_es4_gol321"
+            }
+
+      }else if(kdakun == "524119" || kdakun == "524114" ){
+          if(keljab == "1" || keljab == "2"){
+            res ="fb_es1_es2"
+            }else{
+              res = "fb_es3_dst"
+            }
+
+      }else if(kdakun == "524113"){
+        res ="fb_es1_es2"
+
+      }
+      return res;
+  
+  }
+
+
+function formatRupiah(angka){
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split   		= number_string.split(','),
+        sisa     		= split[0].length % 3,
+        rupiah     		= split[0].substr(0, sisa),
+        ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+  
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if(ribuan){
+          separator = sisa ? '.' : '';
+          rupiah += separator + ribuan.join('.');
+        }
+  
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+
+        if(angka < 0){
+          return 'Rp. -' + rupiah;
+        }else{
+          return 'Rp. ' + rupiah;
+        }
+        
+      }
+
+function getRealisasi(alokasii){
+
+  role = ['3','5','6','7','12','16']
+
+  if(role.includes(role_session)){
+    $('#catatan_ppk').attr('readonly',false)
+    $('#catatan_es2').attr('readonly',false)
+
+  }
+
+
+  var relasii   = $('#realisasi').val()
+  var tahapan   = $('#kdtahapan').val()
+  var app       = $('#kdapp').val()
+  var kdindex   = $('#kdindex').val()
+  var bb = 1;
+
+
+  $.ajax({
+    url : master_baseurl + "getRealisasi",
+    data: { 'kdindex': kdindex, 
+            'tahapan' : tahapan, 
+            'app': app, 
+            'id_cs' : id_cs},
+    type: "post",
+    dataType: "JSON",
+    success: function(data)
+        {    
+          if(data.length == 0){
+            varRealisasi = 0
+          }else{
+            varRealisasi = data[0]['re']
+          }
+          var saldo = Number(alokasii) - (Number(varRealisasi))
+          $('#saldolabel').val(formatRupiah(""+saldo+""))
+          $('#sudahrealisasi').val(saldo)
+          $('#saldo').val(saldo)
+
+          sisa =  Number(saldo) - Number(relasii)
+          $('#sisa').val(sisa)
+          $('#sisalabel').val(formatRupiah(''+sisa));
+        }
+      });
+}
+
+$('.multi-field-wrapper').each(function() {
+        var max      = 20;
+        var $wrapper = $('.table-tim', this);
+        var x = countJSON;
+        var i = countJSON;
+        var a = countJSON;
+        var head = "";
+        var end="";
+        var arrX = [];
+
+        for(test = 1 ; test <= countJSON ; test++){
+            countX = arrX.push(test);
+         }
+         $('#ArrX').val(arrX)
+
+                        $('#ArrX').val(arrX)
+        
+    });
+
+
+function cekBentrok(id){
+
+var countingDiv = document.getElementById('counting');
+var countTim = countingDiv.getElementsByClassName('namaTim').length;
+
+    is_aktif_tim  = $('#is_aktif'+id+'').val();
+    tglberangkat  = $('#tglberangkat'+id+'').val()
+    tglkembali    = $('#tglkembali'+id+'').val()
+    nipVal        = $('#nip'+id+'').val()
+    namaVal       = $('#nama'+id+'').val()
+    id_cs         = $('#id_cs').val()
+
+    if(is_aktif_tim == 1){
+      
+      $.ajax({
+              url : dropdown_baseurl + 'pegawai',
+              data: {
+                Trigger: "select_forTim_count",
+                tglberangkat: tglberangkat,
+                tglkembali: tglkembali,
+                nip: nipVal,
+                nama: namaVal,
+                id_cs: id_cs,
+                sumber_data: sumber_data,
+                sumber_dana : sumber_dana},
+              type: "post",
+              dataType: "JSON",
+              beforeSend: function(){
+              // Show image container
+                $("#loader").show();
+              },
+              success: function(data)
+                  { 
+                          if(data.length > 0){
+                            $("#loader").show();
+                          
+                          if(data[0]['nost'] == null || data[0]['nost'] ==""){
+                            var ket = data[0]['id_cs']+'-'+data[0]['uraianst']
+                          }else {
+                            var ket = data[0]['nost']+'['+data[0]['id_cs']+']'
+                          }
+                          // swal({
+                          // title:"Bentrok Tanggal!",
+                          // text: ""+data[0]['nama']+" Bentrok Pada Nomor ST ("+ket+")", 
+                          // icon: "warning",
+                          // timer: 2000
+                          // })
+                          document.getElementById("Tim"+id+"").style.backgroundColor = "#FFC02F";
+                          $("#cardBentrok"+id+"").removeClass("d-none");
+                          document.getElementById("textBentrok"+id+"").innerHTML = "Bentrok dengan Surat Tugas : "+ket+"";
+                          $("#inputBentrok"+id+"").val(1);
+
+                          $("#countBentrok").val(1);
+                          document.getElementById("ApproveST").disabled = true;
+
+                        }else{
+                          $("#loader").hide();
+                          $("#cardBentrok"+id+"").addClass("d-none");
+                          $("#textBentrok"+id+"").val()
+                          $("#inputBentrok"+id+"").val(0);
+                          document.getElementById("Tim"+id+"").style.backgroundColor = "rgba(242,242,242,.5)"; 
+
+                        }
+                        $("#loader").hide();
+                        arr_cek.push(id)
+                        arr_cek.sort(function(a, b){return a-b});
+                        $("#cobacoba").val(arr_cek)
+                        // hideProggress(id,1)
+                        
+                  },
+
+                  complete:function(data){
+                    // Hide image container
+                    $("#loader").hide();
+                  },
+      });
+
+    }else{
+      arr_cek.push(id)
+      arr_cek.sort(function(a, b){return a-b});
+      $("#cobacoba").val(arr_cek)
+      // hideProggress(id,0)
+    }
+}
+
+  
+
+$("#ApproveST").click(function (e) {
+  e.preventDefault();
+
+  var btn = $(this);
+  var form = $(this).closest("form");
+  var formData = new FormData($("#FormST")[0]);
+  var IdForm =  "FormST";
+
+  btn
+    .addClass("kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light")
+    .attr("disabled", true);
+  cekbentrok = $("#countBentrok").val()
+
+  if(cekbentrok > 0){
+
+        swal({
+              text:"WARNING ! Terdapat Tim yag Bentrok Tanggal! ",
+              icon: "warning",
+              timer: 3000
+              })
+              return false;
+
+        }
+  formData.append('Trigger', 'Approve')
+  formData.append('idst', id_st_session)
+  formData.append('id_status', id_status)
+  formData.append('id_status_cs', id_status_cs)
+  formData.append('countTim', countJSON)
+
+  if(sumber_dana != 53){
+
+    if(id_status_cs == 11){
+      if(sisa < 0){
+
+        swal({
+              text:"WARNING ! Saldo Pagu Minus !",
+              icon: "warning",
+              timer: 3000
+              })
+              return false;
+
+        }
+      }
+
+  }
+
+  status_kententuan = ['3','12','5','6','7','8','9']
+
+
+  if(status_kententuan.includes(id_status_cs)){
+      if(status_sima != "Final" && status_sima != "Realisasi"){
+        swal({
+            text:"WARNING ! Status ST SIMA Masih "+status_sima+"",
+            icon: "warning",
+            timer: 3000
+            })
+            return false;
+
+      }
+
+    }
+
+  $.ajax({
+    type: "POST",
+    data: formData,
+    url: baseurl + "Action",
+    processData: false,
+    contentType: false,
+    success: function (data, textStatus, jqXHR) {
+              show_msg(textStatus);
+               window.history.back();
+              
+              
+          },
+          error: function (jqXHR, textStatus, errorThrown) { },
+      });
+});
+
+
+
+$("#TolakST").click(function (e) {
+  e.preventDefault();
+
+  var btn = $(this);
+  var form = $(this).closest("form");
+  var formData = new FormData($("#FormST")[0]);
+  var IdForm =  "FormST";
+
+  btn
+    .addClass("kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light")
+    .attr("disabled", true);
+
+  formData.append('Trigger', 'TolakApprove')
+  formData.append('idst', id_st_session)
+  formData.append('id_status', id_status)
+  formData.append('id_status_cs', id_status_cs)
+  formData.append('countTim', countJSON)
+    
+
+  $.ajax({
+    type: "POST",
+    data: formData,
+    url: baseurl + "Action",
+    processData: false,
+    contentType: false,
+    beforeSend: function(){
+    // Show image container
+      $("#loader").show();
+    },
+    success: function (data, textStatus, jqXHR) {
+              show_msg(textStatus);
+              window.history.back();
+              
+              
+          },
+          error: function (jqXHR, textStatus, errorThrown) { },
+      });
+});
+
+function send_catatan(id){
+  catatan_ppk = $("#catatan_ppk").val()
+  catatan_es2 = $("#catatan_es2").val()
+
+  $.ajax({
+    type: "POST",
+    data: {
+      "Trigger":"catatan", 
+      "id_cs":id, 
+      "catatan_ppk": catatan_ppk,
+      "catatan_es2": catatan_es2},
+    url: baseurl + "Action",
+    success: function (data, textStatus, jqXHR) {
+              show_msg(textStatus);
+              location.reload();
+              
+              
+          },
+          error: function (jqXHR, textStatus, errorThrown) { },
+      });
+
+}
+
+
+function show_msg(textStatus){
+        swal({
+            title:textStatus, 
+            icon:textStatus,
+            timer: 2000
+            })
+    }
+</script>
