@@ -17,7 +17,20 @@ export type TimelineMember = {
   noSpd?: string;
   originCity?: string;
   destinationCity?: string;
+  costBreakdown?: TimelineCostBreakdown;
   totalCost?: number;
+};
+
+export type TimelineCostBreakdown = {
+  dailyAllowance?: number;
+  lodging?: number;
+  airportTaxi?: number;
+  seaTransport?: number;
+  airTransport?: number;
+  groundTransport?: number;
+  other?: number;
+  representation?: number;
+  total?: number;
 };
 
 export type TimelineAssignment = {

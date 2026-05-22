@@ -218,7 +218,7 @@ export default function App() {
       </section>
 
       <Sheet open={Boolean(selected)} onOpenChange={(open) => !open && setSelected(null)}>
-        <SheetContent className="w-full overflow-y-auto sm:max-w-2xl">
+        <SheetContent className="w-full overflow-y-auto sm:max-w-[min(1200px,100vw)]">
           <SheetHeader>
             <SheetTitle>{selected?.nomorSt || selected?.costsheetId}</SheetTitle>
             <SheetDescription>{selected?.description}</SheetDescription>

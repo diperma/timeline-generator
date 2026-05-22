@@ -30,6 +30,8 @@ function sanitizePublicTimelinePayload(payload, options = {}) {
           isActive: member.isActive,
           originCity: member.originCity,
           destinationCity: member.destinationCity,
+          costBreakdown: member.costBreakdown,
+          totalCost: member.totalCost,
         }))
       : [],
   }));

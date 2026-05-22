@@ -95,6 +95,14 @@ test("parseCostsheetDetail reads sample detail page into timeline-ready members"
   assert.match(first.endDate, /^\d{4}-\d{2}-\d{2}$/);
   assert.equal(first.hpSource, "jmlharidum");
   assert.equal(typeof first.isActive, "boolean");
+
+  const second = detail.members[1];
+  assert.equal(second.costBreakdown.dailyAllowance, 2150000);
+  assert.equal(second.costBreakdown.lodging, 6028000);
+  assert.equal(second.costBreakdown.airportTaxi, 1100000);
+  assert.equal(second.costBreakdown.airTransport, 4600000);
+  assert.equal(second.costBreakdown.total, 13878000);
+  assert.equal(second.totalCost, 13878000);
 });
 
 test("buildTimelinePayload preserves assignment and member metadata", () => {
@@ -122,6 +130,18 @@ test("buildTimelinePayload preserves assignment and member metadata", () => {
             endDate: "2026-05-26",
             hp: 3,
             isActive: true,
+            costBreakdown: {
+              dailyAllowance: 300000,
+              lodging: 400000,
+              airportTaxi: 50000,
+              seaTransport: 0,
+              airTransport: 0,
+              groundTransport: 100000,
+              other: 0,
+              representation: 0,
+              total: 850000,
+            },
+            totalCost: 850000,
           },
         ],
         warnings: [],
@@ -134,4 +154,6 @@ test("buildTimelinePayload preserves assignment and member metadata", () => {
   assert.equal(payload.year, "2026");
   assert.equal(payload.count, 1);
   assert.equal(payload.assignments[0].members[0].hp, 3);
+  assert.equal(payload.assignments[0].members[0].costBreakdown.total, 850000);
+  assert.equal(payload.assignments[0].members[0].totalCost, 850000);
 });

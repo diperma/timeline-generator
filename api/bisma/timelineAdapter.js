@@ -33,6 +33,7 @@ function buildTimelinePayload(details, options = {}) {
           noSpd: member.noSpd,
           originCity: member.originCity,
           destinationCity: member.destinationCity,
+          costBreakdown: member.costBreakdown,
           totalCost: member.totalCost,
         })),
       };

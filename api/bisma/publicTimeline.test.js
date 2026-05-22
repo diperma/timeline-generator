@@ -39,6 +39,17 @@ test("sanitizePublicTimelinePayload removes private member fields", () => {
               endDate: "2026-05-26",
               hp: 3,
               totalCost: 1140000,
+              costBreakdown: {
+                dailyAllowance: 300000,
+                lodging: 400000,
+                airportTaxi: 50000,
+                seaTransport: 0,
+                airTransport: 0,
+                groundTransport: 100000,
+                other: 0,
+                representation: 0,
+                total: 850000,
+              },
               originCity: "KOTA JAKARTA",
               destinationCity: "KOTA ADM. JAKARTA SELATAN",
             },
@@ -57,9 +68,11 @@ test("sanitizePublicTimelinePayload removes private member fields", () => {
   assert.equal(sanitized.dataEndDate, "2026-05-29");
   assert.equal(sanitized.assignments[0].totalCost, 100000);
   assert.equal(sanitized.assignments[0].members[0].employeeName, "Willy Hutabarat");
+  assert.equal(sanitized.assignments[0].members[0].totalCost, 1140000);
+  assert.equal(sanitized.assignments[0].members[0].costBreakdown.total, 850000);
+  assert.equal(sanitized.assignments[0].members[0].costBreakdown.dailyAllowance, 300000);
   assert.equal(Object.hasOwn(sanitized.assignments[0].members[0], "nip"), false);
   assert.equal(Object.hasOwn(sanitized.assignments[0].members[0], "noSpd"), false);
-  assert.equal(Object.hasOwn(sanitized.assignments[0].members[0], "totalCost"), false);
 });
 
 test("sanitizePublicTimelinePayload computes date range from member dates", () => {

@@ -48,12 +48,20 @@ export function AssignmentDetail({ assignment }: { assignment: TimelineAssignmen
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Nama</TableHead>
-                <TableHead>Peran</TableHead>
-                <TableHead>Tanggal</TableHead>
+                <TableHead className="min-w-56">Nama</TableHead>
+                <TableHead className="min-w-72">Peran</TableHead>
+                <TableHead className="min-w-40">Tanggal</TableHead>
                 <TableHead>HP</TableHead>
-                <TableHead>Kota</TableHead>
-                <TableHead>Biaya</TableHead>
+                <TableHead className="min-w-44">Kota</TableHead>
+                <TableHead className="min-w-32 text-right">UANG HARIAN</TableHead>
+                <TableHead className="min-w-32 text-right">PENGINAPAN</TableHead>
+                <TableHead className="min-w-32 text-right">Taxi Bandara</TableHead>
+                <TableHead className="min-w-32 text-right">Angkutan Laut</TableHead>
+                <TableHead className="min-w-36 text-right">Transportasi Udara</TableHead>
+                <TableHead className="min-w-36 text-right">Transportasi Darat</TableHead>
+                <TableHead className="min-w-24 text-right">DLL</TableHead>
+                <TableHead className="min-w-32 text-right">REPRESENTASI</TableHead>
+                <TableHead className="min-w-32 text-right">JUMLAH</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -81,9 +89,15 @@ export function AssignmentDetail({ assignment }: { assignment: TimelineAssignmen
                       <span className="text-xs text-muted-foreground">{member.destinationCity || "-"}</span>
                     </div>
                   </TableCell>
-                  <TableCell className="whitespace-nowrap">
-                    {formatRupiah(member.totalCost || 0)}
-                  </TableCell>
+                  <MoneyCell value={member.costBreakdown?.dailyAllowance} />
+                  <MoneyCell value={member.costBreakdown?.lodging} />
+                  <MoneyCell value={member.costBreakdown?.airportTaxi} />
+                  <MoneyCell value={member.costBreakdown?.seaTransport} />
+                  <MoneyCell value={member.costBreakdown?.airTransport} />
+                  <MoneyCell value={member.costBreakdown?.groundTransport} />
+                  <MoneyCell value={member.costBreakdown?.other} />
+                  <MoneyCell value={member.costBreakdown?.representation} />
+                  <MoneyCell value={member.costBreakdown?.total ?? member.totalCost} className="font-medium" />
                 </TableRow>
               ))}
             </TableBody>
@@ -91,6 +105,14 @@ export function AssignmentDetail({ assignment }: { assignment: TimelineAssignmen
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+function MoneyCell({ value, className = "" }: { value?: number; className?: string }) {
+  return (
+    <TableCell className={`whitespace-nowrap text-right tabular-nums ${className}`}>
+      {formatRupiah(value || 0)}
+    </TableCell>
   );
 }
 

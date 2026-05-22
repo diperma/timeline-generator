@@ -101,6 +101,7 @@ function parseMemberRow($, row, rowNo) {
   const hp = hpFromHidden ?? inclusiveDateDiff(startDate, endDate) ?? 0;
   const originSelect = row.find(`[id="kotaasal${rowNo}"]`).first();
   const destinationSelect = row.find(`[id="kotatujuan${rowNo}"]`).first();
+  const costBreakdown = parseCostBreakdown($, row, rowNo);
 
   return {
     rowNo,
@@ -118,7 +119,22 @@ function parseMemberRow($, row, rowNo) {
     originCityCode: selectedOptionValue(originSelect),
     destinationCity: selectedOptionText(destinationSelect),
     destinationCityCode: selectedOptionValue(destinationSelect),
-    totalCost: parseRupiah(fieldValueById($, `total${rowNo}`, row)),
+    costBreakdown,
+    totalCost: costBreakdown.total,
+  };
+}
+
+function parseCostBreakdown($, row, rowNo) {
+  return {
+    dailyAllowance: parseRupiah(fieldValueById($, `uangharian${rowNo}`, row)),
+    lodging: parseRupiah(fieldValueById($, `uangpenginapan${rowNo}`, row)),
+    airportTaxi: parseRupiah(fieldValueById($, `uangtaxi${rowNo}`, row)),
+    seaTransport: parseRupiah(fieldValueById($, `uanglaut${rowNo}`, row)),
+    airTransport: parseRupiah(fieldValueById($, `uangudara${rowNo}`, row)),
+    groundTransport: parseRupiah(fieldValueById($, `uangdarat${rowNo}`, row)),
+    other: parseRupiah(fieldValueById($, `uangdll${rowNo}`, row)),
+    representation: parseRupiah(fieldValueById($, `uangrep${rowNo}`, row)),
+    total: parseRupiah(fieldValueById($, `total${rowNo}`, row)),
   };
 }
 
@@ -131,6 +147,7 @@ function parseRowNo(row) {
 }
 
 module.exports = {
+  parseCostBreakdown,
   parseCostsheetDetail,
   parseMemberRow,
   STATUS_LABELS,
