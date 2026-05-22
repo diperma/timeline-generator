@@ -38,6 +38,7 @@ app.get("/api/bisma/login-probe", async (_req, res) => {
   try {
     const urls = [
       config.baseUrl + "/",
+      config.baseUrl + "/Main",
       config.baseUrl + "/?probe=1",
       config.baseUrl + "/Auth",
       config.baseUrl + "/Auth/Auth/login",

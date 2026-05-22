@@ -86,25 +86,28 @@ function createBismaClient(config) {
   }
 
   async function fetchLoginPage() {
-    let url = config.baseUrl + "/";
     let response;
     let html = "";
 
-    for (let attempt = 0; attempt < 3; attempt += 1) {
-      response = await rawRequest(config, url, {
-        method: "GET",
-        headers: baseHeaders(),
-      });
-      mergeCookies(response);
+    for (const startPath of ["/", "/Main"]) {
+      let url = absoluteUrl(startPath, config.baseUrl);
+      for (let attempt = 0; attempt < 3; attempt += 1) {
+        response = await rawRequest(config, url, {
+          method: "GET",
+          headers: baseHeaders(),
+        });
+        mergeCookies(response);
 
-      const location = response.headers.get("location");
-      if ([301, 302, 303, 307, 308].includes(response.status) && location) {
-        url = absoluteUrl(location, config.baseUrl);
-        continue;
+        const location = response.headers.get("location");
+        if ([301, 302, 303, 307, 308].includes(response.status) && location) {
+          url = absoluteUrl(location, config.baseUrl);
+          continue;
+        }
+
+        html = await response.text();
+        if (extractEnckey(html)) return { response, html };
+        break;
       }
-
-      html = await response.text();
-      break;
     }
 
     return { response, html };
