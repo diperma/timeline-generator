@@ -13,6 +13,7 @@ function getConfig() {
     cacheTtlMs: readInt("BISMA_CACHE_TTL_SECONDS", 900) * 1000,
     detailConcurrency: readInt("BISMA_DETAIL_CONCURRENCY", 4),
     debugHtml: /^true$/i.test(process.env.BISMA_DEBUG_HTML || ""),
+    corsOrigin: process.env.CORS_ORIGIN || "",
     port: readInt("PORT", 3000),
   };
 }
@@ -26,6 +27,7 @@ function getPublicConfig(config) {
     cacheTtlSeconds: Math.round(config.cacheTtlMs / 1000),
     detailConcurrency: config.detailConcurrency,
     debugHtml: config.debugHtml,
+    corsRestricted: Boolean(config.corsOrigin),
   };
 }
 

@@ -9,7 +9,7 @@ const config = getConfig();
 const client = createBismaClient(config);
 const costsheets = createCostsheetService({ config, client });
 
-app.use(cors());
+app.use(cors(createCorsOptions(config)));
 app.use(express.json({ limit: "1mb" }));
 
 app.get("/api/health", (_req, res) => {
@@ -87,6 +87,25 @@ function sendError(res, error) {
     stage: error.stage || "backend",
     message: error.message || "Unexpected backend error",
   });
+}
+
+function createCorsOptions(config) {
+  const allowedOrigins = String(config.corsOrigin || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
+  if (!allowedOrigins.length) return {};
+
+  return {
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+      callback(new Error("Origin is not allowed by CORS"));
+    },
+  };
 }
 
 if (require.main === module) {
