@@ -5,6 +5,7 @@ import {
   CalendarDaysIcon,
   ChevronsUpDownIcon,
   CheckCircle2Icon,
+  MenuIcon,
   RefreshCwIcon,
   SearchIcon,
   UsersIcon,
@@ -47,13 +48,24 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { fetchTimeline, isStaticTimelineMode, syncTimeline } from "@/lib/bismaApi";
+import {
+  fetchTimeline,
+  isStaticRealisasiMode,
+  isStaticTimelineMode,
+  syncTimeline,
+} from "@/lib/bismaApi";
 import type { TimelineAssignment, TimelinePayload } from "@/types/bisma";
 import { buildTimeline } from "@/features/timeline/timelineEngine";
 import { TimelineGrid } from "@/features/timeline/TimelineGrid";
 import { AssignmentDetail } from "@/features/timeline/AssignmentDetail";
 import { RealisasiPage } from "@/features/realisasi/RealisasiPage";
 import { cn } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type LoadState = "idle" | "loading" | "refreshing" | "error" | "ready";
 type TimelineTab = "assignments" | "employees" | "warnings";
@@ -72,6 +84,8 @@ export default function App() {
   const [member, setMember] = useState(ALL);
   const [month, setMonth] = useState(CURRENT_MONTH);
   const [activeModule, setActiveModule] = useState<AppModule>("timeline");
+  const [navExpanded, setNavExpanded] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<TimelineTab>("assignments");
   const [selected, setSelected] = useState<TimelineAssignment | null>(null);
 
@@ -137,21 +151,53 @@ export default function App() {
   );
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <section className="mx-auto flex max-w-[1800px] flex-col gap-4 p-4 lg:p-6">
+    <main className="min-h-screen bg-background text-foreground md:flex">
+      <ModuleNav
+        activeModule={activeModule}
+        expanded={navExpanded}
+        onExpandedChange={setNavExpanded}
+        onModuleChange={setActiveModule}
+      />
+
+      <Sheet open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
+        <SheetContent className="w-72 sm:max-w-72" side="left">
+          <SheetHeader>
+            <SheetTitle>BISMA Dashboard</SheetTitle>
+            <SheetDescription>Pilih modul data yang ingin dibuka.</SheetDescription>
+          </SheetHeader>
+          <div className="px-4 pb-4">
+            <ModuleMenu
+              activeModule={activeModule}
+              expanded
+              onModuleChange={(value) => {
+                setActiveModule(value);
+                setMobileNavOpen(false);
+              }}
+            />
+          </div>
+        </SheetContent>
+      </Sheet>
+
+      <section className="mx-auto flex w-full max-w-[1800px] flex-col gap-4 p-4 lg:p-6">
         <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div className="flex flex-col gap-1">
-            <p className="text-xs font-medium uppercase text-muted-foreground">
-              BISMA Dashboard
-            </p>
-            <h1 className="text-2xl font-semibold tracking-tight lg:text-3xl">
-              Timeline Penugasan dan Realisasi Anggaran
-            </h1>
-            <p className="max-w-3xl text-sm text-muted-foreground">
-              {isStaticTimelineMode
-                ? "Data bersumber dari snapshot publik Supabase yang diterbitkan oleh sinkronisasi lokal."
-                : "Data bersumber dari backend BISMA adapter. Browser hanya membaca endpoint lokal aplikasi ini, tanpa kredensial atau cookie BISMA."}
-            </p>
+          <div className="flex items-start gap-3">
+            <Button className="md:hidden" size="icon" variant="outline" onClick={() => setMobileNavOpen(true)}>
+              <MenuIcon />
+              <span className="sr-only">Buka menu modul</span>
+            </Button>
+            <div className="flex flex-col gap-1">
+              <p className="text-xs font-medium uppercase text-muted-foreground">
+                BISMA Dashboard
+              </p>
+              <h1 className="text-2xl font-semibold tracking-tight lg:text-3xl">
+                {activeModule === "timeline" ? "Timeline Penugasan" : "Realisasi Anggaran"}
+              </h1>
+              <p className="max-w-3xl text-sm text-muted-foreground">
+                {activeModule === "timeline"
+                  ? timelineSourceDescription()
+                  : realisasiSourceDescription()}
+              </p>
+            </div>
           </div>
           {activeModule === "timeline" && (
             <div className="flex flex-wrap items-center gap-2">
@@ -170,18 +216,8 @@ export default function App() {
           )}
         </header>
 
-        <Tabs value={activeModule} onValueChange={(value) => setActiveModule(value as AppModule)}>
-          <TabsList className="w-fit">
-            <TabsTrigger value="timeline">
-              <CalendarDaysIcon data-icon="inline-start" />
-              Timeline
-            </TabsTrigger>
-            <TabsTrigger value="realisasi">
-              <BarChart3Icon data-icon="inline-start" />
-              Realisasi
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent className="flex flex-col gap-4" value="timeline">
+        {activeModule === "timeline" ? (
+          <section className="flex flex-col gap-4">
             {error && (
               <Alert variant="destructive">
                 <AlertCircleIcon />
@@ -233,11 +269,10 @@ export default function App() {
                 </TabsContent>
               </Tabs>
             )}
-          </TabsContent>
-          <TabsContent value="realisasi">
-            <RealisasiPage />
-          </TabsContent>
-        </Tabs>
+          </section>
+        ) : (
+          <RealisasiPage />
+        )}
       </section>
 
       <Sheet open={Boolean(selected)} onOpenChange={(open) => !open && setSelected(null)}>
@@ -250,6 +285,125 @@ export default function App() {
         </SheetContent>
       </Sheet>
     </main>
+  );
+}
+
+function ModuleNav({
+  activeModule,
+  expanded,
+  onExpandedChange,
+  onModuleChange,
+}: {
+  activeModule: AppModule;
+  expanded: boolean;
+  onExpandedChange: (value: boolean) => void;
+  onModuleChange: (value: AppModule) => void;
+}) {
+  return (
+    <aside
+      className={cn(
+        "sticky top-0 hidden h-screen shrink-0 border-r bg-card p-2 transition-[width] md:flex md:flex-col",
+        expanded ? "w-48" : "w-14",
+      )}
+    >
+      <div className="flex items-center gap-2 px-1 py-2">
+        <div className="flex size-9 shrink-0 items-center justify-center rounded-md bg-primary text-sm font-semibold text-primary-foreground">
+          B
+        </div>
+        {expanded && (
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold">BISMA</p>
+            <p className="truncate text-xs text-muted-foreground">Dashboard</p>
+          </div>
+        )}
+      </div>
+      <ModuleMenu activeModule={activeModule} expanded={expanded} onModuleChange={onModuleChange} />
+      <div className="mt-auto">
+        <Button
+          aria-label={expanded ? "Ciutkan menu" : "Lebarkan menu"}
+          className={cn("w-full", !expanded && "px-0")}
+          size={expanded ? "default" : "icon"}
+          variant="ghost"
+          onClick={() => onExpandedChange(!expanded)}
+        >
+          <MenuIcon data-icon="inline-start" />
+          {expanded && <span>Ciutkan</span>}
+        </Button>
+      </div>
+    </aside>
+  );
+}
+
+function ModuleMenu({
+  activeModule,
+  expanded,
+  onModuleChange,
+}: {
+  activeModule: AppModule;
+  expanded: boolean;
+  onModuleChange: (value: AppModule) => void;
+}) {
+  const items: Array<{ icon: React.ReactNode; label: string; value: AppModule }> = [
+    { icon: <CalendarDaysIcon />, label: "Timeline", value: "timeline" },
+    { icon: <BarChart3Icon />, label: "Realisasi", value: "realisasi" },
+  ];
+
+  return (
+    <TooltipProvider>
+      <nav className="mt-4 flex flex-col gap-1">
+        {items.map((item) => (
+          <ModuleMenuButton
+            active={activeModule === item.value}
+            expanded={expanded}
+            icon={item.icon}
+            key={item.value}
+            label={item.label}
+            onClick={() => onModuleChange(item.value)}
+          />
+        ))}
+      </nav>
+    </TooltipProvider>
+  );
+}
+
+function ModuleMenuButton({
+  active,
+  expanded,
+  icon,
+  label,
+  onClick,
+}: {
+  active: boolean;
+  expanded: boolean;
+  icon: React.ReactNode;
+  label: string;
+  onClick: () => void;
+}) {
+  const button = (
+    <Button
+      aria-current={active ? "page" : undefined}
+      aria-label={label}
+      className={cn(
+        "w-full justify-start",
+        !expanded && "justify-center px-0",
+        active && "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground",
+      )}
+      size={expanded ? "default" : "icon"}
+      variant={active ? "default" : "ghost"}
+      onClick={onClick}
+    >
+      {icon}
+      {expanded && <span>{label}</span>}
+    </Button>
+  );
+
+  if (expanded) return button;
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>{button}</TooltipTrigger>
+      <TooltipContent side="right">{label}</TooltipContent>
+    </Tooltip>
   );
 }
 
@@ -605,6 +759,18 @@ function formatDateTime(value: string | undefined) {
     hour: "2-digit",
     minute: "2-digit",
   }).format(date);
+}
+
+function timelineSourceDescription() {
+  return isStaticTimelineMode
+    ? "Data timeline bersumber dari snapshot publik Supabase yang diterbitkan oleh sinkronisasi lokal."
+    : "Data timeline bersumber dari backend BISMA adapter. Browser tidak menerima kredensial atau cookie BISMA.";
+}
+
+function realisasiSourceDescription() {
+  return isStaticRealisasiMode
+    ? "Data realisasi bersumber dari snapshot publik Supabase realisasi."
+    : "Data realisasi bersumber dari backend BISMA adapter endpoint Anggaran/Realisasi.";
 }
 
 function monthToDateWindow(value: string) {
