@@ -33,6 +33,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Table,
   TableBody,
@@ -43,8 +44,16 @@ import {
 } from "@/components/ui/table";
 import { fetchRealisasi, isStaticRealisasiMode, syncRealisasi } from "@/lib/bismaApi";
 import type { RealisasiItem, RealisasiPayload } from "@/types/realisasi";
+import {
+  availableAfterRealisasi,
+  buildRealisasiAggregates,
+  getRealisasiRO,
+  type RealisasiJenisBelanjaGroup,
+  type RealisasiROGroup,
+} from "@/features/realisasi/realisasiAggregates";
 
 type LoadState = "idle" | "loading" | "refreshing" | "error" | "ready";
+type RealisasiTab = "details" | "ro" | "jenis";
 
 const ALL = "__all__";
 
@@ -55,7 +64,9 @@ export function RealisasiPage() {
   const [query, setQuery] = useState("");
   const [account, setAccount] = useState(ALL);
   const [program, setProgram] = useState(ALL);
+  const [ro, setRo] = useState(ALL);
   const [label, setLabel] = useState(ALL);
+  const [activeTab, setActiveTab] = useState<RealisasiTab>("details");
   const [selected, setSelected] = useState<RealisasiItem | null>(null);
 
   async function load(force = false) {
@@ -77,10 +88,11 @@ export function RealisasiPage() {
 
   const options = useMemo(() => getFilterOptions(payload?.items ?? []), [payload]);
   const items = useMemo(
-    () => filterItems(payload?.items ?? [], { account, label, program, query }),
-    [account, label, payload, program, query],
+    () => filterItems(payload?.items ?? [], { account, label, program, query, ro }),
+    [account, label, payload, program, query, ro],
   );
-  const totals = useMemo(() => summarizeItems(items), [items]);
+  const aggregates = useMemo(() => buildRealisasiAggregates(items), [items]);
+  const totals = aggregates.totals;
 
   return (
     <section className="flex flex-col gap-4">
@@ -125,80 +137,102 @@ export function RealisasiPage() {
             <Metric title="Sisa Pagu" value={formatRupiah(totals.availableAfterRealisasi)} icon={<WalletCardsIcon />} />
           </section>
 
-          <Card>
-            <CardHeader>
-              <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-                <div>
-                  <CardTitle>Rincian Realisasi</CardTitle>
-                  <CardDescription>
-                    {items.length} baris dari {payload.count} data anggaran
-                  </CardDescription>
-                </div>
-                <div className="grid gap-2 md:grid-cols-4">
-                  <div className="relative">
-                    <SearchIcon className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                    <Input
-                      className="pl-9"
-                      onChange={(event) => setQuery(event.target.value)}
-                      placeholder="Cari akun, kode, unit"
-                      value={query}
-                    />
+          <Tabs className="flex flex-col gap-3" value={activeTab} onValueChange={(value) => setActiveTab(value as RealisasiTab)}>
+            <TabsList className="w-fit">
+              <TabsTrigger value="details">Rincian</TabsTrigger>
+              <TabsTrigger value="ro">Rekap RO</TabsTrigger>
+              <TabsTrigger value="jenis">Jenis Belanja</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="details">
+              <Card>
+                <CardHeader>
+                  <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+                    <div>
+                      <CardTitle>Rincian Realisasi</CardTitle>
+                      <CardDescription>
+                        {items.length} baris dari {payload.count} data anggaran
+                      </CardDescription>
+                    </div>
+                    <div className="grid gap-2 md:grid-cols-5">
+                      <div className="relative">
+                        <SearchIcon className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                        <Input
+                          className="pl-9"
+                          onChange={(event) => setQuery(event.target.value)}
+                          placeholder="Cari akun, kode, unit"
+                          value={query}
+                        />
+                      </div>
+                      <FilterSelect label="RO" options={options.ros} value={ro} onChange={setRo} />
+                      <FilterSelect label="Akun" options={options.accounts} value={account} onChange={setAccount} />
+                      <FilterSelect label="Program" options={options.programs} value={program} onChange={setProgram} />
+                      <FilterSelect label="Jenis" options={options.labels} value={label} onChange={setLabel} />
+                    </div>
                   </div>
-                  <FilterSelect label="Akun" options={options.accounts} value={account} onChange={setAccount} />
-                  <FilterSelect label="Program" options={options.programs} value={program} onChange={setProgram} />
-                  <FilterSelect label="Jenis" options={options.labels} value={label} onChange={setLabel} />
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="min-w-64">Akun</TableHead>
-                    <TableHead className="min-w-56">Program/Kegiatan</TableHead>
-                    <TableHead className="min-w-48">Komponen</TableHead>
-                    <TableHead className="min-w-32 text-right">Pagu</TableHead>
-                    <TableHead className="min-w-32 text-right">Draft</TableHead>
-                    <TableHead className="min-w-32 text-right">Realisasi</TableHead>
-                    <TableHead className="min-w-32 text-right">Outstanding</TableHead>
-                    <TableHead className="min-w-32 text-right">SP2D</TableHead>
-                    <TableHead className="min-w-32 text-right">Sisa</TableHead>
-                    <TableHead className="min-w-24 text-right">%</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {items.map((item) => (
-                    <TableRow
-                      className="cursor-pointer"
-                      key={item.bagipaguId || item.kdindex || item.rowNo}
-                      onClick={() => setSelected(item)}
-                    >
-                      <TableCell>
-                        <div className="flex flex-col">
-                          <span className="font-medium">{item.accountCode || "-"}</span>
-                          <span className="text-xs text-muted-foreground">{item.accountName || "-"}</span>
-                        </div>
-                      </TableCell>
-                      <TableCell>{joinCodes(item.programCode, item.activityCode, item.outputCode)}</TableCell>
-                      <TableCell>{joinCodes(item.suboutputCode, item.componentCode, item.subcomponentCode)}</TableCell>
-                      <MoneyCell value={item.pagu} />
-                      <MoneyCell value={item.draft} />
-                      <MoneyCell value={item.realisasi} />
-                      <MoneyCell value={item.outstanding} />
-                      <MoneyCell value={item.sp2d} />
-                      <MoneyCell value={availableAfterRealisasi(item)} />
-                      <TableCell className="text-right tabular-nums">{item.realisasiPct}%</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-              {!items.length && (
-                <div className="p-6 text-center text-sm text-muted-foreground">
-                  Tidak ada data realisasi yang cocok dengan filter.
-                </div>
-              )}
-            </CardContent>
-          </Card>
+                </CardHeader>
+                <CardContent className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="min-w-64">Akun</TableHead>
+                        <TableHead className="min-w-56">Program/Kegiatan</TableHead>
+                        <TableHead className="min-w-48">Komponen</TableHead>
+                        <TableHead className="min-w-32 text-right">Pagu</TableHead>
+                        <TableHead className="min-w-32 text-right">Draft</TableHead>
+                        <TableHead className="min-w-32 text-right">Realisasi</TableHead>
+                        <TableHead className="min-w-32 text-right">Outstanding</TableHead>
+                        <TableHead className="min-w-32 text-right">SP2D</TableHead>
+                        <TableHead className="min-w-32 text-right">Sisa</TableHead>
+                        <TableHead className="min-w-24 text-right">%</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {items.map((item) => (
+                        <TableRow
+                          className="cursor-pointer"
+                          key={item.bagipaguId || item.kdindex || item.rowNo}
+                          onClick={() => setSelected(item)}
+                        >
+                          <TableCell>
+                            <div className="flex flex-col">
+                              <span className="font-medium">{item.accountCode || "-"}</span>
+                              <span className="text-xs text-muted-foreground">{item.accountName || "-"}</span>
+                            </div>
+                          </TableCell>
+                          <TableCell>{joinCodes(item.programCode, item.activityCode, item.outputCode)}</TableCell>
+                          <TableCell>{joinCodes(item.suboutputCode, item.componentCode, item.subcomponentCode)}</TableCell>
+                          <MoneyCell value={item.pagu} />
+                          <MoneyCell value={item.draft} />
+                          <MoneyCell value={item.realisasi} />
+                          <MoneyCell value={item.outstanding} />
+                          <MoneyCell value={item.sp2d} />
+                          <MoneyCell value={availableAfterRealisasi(item)} />
+                          <TableCell className="text-right tabular-nums">{item.realisasiPct}%</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                  {!items.length && <EmptyTableMessage />}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="ro">
+              <RekapROTable
+                groups={aggregates.byRO}
+                totalCount={payload.count}
+                onOpenDetails={(roKey) => {
+                  setRo(roKey);
+                  setActiveTab("details");
+                }}
+              />
+            </TabsContent>
+
+            <TabsContent value="jenis">
+              <JenisBelanjaTable groups={aggregates.byJenisBelanja} totalCount={payload.count} />
+            </TabsContent>
+          </Tabs>
         </>
       )}
 
@@ -212,6 +246,119 @@ export function RealisasiPage() {
         </SheetContent>
       </Sheet>
     </section>
+  );
+}
+
+function RekapROTable({
+  groups,
+  onOpenDetails,
+  totalCount,
+}: {
+  groups: RealisasiROGroup[];
+  onOpenDetails: (roKey: string) => void;
+  totalCount: number;
+}) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Rekap per RO</CardTitle>
+        <CardDescription>
+          {groups.length} RO dari {totalCount} data anggaran. Klik baris untuk melihat rincian RO.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="min-w-40">RO</TableHead>
+              <TableHead className="min-w-56">Program/Kegiatan</TableHead>
+              <TableHead className="min-w-32 text-right">Jumlah Akun</TableHead>
+              <TableHead className="min-w-32 text-right">Pagu</TableHead>
+              <TableHead className="min-w-32 text-right">Realisasi</TableHead>
+              <TableHead className="min-w-32 text-right">Outstanding</TableHead>
+              <TableHead className="min-w-32 text-right">Sisa Pagu</TableHead>
+              <TableHead className="min-w-24 text-right">%</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {groups.map((group) => (
+              <TableRow className="cursor-pointer" key={group.roKey} onClick={() => onOpenDetails(group.roKey)}>
+                <TableCell>
+                  <div className="flex flex-col">
+                    <span className="font-medium">{group.roCode}</span>
+                    <span className="text-xs text-muted-foreground">
+                      Komponen {group.componentCodes.length ? group.componentCodes.join(", ") : "-"}
+                    </span>
+                  </div>
+                </TableCell>
+                <TableCell>{joinCodes(group.programCode, group.activityCode)}</TableCell>
+                <TableCell className="text-right tabular-nums">{group.itemCount}</TableCell>
+                <MoneyCell value={group.totals.pagu} />
+                <MoneyCell value={group.totals.realisasi} />
+                <MoneyCell value={group.totals.outstanding} />
+                <MoneyCell value={group.totals.availableAfterRealisasi} />
+                <TableCell className="text-right tabular-nums">{group.totals.realisasiPct}%</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        {!groups.length && <EmptyTableMessage />}
+      </CardContent>
+    </Card>
+  );
+}
+
+function JenisBelanjaTable({
+  groups,
+  totalCount,
+}: {
+  groups: RealisasiJenisBelanjaGroup[];
+  totalCount: number;
+}) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Rekap per Jenis Belanja</CardTitle>
+        <CardDescription>
+          {groups.length} jenis belanja dari {totalCount} data anggaran
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="min-w-64">Jenis Belanja</TableHead>
+              <TableHead className="min-w-32 text-right">Jumlah Akun</TableHead>
+              <TableHead className="min-w-32 text-right">Pagu</TableHead>
+              <TableHead className="min-w-32 text-right">Realisasi</TableHead>
+              <TableHead className="min-w-32 text-right">Outstanding</TableHead>
+              <TableHead className="min-w-32 text-right">Sisa Pagu</TableHead>
+              <TableHead className="min-w-24 text-right">%</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {groups.map((group) => (
+              <TableRow key={group.jenisKey}>
+                <TableCell>
+                  <div className="flex flex-col">
+                    <span className="font-medium">
+                      {group.jenisCode === "unknown" ? group.jenisLabel : `${group.jenisCode} - ${group.jenisLabel}`}
+                    </span>
+                  </div>
+                </TableCell>
+                <TableCell className="text-right tabular-nums">{group.itemCount}</TableCell>
+                <MoneyCell value={group.totals.pagu} />
+                <MoneyCell value={group.totals.realisasi} />
+                <MoneyCell value={group.totals.outstanding} />
+                <MoneyCell value={group.totals.availableAfterRealisasi} />
+                <TableCell className="text-right tabular-nums">{group.totals.realisasiPct}%</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        {!groups.length && <EmptyTableMessage />}
+      </CardContent>
+    </Card>
   );
 }
 
@@ -312,6 +459,14 @@ function MoneyCell({ value }: { value: number }) {
   return <TableCell className="whitespace-nowrap text-right tabular-nums">{formatRupiah(value)}</TableCell>;
 }
 
+function EmptyTableMessage() {
+  return (
+    <div className="p-6 text-center text-sm text-muted-foreground">
+      Tidak ada data realisasi yang cocok dengan filter.
+    </div>
+  );
+}
+
 function DetailLine({ label, value }: { label: string; value?: string | number }) {
   return (
     <div className="flex flex-col gap-1">
@@ -336,6 +491,7 @@ function getFilterOptions(items: RealisasiItem[]) {
   return {
     accounts: uniqueOptions(items, (item) => item.accountCode, (item) => `${item.accountCode} - ${item.accountName}`),
     programs: uniqueOptions(items, (item) => item.programCode, (item) => item.programCode || ""),
+    ros: uniqueOptions(items, (item) => getRealisasiRO(item).roKey, (item) => getRealisasiRO(item).roCode),
     labels: uniqueOptions(items, (item) => item.label, (item) => item.label || ""),
   };
 }
@@ -357,12 +513,13 @@ function uniqueOptions(
 
 function filterItems(
   items: RealisasiItem[],
-  filters: { account: string; label: string; program: string; query: string },
+  filters: { account: string; label: string; program: string; query: string; ro: string },
 ) {
   const query = filters.query.trim().toLowerCase();
   return items.filter((item) => {
     if (filters.account !== ALL && item.accountCode !== filters.account) return false;
     if (filters.program !== ALL && item.programCode !== filters.program) return false;
+    if (filters.ro !== ALL && getRealisasiRO(item).roKey !== filters.ro) return false;
     if (filters.label !== ALL && item.label !== filters.label) return false;
     if (!query) return true;
     return [
@@ -372,6 +529,8 @@ function filterItems(
       item.programCode,
       item.activityCode,
       item.outputCode,
+      item.suboutputCode,
+      getRealisasiRO(item).roCode,
       item.unitE2Name,
       item.unitE3Name,
       item.label,
@@ -379,47 +538,6 @@ function filterItems(
       .filter(Boolean)
       .some((value) => String(value).toLowerCase().includes(query));
   });
-}
-
-function summarizeItems(items: RealisasiItem[]) {
-  const totals = items.reduce(
-    (summary, item) => ({
-      pagu: summary.pagu + item.pagu,
-      rupiahUnit: summary.rupiahUnit + item.rupiahUnit,
-      blokir: summary.blokir + item.blokir,
-      draft: summary.draft + item.draft,
-      realisasi: summary.realisasi + item.realisasi,
-      sp2d: summary.sp2d + item.sp2d,
-      outstanding: summary.outstanding + item.outstanding,
-      selisihLs: summary.selisihLs + item.selisihLs,
-    }),
-    {
-      pagu: 0,
-      rupiahUnit: 0,
-      blokir: 0,
-      draft: 0,
-      realisasi: 0,
-      sp2d: 0,
-      outstanding: 0,
-      selisihLs: 0,
-    },
-  );
-  return {
-    ...totals,
-    availableAfterRealisasi: totals.pagu - totals.realisasi - totals.outstanding,
-    realisasiPct: percent(totals.realisasi, totals.pagu),
-    sp2dPct: percent(totals.sp2d, totals.pagu),
-    draftPct: percent(totals.draft, totals.pagu),
-  };
-}
-
-function availableAfterRealisasi(item: Pick<RealisasiItem, "outstanding" | "pagu" | "realisasi">) {
-  return item.pagu - item.realisasi - item.outstanding;
-}
-
-function percent(value: number, total: number) {
-  if (!Number.isFinite(total) || total <= 0) return 0;
-  return Number(((value || 0) / total * 100).toFixed(2));
 }
 
 function joinCodes(...values: (string | undefined)[]) {
