@@ -584,7 +584,7 @@ If `BISMA_DEBUG_HTML=true`, debug HTML may be saved locally, but it must not be 
 
 ## Current Milestone Status
 
-Status as of 2026-05-21: the backend and first frontend timeline integration are implemented and verified.
+Status as of 2026-05-23: the backend, frontend timeline integration, Supabase snapshot publishing flow, public GitHub Pages deployment, favicon, data cutoff metadata, and member cost breakdown display are implemented and verified.
 
 ### Completed Backend
 
@@ -600,8 +600,11 @@ api/bisma/costsheetListParser.js
 api/bisma/costsheetDetailParser.js
 api/bisma/costsheetService.js
 api/bisma/timelineAdapter.js
+api/bisma/publicTimeline.js
+api/bisma/supabasePublisher.js
 api/bisma/cache.js
 api/bisma/utils.js
+scripts/publishTimeline.js
 ```
 
 Implemented endpoints:
@@ -632,9 +635,75 @@ Backend safety notes:
 
 - `.env.example` must keep credential values blank.
 - `.env` is ignored and must remain local.
-- Frontend must continue to call only local `/api/bisma/*` endpoints.
+- Local development may call local `/api/bisma/*` endpoints when `VITE_TIMELINE_DATA_URL` is unset.
+- Public GitHub Pages must read only the Supabase Storage JSON snapshot through `VITE_TIMELINE_DATA_URL`.
 - Do not expose BISMA credentials, encrypted payloads, raw cookie headers, or raw HTML to the browser.
+- Do not expose Supabase service role/secret keys to the browser or GitHub frontend variables.
 - Backend logs should remain operational only, such as login success, list count, and detail parse counts.
+
+### Current Public Deployment
+
+The production/public workaround is:
+
+```text
+Local machine: BISMA login, crawl, parse, sanitize, publish
+Supabase Storage: public latest timeline JSON snapshot
+GitHub Pages: static React frontend reading the snapshot
+```
+
+The public frontend must not call BISMA or Vercel. It reads:
+
+```text
+https://eazsimhmrdsihwlpmjaf.supabase.co/storage/v1/object/public/bisma-timeline/timeline/latest.json
+```
+
+GitHub repository variable:
+
+```text
+VITE_TIMELINE_DATA_URL=https://eazsimhmrdsihwlpmjaf.supabase.co/storage/v1/object/public/bisma-timeline/timeline/latest.json
+```
+
+The old `VITE_API_BASE_URL` Vercel variable was removed from GitHub variables. Keep it unused unless deliberately restoring a separate backend deployment.
+
+Public site:
+
+```text
+https://diperma.github.io/timeline-generator/
+```
+
+To refresh public data:
+
+```text
+npm run publish:timeline
+```
+
+This runs BISMA sync locally and overwrites:
+
+```text
+bisma-timeline/timeline/latest.json
+```
+
+After code changes, push to GitHub and run/re-run:
+
+```text
+.github/workflows/pages.yml
+```
+
+Current Supabase MCP setup:
+
+```text
+codex mcp add supabase --url https://mcp.supabase.com/mcp?project_ref=eazsimhmrdsihwlpmjaf
+codex mcp login supabase
+```
+
+Supabase agent skills were installed locally:
+
+```text
+.agents/skills/supabase
+.agents/skills/supabase-postgres-best-practices
+```
+
+Important security note: a Supabase secret was pasted into chat during setup. Rotate it in Supabase before relying on this app for production-sensitive data, then update local `.env` only.
 
 ### Completed Backend Tests
 
@@ -644,10 +713,13 @@ Current tests cover:
 - credential validation before login,
 - rupiah parsing,
 - HP parsing from `jmlharidum`,
+- BISMA member cost breakdown parsing,
 - costsheet detail URL parsing,
 - costsheet list row normalization,
 - sample detail page member parsing,
 - timeline payload adaptation,
+- public snapshot sanitization and metadata,
+- Supabase publish config validation,
 - `trigger=All` list request,
 - list caching,
 - partial detail failure handling.
@@ -661,7 +733,7 @@ npm test
 Expected current result:
 
 ```text
-10 passing tests
+17 passing tests
 ```
 
 ### Completed Frontend
@@ -696,9 +768,12 @@ vite.config.ts
 
 Current frontend behavior:
 
-- Fetches timeline JSON from `/api/bisma/timeline`.
-- Forces refresh through `/api/bisma/sync`.
+- If `VITE_TIMELINE_DATA_URL` is set, fetches timeline JSON from the public Supabase Storage snapshot.
+- If `VITE_TIMELINE_DATA_URL` is unset, fetches timeline JSON from local `/api/bisma/timeline`.
+- In Supabase snapshot mode, the header action is `Reload` and only reloads the JSON snapshot.
+- In local backend mode, the header action is `Sync` and calls `/api/bisma/sync`.
 - Displays metrics for assignment count, employee count, total HP, and total cost.
+- Header badges include year, data cutoff (`Data diperoleh ...` from `obtainedAt`/`syncedAt`), and warning count.
 - Shows three top tabs:
   - `Penugasan`
   - `Pegawai`
@@ -738,6 +813,7 @@ Timeline behavior:
 Detail sheet:
 
 - Opens from a penugasan row or from a pegawai timeline marker.
+- Uses a wider right-side sheet (`sm:max-w-[min(1200px,100vw)]`) so long roles and cost columns fit better.
 - Shows ST/costsheet/status/source metadata.
 - Shows member table with:
 
@@ -747,7 +823,110 @@ Peran
 Tanggal
 HP
 Kota
-Biaya
+UANG HARIAN
+PENGINAPAN
+Taxi Bandara
+Angkutan Laut
+Transportasi Udara
+Transportasi Darat
+DLL
+REPRESENTASI
+JUMLAH
+```
+
+The detail table uses `member.costBreakdown.total` first and falls back to `member.totalCost`.
+
+### Public Snapshot Shape
+
+The public Supabase snapshot includes metadata:
+
+```json
+{
+  "source": "bisma",
+  "year": "2026",
+  "syncedAt": "2026-05-22T07:42:04.145Z",
+  "obtainedAt": "2026-05-22T07:42:04.145Z",
+  "publishedAt": "2026-05-22T07:42:04.146Z",
+  "dataStartDate": "2026-01-05",
+  "dataEndDate": "2026-06-30",
+  "publicSnapshot": true
+}
+```
+
+The public sanitizer keeps:
+
+- assignment metadata and total cost,
+- member names, role, grade, dates, HP, active flag, cities,
+- member `totalCost`,
+- member `costBreakdown`.
+
+The public sanitizer strips:
+
+- `nip`,
+- `noSpd`,
+- BISMA cookies,
+- credentials,
+- encrypted login payloads,
+- raw HTML,
+- backend-only detail URLs.
+
+Member cost breakdown shape:
+
+```json
+{
+  "costBreakdown": {
+    "dailyAllowance": 2150000,
+    "lodging": 2980000,
+    "airportTaxi": 862000,
+    "seaTransport": 0,
+    "airTransport": 5200000,
+    "groundTransport": 0,
+    "other": 0,
+    "representation": 0,
+    "total": 11192000
+  },
+  "totalCost": 11192000
+}
+```
+
+BISMA field mapping:
+
+```text
+uangharianX      -> dailyAllowance / UANG HARIAN
+uangpenginapanX  -> lodging / PENGINAPAN
+uangtaxiX        -> airportTaxi / Taxi Bandara
+uanglautX        -> seaTransport / Angkutan Laut
+uangudaraX       -> airTransport / Transportasi Udara
+uangdaratX       -> groundTransport / Transportasi Darat
+uangdllX         -> other / DLL
+uangrepX         -> representation / REPRESENTASI
+totalX           -> total / JUMLAH
+```
+
+Known verified example after republish:
+
+```text
+costsheetId: 209485-1
+assignment total: Rp 33.576.000
+Yanti Manggarani: Rp 11.192.000
+Rayhan Yuda Putra: Rp 11.192.000
+Fauzan Rafif: Rp 11.192.000
+Stefanus Hananto Radityo: Rp 0 in BISMA detail data
+Luky Nurvita Santi: Rp 0 in BISMA detail data
+```
+
+### Favicon
+
+The app has a simple `B` favicon:
+
+```text
+public/favicon.svg
+```
+
+`index.html` links it as:
+
+```html
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 ```
 
 ### Performance Notes
@@ -791,12 +970,14 @@ The Vite dev server proxies `/api` to `http://127.0.0.1:3000`.
 Build verification:
 
 ```text
+npm test
 npm run build
 ```
 
 Current expected result:
 
 ```text
+Node tests pass
 TypeScript build passes
 Vite production build passes
 ```
