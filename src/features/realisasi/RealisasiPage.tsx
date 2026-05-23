@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import {
   AlertCircleIcon,
   BanknoteIcon,
-  BarChart3Icon,
   RefreshCwIcon,
   SearchIcon,
   WalletCardsIcon,
@@ -119,12 +118,11 @@ export function RealisasiPage() {
 
       {payload && (
         <>
-          <section className="grid gap-3 md:grid-cols-5">
+          <section className="grid gap-3 md:grid-cols-4">
             <Metric title="Pagu" value={formatRupiah(totals.pagu)} icon={<WalletCardsIcon />} />
             <Metric title="Realisasi" value={formatRupiah(totals.realisasi)} icon={<BanknoteIcon />} />
-            <Metric title="SP2D" value={formatRupiah(totals.sp2d)} icon={<BanknoteIcon />} />
+            <Metric title="Outstanding" value={formatRupiah(totals.outstanding)} icon={<BanknoteIcon />} />
             <Metric title="Sisa Pagu" value={formatRupiah(totals.availableAfterRealisasi)} icon={<WalletCardsIcon />} />
-            <Metric title="Realisasi" value={`${totals.realisasiPct}%`} icon={<BarChart3Icon />} />
           </section>
 
           <Card>
@@ -162,6 +160,7 @@ export function RealisasiPage() {
                     <TableHead className="min-w-32 text-right">Pagu</TableHead>
                     <TableHead className="min-w-32 text-right">Draft</TableHead>
                     <TableHead className="min-w-32 text-right">Realisasi</TableHead>
+                    <TableHead className="min-w-32 text-right">Outstanding</TableHead>
                     <TableHead className="min-w-32 text-right">SP2D</TableHead>
                     <TableHead className="min-w-32 text-right">Sisa</TableHead>
                     <TableHead className="min-w-24 text-right">%</TableHead>
@@ -185,8 +184,9 @@ export function RealisasiPage() {
                       <MoneyCell value={item.pagu} />
                       <MoneyCell value={item.draft} />
                       <MoneyCell value={item.realisasi} />
+                      <MoneyCell value={item.outstanding} />
                       <MoneyCell value={item.sp2d} />
-                      <MoneyCell value={item.availableAfterRealisasi} />
+                      <MoneyCell value={availableAfterRealisasi(item)} />
                       <TableCell className="text-right tabular-nums">{item.realisasiPct}%</TableCell>
                     </TableRow>
                   ))}
@@ -300,7 +300,7 @@ function RealisasiDetail({ item }: { item: RealisasiItem }) {
           <DetailLine label="SP2D" value={formatRupiah(item.sp2d)} />
           <DetailLine label="Outstanding" value={formatRupiah(item.outstanding)} />
           <DetailLine label="Selisih LS" value={formatRupiah(item.selisihLs)} />
-          <DetailLine label="Sisa Pagu" value={formatRupiah(item.availableAfterRealisasi)} />
+          <DetailLine label="Sisa Pagu" value={formatRupiah(availableAfterRealisasi(item))} />
           <DetailLine label="Persentase Realisasi" value={`${item.realisasiPct}%`} />
         </CardContent>
       </Card>
@@ -406,11 +406,15 @@ function summarizeItems(items: RealisasiItem[]) {
   );
   return {
     ...totals,
-    availableAfterRealisasi: totals.pagu - totals.realisasi,
+    availableAfterRealisasi: totals.pagu - totals.realisasi - totals.outstanding,
     realisasiPct: percent(totals.realisasi, totals.pagu),
     sp2dPct: percent(totals.sp2d, totals.pagu),
     draftPct: percent(totals.draft, totals.pagu),
   };
+}
+
+function availableAfterRealisasi(item: Pick<RealisasiItem, "outstanding" | "pagu" | "realisasi">) {
+  return item.pagu - item.realisasi - item.outstanding;
 }
 
 function percent(value: number, total: number) {

@@ -37,6 +37,7 @@ function parseRealisasiRow(row, index, warnings = []) {
   const realisasi = money(raw.realisasi);
   const sp2d = money(raw.sp2d);
   const draft = money(raw.draft);
+  const outstanding = money(raw.outstand);
 
   return stripUndefined({
     rowNo: index + 1,
@@ -66,9 +67,9 @@ function parseRealisasiRow(row, index, warnings = []) {
     draft,
     realisasi,
     sp2d,
-    outstanding: money(raw.outstand),
+    outstanding,
     selisihLs: money(raw.selisih_ls),
-    availableAfterRealisasi: pagu - realisasi,
+    availableAfterRealisasi: pagu - realisasi - outstanding,
     realisasiPct: percent(realisasi, pagu),
     sp2dPct: percent(sp2d, pagu),
     draftPct: percent(draft, pagu),
@@ -101,7 +102,7 @@ function summarizeRealisasi(items) {
 
   return {
     ...totals,
-    availableAfterRealisasi: totals.pagu - totals.realisasi,
+    availableAfterRealisasi: totals.pagu - totals.realisasi - totals.outstanding,
     realisasiPct: percent(totals.realisasi, totals.pagu),
     sp2dPct: percent(totals.sp2d, totals.pagu),
     draftPct: percent(totals.draft, totals.pagu),

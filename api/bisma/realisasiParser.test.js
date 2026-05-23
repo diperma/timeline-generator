@@ -16,9 +16,12 @@ test("parseRealisasiPayload normalizes BISMA budget realization rows", () => {
   assert.equal(parsed.items[0].unitCode, "D302");
   assert.equal(parsed.items[0].pagu, 135370000);
   assert.equal(parsed.items[0].realisasi, 27074000);
-  assert.equal(parsed.items[0].availableAfterRealisasi, 108296000);
+  assert.equal(parsed.items[0].outstanding, 1000);
+  assert.equal(parsed.items[0].availableAfterRealisasi, 108295000);
   assert.equal(parsed.items[0].realisasiPct, 20);
   assert.equal(parsed.totals.pagu, 135370000);
+  assert.equal(parsed.totals.outstanding, 1000);
+  assert.equal(parsed.totals.availableAfterRealisasi, 108295000);
   assert.equal(parsed.totals.realisasiPct, 20);
 });
 
