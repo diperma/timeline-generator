@@ -1,9 +1,12 @@
 import type { SyncResponse, TimelinePayload } from "@/types/bisma";
+import type { RealisasiPayload, RealisasiSyncResponse } from "@/types/realisasi";
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/+$/, "");
 const TIMELINE_DATA_URL = (import.meta.env.VITE_TIMELINE_DATA_URL || "").trim();
+const REALISASI_DATA_URL = (import.meta.env.VITE_REALISASI_DATA_URL || "").trim();
 
 export const isStaticTimelineMode = Boolean(TIMELINE_DATA_URL);
+export const isStaticRealisasiMode = Boolean(REALISASI_DATA_URL);
 
 export async function fetchTimeline(): Promise<TimelinePayload> {
   if (TIMELINE_DATA_URL) {
@@ -18,6 +21,21 @@ export async function syncTimeline(): Promise<TimelinePayload> {
   }
   await requestJson<SyncResponse>("/api/bisma/sync", { method: "POST" });
   return fetchTimeline();
+}
+
+export async function fetchRealisasi(): Promise<RealisasiPayload> {
+  if (REALISASI_DATA_URL) {
+    return requestJson<RealisasiPayload>(withCacheBust(REALISASI_DATA_URL));
+  }
+  return requestJson<RealisasiPayload>("/api/bisma/realisasi");
+}
+
+export async function syncRealisasi(): Promise<RealisasiPayload> {
+  if (REALISASI_DATA_URL) {
+    return fetchRealisasi();
+  }
+  await requestJson<RealisasiSyncResponse>("/api/bisma/realisasi/sync", { method: "POST" });
+  return fetchRealisasi();
 }
 
 async function requestJson<T>(url: string, init?: RequestInit): Promise<T> {

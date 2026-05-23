@@ -4,11 +4,13 @@ const crypto = require("node:crypto");
 const { getConfig, getPublicConfig } = require("./bisma/config");
 const { createBismaClient } = require("./bisma/bismaClient");
 const { createCostsheetService } = require("./bisma/costsheetService");
+const { createRealisasiService } = require("./bisma/realisasiService");
 
 const app = express();
 const config = getConfig();
 const client = createBismaClient(config);
 const costsheets = createCostsheetService({ config, client });
+const realisasi = createRealisasiService({ config, client });
 
 app.use(cors(createCorsOptions(config)));
 app.use(express.json({ limit: "1mb" }));
@@ -27,7 +29,10 @@ app.get("/api/bisma/status", async (_req, res) => {
       ok: true,
       config: getPublicConfig(config),
       session: client.getSessionStatus(),
-      cache: costsheets.getCacheStatus(),
+      cache: {
+        ...costsheets.getCacheStatus(),
+        realisasi: realisasi.getCacheStatus(),
+      },
     });
   } catch (error) {
     sendError(res, error);
@@ -128,6 +133,23 @@ app.get("/api/bisma/timeline", async (req, res) => {
 app.post("/api/bisma/sync", async (_req, res) => {
   try {
     res.json(await costsheets.syncAll());
+  } catch (error) {
+    sendError(res, error);
+  }
+});
+
+app.get("/api/bisma/realisasi", async (req, res) => {
+  try {
+    const force = req.query.force === "true";
+    res.json(await realisasi.fetchRealisasi({ force }));
+  } catch (error) {
+    sendError(res, error);
+  }
+});
+
+app.post("/api/bisma/realisasi/sync", async (_req, res) => {
+  try {
+    res.json(await realisasi.syncAll());
   } catch (error) {
     sendError(res, error);
   }

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   AlertCircleIcon,
+  BarChart3Icon,
   CalendarDaysIcon,
   ChevronsUpDownIcon,
   CheckCircle2Icon,
@@ -51,10 +52,12 @@ import type { TimelineAssignment, TimelinePayload } from "@/types/bisma";
 import { buildTimeline } from "@/features/timeline/timelineEngine";
 import { TimelineGrid } from "@/features/timeline/TimelineGrid";
 import { AssignmentDetail } from "@/features/timeline/AssignmentDetail";
+import { RealisasiPage } from "@/features/realisasi/RealisasiPage";
 import { cn } from "@/lib/utils";
 
 type LoadState = "idle" | "loading" | "refreshing" | "error" | "ready";
 type TimelineTab = "assignments" | "employees" | "warnings";
+type AppModule = "timeline" | "realisasi";
 
 const ALL = "__all__";
 const CURRENT_MONTH = new Date().toISOString().slice(0, 7);
@@ -68,6 +71,7 @@ export default function App() {
   const [assignmentNo, setAssignmentNo] = useState(ALL);
   const [member, setMember] = useState(ALL);
   const [month, setMonth] = useState(CURRENT_MONTH);
+  const [activeModule, setActiveModule] = useState<AppModule>("timeline");
   const [activeTab, setActiveTab] = useState<TimelineTab>("assignments");
   const [selected, setSelected] = useState<TimelineAssignment | null>(null);
 
@@ -138,10 +142,10 @@ export default function App() {
         <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="flex flex-col gap-1">
             <p className="text-xs font-medium uppercase text-muted-foreground">
-              BISMA Timeline Generator
+              BISMA Dashboard
             </p>
             <h1 className="text-2xl font-semibold tracking-tight lg:text-3xl">
-              Kalender Penugasan dan Beban Pegawai
+              Timeline Penugasan dan Realisasi Anggaran
             </h1>
             <p className="max-w-3xl text-sm text-muted-foreground">
               {isStaticTimelineMode
@@ -149,72 +153,91 @@ export default function App() {
                 : "Data bersumber dari backend BISMA adapter. Browser hanya membaca endpoint lokal aplikasi ini, tanpa kredensial atau cookie BISMA."}
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="secondary">Tahun {payload?.year ?? "2026"}</Badge>
-            <Badge variant="secondary">
-              Data diperoleh {formatDateTime(payload?.obtainedAt || payload?.syncedAt)}
-            </Badge>
-            <Badge variant={payload?.warnings.length ? "outline" : "secondary"}>
-              {payload?.warnings.length ?? 0} warnings
-            </Badge>
-            <Button disabled={loadState === "loading" || loadState === "refreshing"} onClick={() => load(true)}>
-              <RefreshCwIcon data-icon="inline-start" />
-              {isStaticTimelineMode ? "Reload" : "Sync"}
-            </Button>
-          </div>
+          {activeModule === "timeline" && (
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant="secondary">Tahun {payload?.year ?? "2026"}</Badge>
+              <Badge variant="secondary">
+                Data diperoleh {formatDateTime(payload?.obtainedAt || payload?.syncedAt)}
+              </Badge>
+              <Badge variant={payload?.warnings.length ? "outline" : "secondary"}>
+                {payload?.warnings.length ?? 0} warnings
+              </Badge>
+              <Button disabled={loadState === "loading" || loadState === "refreshing"} onClick={() => load(true)}>
+                <RefreshCwIcon data-icon="inline-start" />
+                {isStaticTimelineMode ? "Reload" : "Sync"}
+              </Button>
+            </div>
+          )}
         </header>
 
-        {error && (
-          <Alert variant="destructive">
-            <AlertCircleIcon />
-            <AlertTitle>Timeline belum bisa dimuat</AlertTitle>
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
+        <Tabs value={activeModule} onValueChange={(value) => setActiveModule(value as AppModule)}>
+          <TabsList className="w-fit">
+            <TabsTrigger value="timeline">
+              <CalendarDaysIcon data-icon="inline-start" />
+              Timeline
+            </TabsTrigger>
+            <TabsTrigger value="realisasi">
+              <BarChart3Icon data-icon="inline-start" />
+              Realisasi
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent className="flex flex-col gap-4" value="timeline">
+            {error && (
+              <Alert variant="destructive">
+                <AlertCircleIcon />
+                <AlertTitle>Timeline belum bisa dimuat</AlertTitle>
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
 
-        <section className="grid gap-3 md:grid-cols-4">
-          <Metric title="Penugasan" value={assignments.length} icon={<CalendarDaysIcon />} />
-          <Metric title="Pegawai" value={stats.employeeCount} icon={<UsersIcon />} />
-          <Metric title="Total HP" value={stats.totalHp} icon={<CheckCircle2Icon />} />
-          <Metric title="Total Biaya" value={formatRupiah(stats.totalCost)} icon={<CalendarDaysIcon />} />
-        </section>
+            <section className="grid gap-3 md:grid-cols-4">
+              <Metric title="Penugasan" value={assignments.length} icon={<CalendarDaysIcon />} />
+              <Metric title="Pegawai" value={stats.employeeCount} icon={<UsersIcon />} />
+              <Metric title="Total HP" value={stats.totalHp} icon={<CheckCircle2Icon />} />
+              <Metric title="Total Biaya" value={formatRupiah(stats.totalCost)} icon={<CalendarDaysIcon />} />
+            </section>
 
-        {loadState === "loading" && <TimelineSkeleton />}
+            {loadState === "loading" && <TimelineSkeleton />}
 
-        {payload && (
-          <Tabs className="flex flex-col gap-3" value={activeTab} onValueChange={(value) => setActiveTab(value as TimelineTab)}>
-            <TabsList className="w-fit">
-              <TabsTrigger value="assignments">Penugasan</TabsTrigger>
-              <TabsTrigger value="employees">Pegawai</TabsTrigger>
-              <TabsTrigger value="warnings">Warnings</TabsTrigger>
-            </TabsList>
-            <TabsContent value="assignments">
-              <TimelineGrid
-                assignmentById={assignmentById}
-                dates={model.dates}
-                rows={model.assignmentRows}
-                title="Penugasan"
-                description={`${assignments.length} penugasan dari ${payload.count} data timeline`}
-                controls={filterControls}
-                onOpenAssignment={setSelected}
-              />
-            </TabsContent>
-            <TabsContent value="employees">
-              <TimelineGrid
-                assignmentById={assignmentById}
-                dates={model.dates}
-                rows={model.employeeRows}
-                title="Pegawai"
-                description="Beban pegawai berdasarkan rentang tanggal anggota tim"
-                controls={filterControls}
-                onOpenAssignment={setSelected}
-              />
-            </TabsContent>
-            <TabsContent value="warnings">
-              <WarningsPanel warnings={[...payload.warnings, ...model.warnings]} />
-            </TabsContent>
-          </Tabs>
-        )}
+            {payload && (
+              <Tabs className="flex flex-col gap-3" value={activeTab} onValueChange={(value) => setActiveTab(value as TimelineTab)}>
+                <TabsList className="w-fit">
+                  <TabsTrigger value="assignments">Penugasan</TabsTrigger>
+                  <TabsTrigger value="employees">Pegawai</TabsTrigger>
+                  <TabsTrigger value="warnings">Warnings</TabsTrigger>
+                </TabsList>
+                <TabsContent value="assignments">
+                  <TimelineGrid
+                    assignmentById={assignmentById}
+                    dates={model.dates}
+                    rows={model.assignmentRows}
+                    title="Penugasan"
+                    description={`${assignments.length} penugasan dari ${payload.count} data timeline`}
+                    controls={filterControls}
+                    onOpenAssignment={setSelected}
+                  />
+                </TabsContent>
+                <TabsContent value="employees">
+                  <TimelineGrid
+                    assignmentById={assignmentById}
+                    dates={model.dates}
+                    rows={model.employeeRows}
+                    title="Pegawai"
+                    description="Beban pegawai berdasarkan rentang tanggal anggota tim"
+                    controls={filterControls}
+                    onOpenAssignment={setSelected}
+                  />
+                </TabsContent>
+                <TabsContent value="warnings">
+                  <WarningsPanel warnings={[...payload.warnings, ...model.warnings]} />
+                </TabsContent>
+              </Tabs>
+            )}
+          </TabsContent>
+          <TabsContent value="realisasi">
+            <RealisasiPage />
+          </TabsContent>
+        </Tabs>
       </section>
 
       <Sheet open={Boolean(selected)} onOpenChange={(open) => !open && setSelected(null)}>
