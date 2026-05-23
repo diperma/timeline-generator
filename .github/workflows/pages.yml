@@ -31,19 +31,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Check timeline data URL
+      - name: Check public data URLs
         run: |
           if [ -z "${VITE_TIMELINE_DATA_URL}" ]; then
             echo "::error::Set repository variable VITE_TIMELINE_DATA_URL to the Supabase public latest.json URL."
             exit 1
           fi
+          if [ -z "${VITE_REALISASI_DATA_URL}" ]; then
+            echo "::error::Set repository variable VITE_REALISASI_DATA_URL to the Supabase public realisasi/latest.json URL."
+            exit 1
+          fi
         env:
           VITE_TIMELINE_DATA_URL: ${{ vars.VITE_TIMELINE_DATA_URL }}
+          VITE_REALISASI_DATA_URL: ${{ vars.VITE_REALISASI_DATA_URL }}
 
       - name: Build
         run: npm run build
         env:
           VITE_TIMELINE_DATA_URL: ${{ vars.VITE_TIMELINE_DATA_URL }}
+          VITE_REALISASI_DATA_URL: ${{ vars.VITE_REALISASI_DATA_URL }}
           VITE_BASE_PATH: /timeline-generator/
 
       - name: Configure Pages

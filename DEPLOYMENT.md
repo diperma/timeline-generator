@@ -4,8 +4,8 @@ This project now uses a semi-updated public deployment:
 
 ```text
 Local machine: BISMA login, crawl, parse, sanitize, publish
-Supabase Storage: public latest timeline JSON snapshot
-GitHub Pages: static React frontend that reads the snapshot
+Supabase Storage: public latest timeline and realisasi JSON snapshots
+GitHub Pages: static React frontend that reads the snapshots
 ```
 
 GitHub Pages and Vercel should not contact `bisma.bpkp.go.id`.
@@ -24,6 +24,7 @@ SUPABASE_URL=https://eazsimhmrdsihwlpmjaf.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=
 SUPABASE_BUCKET=bisma-timeline
 PUBLIC_TIMELINE_PATH=timeline/latest.json
+PUBLIC_REALISASI_PATH=realisasi/latest.json
 SUPABASE_CACHE_CONTROL_SECONDS=60
 SUPABASE_PUBLISH_HISTORY=false
 ```
@@ -37,17 +38,19 @@ Run this locally after your BISMA credentials and Supabase values are set:
 
 ```text
 npm run publish:timeline
+npm run publish:realisasi
 ```
 
-The command:
+The commands:
 
 - syncs BISMA locally,
-- sanitizes the timeline payload,
-- uploads `timeline/latest.json` to Supabase Storage,
+- sanitizes the public payloads,
+- uploads `timeline/latest.json` and `realisasi/latest.json` to Supabase Storage,
 - prints the public snapshot URL.
 
-The public snapshot removes member `nip`, `noSpd`, per-member costs, cookies, raw HTML, and
-backend-only data. Treat anything left in the JSON as visible to every visitor.
+The timeline public snapshot removes member `nip`, `noSpd`, cookies, raw HTML, and
+backend-only data. The realisasi public snapshot keeps budget classification and money fields.
+Treat anything left in either JSON as visible to every visitor.
 
 ## GitHub Pages
 
@@ -55,6 +58,7 @@ Set this GitHub repository variable:
 
 ```text
 VITE_TIMELINE_DATA_URL=https://eazsimhmrdsihwlpmjaf.supabase.co/storage/v1/object/public/bisma-timeline/timeline/latest.json
+VITE_REALISASI_DATA_URL=https://eazsimhmrdsihwlpmjaf.supabase.co/storage/v1/object/public/bisma-timeline/realisasi/latest.json
 ```
 
 Then enable GitHub Pages with **GitHub Actions** as the source. The workflow builds with:
@@ -77,9 +81,9 @@ Local development can still use the backend directly:
 npm run dev
 ```
 
-If `VITE_TIMELINE_DATA_URL` is not set, the frontend reads `/api/bisma/timeline` through the Vite
-proxy. If it is set, the frontend reads the public Supabase snapshot and the button reloads that
-snapshot instead of triggering BISMA sync.
+If `VITE_TIMELINE_DATA_URL` or `VITE_REALISASI_DATA_URL` is not set, that frontend module reads
+the matching `/api/bisma/*` endpoint through the Vite proxy. If set, the module reads the public
+Supabase snapshot and the button reloads that snapshot instead of triggering BISMA sync.
 
 ## Security Notes
 
